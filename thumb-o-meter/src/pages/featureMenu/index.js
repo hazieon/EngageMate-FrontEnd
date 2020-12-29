@@ -1,7 +1,13 @@
 import React from "react";
+import NavBar from "../../components/navBar";
 
 const FeaturedMenu = () => {
-  return <main>Featured Menu</main>;
+  return (
+    <main>
+      <NavBar />
+      Featured Menu
+    </main>
+  );
 };
 
 export default FeaturedMenu;

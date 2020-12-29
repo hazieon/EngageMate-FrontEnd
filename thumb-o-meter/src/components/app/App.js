@@ -2,7 +2,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import styles from "./app.module.css";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Login from "../../pages/login/index";
-import LogoutButton from "../logout";
+import FeaturedMenu from "../../pages/featureMenu";
 import Admin from "../../pages/admin";
 import Menu from "../../pages/featureMenu";
 import Thumb from "../../pages/thumb-o-meter";
@@ -22,7 +22,7 @@ function App() {
             <Thumb />
           </Route>
           <Route path="/">
-            {isAuthenticated ? <LogoutButton /> : <Login />}
+            {isAuthenticated ? <FeaturedMenu /> : <Login />}
           </Route>
         </Switch>
       </div>
