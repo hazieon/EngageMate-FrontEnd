@@ -1,9 +1,13 @@
 import React from "react";
 import LoginButton from "../../components/loginButton";
-import styles from "../login/index.module.css";
+import "./index.module.css";
 
 function Login() {
-  return <LoginButton />;
+  return (
+    <main>
+      <LoginButton />
+    </main>
+  );
 }
 
 export default Login;
