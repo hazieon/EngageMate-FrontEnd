@@ -15,9 +15,11 @@ ReactDOM.render(
     clientId={clientId}
     redirectUri={window.location.origin}
   >
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
+    <ChakraProvider>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </ChakraProvider>
   </Auth0Provider>,
   document.getElementById("root")
 );

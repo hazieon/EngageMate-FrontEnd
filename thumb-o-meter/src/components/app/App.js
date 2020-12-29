@@ -3,20 +3,18 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Login from "../../pages/login/index";
 
 function App() {
+  console.log("app component called");
+
   return (
-    // <Router>
-    //   <div className={styles.app}>
-    //     <Switch>
-    //       {/* <Route path="/">
-    //         <Login />
-    //       </Route> */}
-    //     </Switch>
-    //   </div>
-    // </Router>
-    <div>
-      <h1>Hello</h1>
-      <Login />
-    </div>
+    <Router>
+      <div className={styles.app}>
+        <Switch>
+          <Route path="/">
+            <Login />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
