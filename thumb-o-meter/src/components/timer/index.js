@@ -3,7 +3,7 @@ import { useState } from "react";
 
 //takes in time as a prop, calculates this into a percentage?
 function Timer() {
-  const [time, setTime] = useState(100);
+  const [time, setTime] = useState(50);
 
   //function to initially set time start, calc as a %?
   //function to update time as it decreases on the backend

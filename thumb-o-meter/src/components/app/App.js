@@ -6,7 +6,6 @@ import LogoutButton from "../logout";
 import Admin from "../../pages/admin";
 import Menu from "../../pages/featureMenu";
 import Thumb from "../../pages/thumb-o-meter";
-import Timer from "../timer";
 function App() {
   const { isAuthenticated } = useAuth0();
   return (
@@ -24,7 +23,6 @@ function App() {
           </Route>
           <Route path="/">
             {isAuthenticated ? <LogoutButton /> : <Login />}
-            <Timer />
           </Route>
         </Switch>
       </div>
