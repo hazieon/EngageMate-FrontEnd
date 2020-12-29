@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import FeatureIcon from "../featureIcons";
 
-const FeaturedMenu = () => {
+const CoachFeaturedMenu = () => {
   return (
     <div>
       <Link to="/thumb">
@@ -14,8 +14,11 @@ const FeaturedMenu = () => {
       <Link to="/livequiz">
         <FeatureIcon alt="livequiz" src="/quizzical.jpeg" />
       </Link>
+      <Link to="/deck">
+        <FeatureIcon alt="deck" />
+      </Link>
     </div>
   );
 };
 
-export default FeaturedMenu;
+export default CoachFeaturedMenu;

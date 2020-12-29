@@ -1,6 +1,6 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import styles from "./app.module.css";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Login from "../../pages/login/index";
 import FeaturedMenu from "../../pages/featureMenu";
 import Admin from "../../pages/admin";
