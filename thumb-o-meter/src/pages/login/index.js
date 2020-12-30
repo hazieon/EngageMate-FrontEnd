@@ -1,13 +1,22 @@
 import React from "react";
 import LoginButton from "../../components/loginButton";
-import "./index.module.css";
+import styles from "./index.module.css";
+import { Image, Box, Text, Center, StylesProvider } from "@chakra-ui/react";
 
 function Login() {
   return (
-    <main>
-      <LoginButton />
-    </main>
+    <Box>
+      <Center>
+        <Box flexShrink={0}>
+          <main>
+            <LoginButton />
+          </main>
+        </Box>
+      </Center>
+    </Box>
   );
 }
 
 export default Login;
+
+// className={styles.loginPage}
