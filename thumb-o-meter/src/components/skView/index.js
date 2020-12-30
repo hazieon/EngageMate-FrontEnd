@@ -5,6 +5,7 @@ import { Input } from "@chakra-ui/react";
 import { Button, ButtonGroup, Icon } from "@chakra-ui/react";
 import { MdUpdate, MdStop, MdPeople } from "react-icons/md";
 import Thumb from "../thumb";
+import Timer from "../timer/index";
 
 function SkView() {
   // question
@@ -36,23 +37,13 @@ function SkView() {
         <h3>Value: {value}%</h3>
         <p>25/30{<Icon as={MdPeople} />}</p>
       </div>
-      <p>Timer Here</p>
-
-      {/* <Button
-        size="md"
-        height="35px"
-        width="150px"
-        border="2px"
-        borderColor="blue.500"
-      >
-        Start Timer
-      </Button> */}
+      <Timer />
       <div className={style.buttons}>
-        <Button leftIcon={<MdUpdate />} colorScheme="green">
-          Start Timer
-        </Button>
-        <Button rightIcon={<MdStop />} colorScheme="red">
+        <Button leftIcon={<MdStop />} colorScheme="red">
           Stop Timer
+        </Button>
+        <Button rightIcon={<MdUpdate />} colorScheme="green">
+          Start Timer
         </Button>
       </div>
     </div>

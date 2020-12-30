@@ -9,6 +9,7 @@ import {
 } from "@chakra-ui/react";
 import { Icon } from "@chakra-ui/react";
 import { MdPeople } from "react-icons/md";
+import Timer from "../timer/index";
 
 function PtView() {
   // display the question
@@ -35,7 +36,7 @@ function PtView() {
       </Slider>
       <h3>Value: {value}%</h3>
       <p>25/30{<Icon as={MdPeople} />}</p>
-      <p>Timer Here</p>
+      <Timer />
     </div>
   );
 }
