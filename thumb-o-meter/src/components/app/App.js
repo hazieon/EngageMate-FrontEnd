@@ -6,6 +6,7 @@ import FeaturedMenu from "../../pages/featureMenu";
 import Admin from "../../pages/admin";
 import Menu from "../../pages/featureMenu";
 import Thumb from "../../pages/thumb-o-meter";
+
 function App() {
   const { isAuthenticated } = useAuth0();
   return (

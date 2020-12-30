@@ -1,0 +1,12 @@
+.thumb {
+  height: auto;
+}
+
+.results {
+  border: 1px solid grey;
+  display: flex;
+  width: 40vw;
+  height: 40vh;
+  border-radius: 30px;
+  flex-direction: column;
+}
