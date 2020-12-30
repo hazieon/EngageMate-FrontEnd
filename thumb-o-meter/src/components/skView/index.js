@@ -7,7 +7,22 @@ import { MdUpdate, MdStop, MdPeople } from "react-icons/md";
 import Thumb from "../thumb";
 import Timer from "../timer/index";
 
-function SkView() {
+// startSessionBtn.addEventListener("click", (e) => {
+//   e.preventDefault();
+//   const question = document.querySelector("#questionInput").value;
+//   const timer = document.querySelector("#timerInput").value;
+
+//   socket.emit("start", { question, timer });
+
+//   question.value = "";
+// });
+
+// endSessionBtn.addEventListener("click", (e) => {
+//   e.preventDefault();
+//   socket.emit("stopTimer");
+// });
+
+function SkView({ data, startSession, endSession, count }) {
   // question
   //maybe have dropdown (with preset questions) and input (for create questions)
   // Thumb

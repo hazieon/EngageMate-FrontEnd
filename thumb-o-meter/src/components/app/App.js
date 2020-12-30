@@ -7,24 +7,9 @@ import FeaturedMenu from "../../pages/featureMenu";
 import Admin from "../../pages/admin";
 import Menu from "../../pages/featureMenu";
 import Thumb from "../../pages/thumb-o-meter";
-import socketIOClient from "socket.io-client";
-const ENDPOINT = "http://localhost:3000";
 
 function App() {
   const { isAuthenticated } = useAuth0();
-  const [response, setResponse] = useState("");
-
-  useEffect(() => {
-    const socket = socketIOClient(ENDPOINT);
-    socket.emit("connection");
-
-    socket.on("FromAPI", (data) => {
-      setResponse(data);
-      console.log(response);
-    });
-    return () => socket.disconnect();
-  }, []);
-
   return (
     <Router>
       <div className={styles.app}>
