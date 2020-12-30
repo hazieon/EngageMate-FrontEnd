@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import thumb from "./thumb.png";
+import styles from "../results/results.module.css";
 
 function Results() {
   const [thumbResult, setThumbResult] = useState(90);
@@ -10,8 +11,9 @@ function Results() {
   //set responses value and participants from session Data
 
   return (
-    <div>
+    <div className={styles.results}>
       <img
+        className={styles.thumb}
         src={thumb}
         alt="thumb"
         style={{ transform: `rotate(${thumbResult}deg)` }}
