@@ -1,0 +1,13 @@
+.container {
+  border: 3px solid rgb(21, 113, 189);
+  width: 120px;
+  padding: 10px;
+  border-radius: 50%;
+}
+
+.thumb {
+  width: 100px;
+  transform-origin: 50% 50%;
+  transform: rotate(180deg);
+  transition: transform 0.8s ease-in-out;
+}
