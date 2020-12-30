@@ -14,14 +14,15 @@ const Authorised = () => {
   let url =
     process.env.REACT_APP_BACKEND_URL ||
     `http://localhost:5000/users/${loggedUser.email}`;
+
   useEffect(() => {
     async function getUsers() {
       setLoggedUser(user);
       const res = await fetch(url);
       const result = await res.json();
-      setRole(result.data.role);
+      result.data === undefined ? setRole("guest") : setRole(result.data.role);
       // const userRole = data.map((item) => item.role);
-      //const userEmail = data.map((item) => item.email);
+      // const userEmail = data.map((item) => item.email);
       // userEmail.includes(loggedUser.email) ? setRole() : setRole("guest");
     }
 
@@ -29,6 +30,7 @@ const Authorised = () => {
 
     //loggedUser is the Auth0 information
   }, [loggedUser, role, user, url]);
+
   console.log(role);
   return (
     <div>

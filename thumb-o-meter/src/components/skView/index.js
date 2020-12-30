@@ -29,24 +29,41 @@ function SkView({ data, startSession, endSession, count }) {
   // overall mood
   // timer (start button?)
   // participants
-
+  const [question, setQuestion] = useState("");
+  const [timer, setTimer] = useState(0);
   const [value, setValue] = useState(0);
+  function handleSession(e) {
+    setQuestion(e.target.value);
+    console.log(question);
+  }
 
+  function handleTimer(e) {
+    setTimer(Number(e.target.value));
+    console.log(timer);
+  }
+  console.log({ data });
+  console.log({ count });
+  console.log({ question });
+  console.log({ timer });
   return (
     <div className={style.container}>
       {/* <h1>The Question Here</h1> */}
-      <Select placeholder="Select question">
-        <option value="option1">How are you feeling?</option>
-        <option value="option2">Did you understand that?</option>
-        <option value="option3">Are you comfortable with moving on?</option>
+      <Select placeholder="Select question" onClick={handleSession}>
+        <option value="How are you feeling?">How are you feeling?</option>
+        <option value="Did you understand that?">
+          Did you understand that?
+        </option>
+        <option value="Are you comfortable with moving on?">
+          Are you comfortable with moving on?
+        </option>
       </Select>
       {/* <Input placeholder="Write your own question?" /> */}
-      <Select placeholder="Timer Amount">
-        <option value="option1">10 Seconds</option>
-        <option value="option2">15 Seconds</option>
-        <option value="option3">20 Seconds</option>
-        <option value="option4">25 Seconds</option>
-        <option value="option5">30 Seconds</option>
+      <Select placeholder="Timer Amount" onClick={handleTimer}>
+        <option value="10">10 Seconds</option>
+        <option value="15">15 Seconds</option>
+        <option value="20">20 Seconds</option>
+        <option value="25">25 Seconds</option>
+        <option value="30">30 Seconds</option>
       </Select>
 
       <Thumb value={value} />
@@ -56,10 +73,14 @@ function SkView({ data, startSession, endSession, count }) {
       </div>
       <Timer />
       <div className={style.buttons}>
-        <Button leftIcon={<MdStop />} colorScheme="red">
+        <Button leftIcon={<MdStop />} colorScheme="red" onClick={endSession}>
           Stop Timer
         </Button>
-        <Button rightIcon={<MdUpdate />} colorScheme="green">
+        <Button
+          rightIcon={<MdUpdate />}
+          colorScheme="green"
+          onClick={() => startSession({ question, timer })}
+        >
           Start Timer
         </Button>
       </div>

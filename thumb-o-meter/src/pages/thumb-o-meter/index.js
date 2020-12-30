@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import NavBar from "../../components/navBar";
 import "./index.module.css";
@@ -32,19 +31,23 @@ const Thumbometer = () => {
     socket.on("startThumb", ({ sessionData, timer }) => {
       setData(sessionData);
       setTime(timer);
+      console.log("start thumb recieved");
     });
 
     socket.on("thumbUpdate", ({ sessionData }) => {
       setData(sessionData);
+      console.log("thumb updated");
     });
 
     socket.on("counter", (counter) => {
       setCount(counter);
+      console.log("count started");
     });
 
     //finished listener - sets final data state
     socket.on("finished", ({ sessionData }) => {
       setData(sessionData);
+      console.log("finished session");
       //disable slider here - state
     });
 
@@ -54,6 +57,7 @@ const Thumbometer = () => {
   //hand this function down to speaker view - pass in q and timer
   function startSession({ question, timer }) {
     socket.emit("start", { question, timer });
+    console.log("started session");
   }
 
   //function to stop the timer and end the session - pass this down to speaker view
@@ -71,17 +75,14 @@ const Thumbometer = () => {
       {speakerView && (
         <SkView
           data={data}
-          start={startSession}
-          end={endSession}
+          startSession={startSession}
+          endSession={endSession}
           count={count}
         />
       )}
       {!speakerView && (
         <PtView data={data} submit={submitData} time={time} count={count} />
       )}
-
-
-
     </main>
   );
 };
