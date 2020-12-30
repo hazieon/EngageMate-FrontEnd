@@ -1,0 +1,12 @@
+.container {
+  margin: auto;
+  width: 80%;
+  padding: 0.5em;
+  border: 1px solid grey;
+  border-radius: 30px;
+  background-color: white;
+}
+
+.timer {
+  border-radius: 30px;
+}
