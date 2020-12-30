@@ -11,7 +11,7 @@ import { Icon } from "@chakra-ui/react";
 import { MdPeople } from "react-icons/md";
 import Timer from "../timer/index";
 
-function PtView() {
+function PtView({ data, submitData, time, count }) {
   // display the question
   // rotatable thumb
   // slider
@@ -19,6 +19,11 @@ function PtView() {
   // timer
 
   const [value, setValue] = useState(0);
+
+  // slider.addEventListener("change", () => {
+  //   sliderVal.innerText = `Value: ${slider.value}`;
+  //   socket.emit("submission", { value: slider.value });
+  // });
 
   return (
     <div className={style.container}>
