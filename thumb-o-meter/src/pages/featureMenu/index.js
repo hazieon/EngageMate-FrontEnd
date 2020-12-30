@@ -16,6 +16,7 @@ const FeaturedMenu = ({ role }) => {
       <Header />
       <Title text={`Nice to see you again ${user.given_name}`} />
       {role === "coach" ? <SpeakerFeatureMenu /> : <ParticipantFeatureMenu />}
+
       <Footer />
     </main>
   );

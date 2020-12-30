@@ -1,8 +1,8 @@
 import React from "react";
-import { VStack } from "@chakra-ui/react";
+import { VStack, Button } from "@chakra-ui/react";
 import FeatureIcon from "../featureIcons";
-
-const SpeakerFeaturedMenu = ({ role }) => {
+import { Link } from "react-router-dom";
+const SpeakerFeaturedMenu = () => {
   return (
     <VStack spacing={10} align="center" bg="white">
       <FeatureIcon
@@ -33,6 +33,9 @@ const SpeakerFeaturedMenu = ({ role }) => {
         heading="DJ Deck"
         subheading="A little bit of music you say?"
       />
+      <Button>
+        <Link to="/admin">Admin</Link>
+      </Button>
     </VStack>
   );
 };
