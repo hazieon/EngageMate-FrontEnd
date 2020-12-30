@@ -10,7 +10,7 @@ import {
 } from "@chakra-ui/react";
 import { v4 as uuidv4 } from "uuid";
 
-const AddUserFunction = () => {
+const AddUserFunction = ({ updatePage, setUpdatePage }) => {
   const [formData, setFormData] = useState({});
 
   function handleChange(e) {
@@ -28,6 +28,7 @@ const AddUserFunction = () => {
     //will add a toast pop up here
     if (res.status === 200) {
       console.log("Success: user added");
+      setUpdatePage(!updatePage);
     }
   }
 
