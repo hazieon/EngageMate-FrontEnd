@@ -1,9 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
+
 import { VStack } from "@chakra-ui/react";
 import FeatureIcon from "../featureIcons";
+import "./featureMenu.module.css";
 
-const CoachFeaturedMenu = () => {
+const ParticipantFeaturedMenu = ({ role }) => {
   return (
     <VStack spacing={10} align="center" bg="white">
       <FeatureIcon
@@ -27,15 +28,8 @@ const CoachFeaturedMenu = () => {
         heading="Live Quiz"
         subheading="How much do you understand?"
       />
-      <FeatureIcon
-        alt="djDeck"
-        src="/quizzical.jpeg"
-        link="/djDeck"
-        heading="DJ Deck"
-        subheading="A little bit of music you say?"
-      />
     </VStack>
   );
 };
 
-export default CoachFeaturedMenu;
+export default ParticipantFeaturedMenu;

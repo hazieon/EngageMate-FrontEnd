@@ -1,36 +1,63 @@
-import React from "react";
-
-import { useAuth0 } from "@auth0/auth0-react";
-import { Link } from "react-router-dom";
-import { Icon, IconButton, Flex, Spacer, Box } from "@chakra-ui/react";
-import { FiHome } from "react-icons/fi";
+import React, { useState } from "react";
+import { Box, Heading, Flex, Text } from "@chakra-ui/react";
+import { HamburgerIcon } from "@chakra-ui/icons";
 import LogoutButton from "../logout/index";
+const MenuItems = ({ children }) => (
+  <Text mt={{ base: 4, md: 0 }} mr={6} display="block">
+    {children}
+  </Text>
+);
 
-function NavBar() {
-  const { user } = useAuth0();
+// Note: This code could be better, so I'd recommend you to understand how I solved and you could write yours better :)
+const Header = () => {
+  const [show, setShow] = useState(false);
+  const handleToggle = () => setShow(!show);
+
   return (
-    <Flex>
-      <Box p="2">
-        <Link to="/">
-          <IconButton
-            isRound="true"
-            colorScheme="teal"
-            aria-label="button"
-            icon={<Icon as={FiHome} />}
-          />
-        </Link>
+    <Flex
+      as="nav"
+      align="center"
+      justify="space-between"
+      wrap="wrap"
+      padding="1.5rem"
+      bg="teal.500"
+      color="white"
+    >
+      <Flex align="center" mr={5}>
+        <Heading as="h1" size="lg">
+          Logo Here
+        </Heading>
+      </Flex>
+
+      <Box
+        display={{ base: "block", md: "none" }}
+        mr={5}
+        onClick={handleToggle}
+      >
+        <HamburgerIcon />
       </Box>
-      <Spacer />
-      <Box justify="center" align="center" p="2">
-        Nice to see you again {user.given_name}
+
+      <Box
+        display={{ sm: show ? "block" : "none", md: "flex" }}
+        width={{ sm: "full", md: "auto" }}
+        alignItems="center"
+        flexGrow={1}
+      >
+        <MenuItems>Thumb-o-meter</MenuItems>
+        <MenuItems>Raise Hand</MenuItems>
+        <MenuItems>Live Quiz</MenuItems>
       </Box>
-      <Spacer />
-      <Box p="2">
-        <Link to="/logout">
+
+      <Box
+        display={{ sm: show ? "block" : "none", md: "block" }}
+        mt={{ base: 4, md: 0 }}
+      >
+        <Box bg="transparent" border="1px" p={2} borderRadius="lg">
           <LogoutButton />
-        </Link>
+        </Box>
       </Box>
     </Flex>
   );
-}
-export default NavBar;
+};
+
+export default Header;

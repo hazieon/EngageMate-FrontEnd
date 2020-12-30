@@ -1,10 +1,8 @@
 import React from "react";
-
 import { VStack } from "@chakra-ui/react";
 import FeatureIcon from "../featureIcons";
-import "./featureMenu.module.css";
 
-const FeaturedMenu = () => {
+const SpeakerFeaturedMenu = ({ role }) => {
   return (
     <VStack spacing={10} align="center" bg="white">
       <FeatureIcon
@@ -28,8 +26,15 @@ const FeaturedMenu = () => {
         heading="Live Quiz"
         subheading="How much do you understand?"
       />
+      <FeatureIcon
+        alt="djDeck"
+        src="/quizzical.jpeg"
+        link="/djDeck"
+        heading="DJ Deck"
+        subheading="A little bit of music you say?"
+      />
     </VStack>
   );
 };
 
-export default FeaturedMenu;
+export default SpeakerFeaturedMenu;
