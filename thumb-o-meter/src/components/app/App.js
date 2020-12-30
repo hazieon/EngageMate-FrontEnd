@@ -8,6 +8,7 @@ import Menu from "../../pages/featureMenu";
 import Thumb from "../../pages/thumb-o-meter";
 function App() {
   const { isAuthenticated } = useAuth0();
+
   return (
     <Router>
       <div className={styles.app}>

@@ -1,24 +1,36 @@
 import React from "react";
-import { BrowserRouter as Link } from "react-router-dom";
-import { Icon, IconButton } from "@chakra-ui/react";
+
+import { useAuth0 } from "@auth0/auth0-react";
+import { Link } from "react-router-dom";
+import { Icon, IconButton, Flex, Spacer, Box } from "@chakra-ui/react";
 import { FiHome } from "react-icons/fi";
 import LogoutButton from "../logout/index";
-import styles from "./navBar.module.css";
+
 function NavBar() {
+  const { user } = useAuth0();
   return (
-    <nav className={styles.nav}>
-      <Link to="/menu">
-        <IconButton
-          isRound="true"
-          colorScheme="teal"
-          aria-label="button"
-          icon={<Icon as={FiHome} />}
-        />
-      </Link>
-      <Link to="/logout">
-        <LogoutButton />
-      </Link>
-    </nav>
+    <Flex>
+      <Box p="2">
+        <Link to="/">
+          <IconButton
+            isRound="true"
+            colorScheme="teal"
+            aria-label="button"
+            icon={<Icon as={FiHome} />}
+          />
+        </Link>
+      </Box>
+      <Spacer />
+      <Box justify="center" align="center" p="2">
+        Nice to see you again {user.given_name}
+      </Box>
+      <Spacer />
+      <Box p="2">
+        <Link to="/logout">
+          <LogoutButton />
+        </Link>
+      </Box>
+    </Flex>
   );
 }
 export default NavBar;
