@@ -1,4 +1,6 @@
+
 import React, { useState, useEffect } from "react";
+import NavBar from "../../components/navBar";
 import "./index.module.css";
 import PtView from "../../components/ptView";
 import SkView from "../../components/skView";
@@ -64,6 +66,7 @@ const Thumbometer = () => {
   }
   return (
     <main>
+      <NavBar />
       <h1>Thumbometer</h1>
       {speakerView && (
         <SkView
@@ -76,6 +79,9 @@ const Thumbometer = () => {
       {!speakerView && (
         <PtView data={data} submit={submitData} time={time} count={count} />
       )}
+
+
+
     </main>
   );
 };

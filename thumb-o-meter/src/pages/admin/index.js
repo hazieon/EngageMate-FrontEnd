@@ -1,7 +1,10 @@
 import React from "react";
-
-const Admin = () => {
-  return <main>Admin Page</main>;
+import NavBar from "../../components/navBar";
+const Admin = ({ role }) => {
+  return (
+    <>
+      <NavBar />
+    </>
+  );
 };
-
 export default Admin;
