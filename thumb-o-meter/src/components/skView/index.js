@@ -28,8 +28,10 @@ function SkView() {
       {/* <Input placeholder="Write your own question?" /> */}
       <Select placeholder="Timer Amount">
         <option value="option1">10 Seconds</option>
-        <option value="option2">20 Seconds</option>
-        <option value="option3">30 Seconds</option>
+        <option value="option2">15 Seconds</option>
+        <option value="option3">20 Seconds</option>
+        <option value="option4">25 Seconds</option>
+        <option value="option5">30 Seconds</option>
       </Select>
 
       <Thumb value={value} />
