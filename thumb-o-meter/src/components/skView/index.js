@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import style from "./index.module.css";
 import { Select } from "@chakra-ui/react";
 import { Input } from "@chakra-ui/react";
-import { Button, ButtonGroup } from "@chakra-ui/react";
-import { MdUpdate } from "react-icons/md";
+import { Button, ButtonGroup, Icon } from "@chakra-ui/react";
+import { MdUpdate, MdStop, MdPeople } from "react-icons/md";
 import Thumb from "../thumb";
 
 function SkView() {
@@ -11,7 +11,7 @@ function SkView() {
   //maybe have dropdown (with preset questions) and input (for create questions)
   // Thumb
   // overall mood
-  // timer (start)
+  // timer (start button?)
   // participants
 
   const [value, setValue] = useState(0);
@@ -24,12 +24,20 @@ function SkView() {
         <option value="option2">Did you understand that?</option>
         <option value="option3">Are you comfortable with moving on?</option>
       </Select>
-      <Input placeholder="Write your own question?" />
+      {/* <Input placeholder="Write your own question?" /> */}
+      <Select placeholder="Timer Amount">
+        <option value="option1">10 Seconds</option>
+        <option value="option2">20 Seconds</option>
+        <option value="option3">30 Seconds</option>
+      </Select>
 
       <Thumb value={value} />
-      <h3>Value: {value}%</h3>
-      <h4>Participants amount</h4>
+      <div className={style.valueInformation}>
+        <h3>Value: {value}%</h3>
+        <p>25/30{<Icon as={MdPeople} />}</p>
+      </div>
       <p>Timer Here</p>
+
       {/* <Button
         size="md"
         height="35px"
@@ -39,7 +47,14 @@ function SkView() {
       >
         Start Timer
       </Button> */}
-      <Button leftIcon={<MdUpdate />}>Start Timer</Button>
+      <div className={style.buttons}>
+        <Button leftIcon={<MdUpdate />} colorScheme="green">
+          Start Timer
+        </Button>
+        <Button rightIcon={<MdStop />} colorScheme="red">
+          Stop Timer
+        </Button>
+      </div>
     </div>
   );
 }
