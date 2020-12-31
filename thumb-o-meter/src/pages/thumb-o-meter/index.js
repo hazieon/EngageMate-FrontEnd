@@ -1,21 +1,23 @@
 import React, { useState, useEffect } from "react";
 import NavBar from "../../components/navBar";
 import "./index.module.css";
+import { Button } from "@chakra-ui/react";
 import PtView from "../../components/ptView";
 import SkView from "../../components/skView";
 
 import socketIOClient from "socket.io-client";
 const ENDPOINT = "http://localhost:5000";
-const socket = socketIOClient(ENDPOINT);
+let socket;
 
 const Thumbometer = () => {
   const [response, setResponse] = useState("");
-  const [speakerView, setSpeakerView] = useState(true);
+  const [speakerView, setSpeakerView] = useState();
   const [data, setData] = useState({});
   const [time, setTime] = useState(0);
   const [count, setCount] = useState(0);
 
   useEffect(() => {
+    socket = socketIOClient(ENDPOINT);
     socket.emit("connection");
     //join room request - get name, role from auth
     socket.emit("joinroom", {
@@ -41,14 +43,16 @@ const Thumbometer = () => {
 
     socket.on("counter", (counter) => {
       setCount(counter);
-      console.log("count started");
+      console.log(counter);
     });
 
     //finished listener - sets final data state
     socket.on("finished", ({ sessionData }) => {
       setData(sessionData);
       console.log("finished session");
+      console.log({ sessionData });
       //disable slider here - state
+      setCount(0);
     });
 
     return () => socket.disconnect();
@@ -68,16 +72,22 @@ const Thumbometer = () => {
   function submitData(val) {
     socket.emit("submission", { value: val });
   }
+
   return (
     <main>
       <NavBar />
       <h1>Thumbometer</h1>
+      <Button colorScheme="blue" onClick={() => setSpeakerView(!speakerView)}>
+        {speakerView ? "Show ptView" : "Show skView"}
+      </Button>
       {speakerView && (
         <SkView
           data={data}
           startSession={startSession}
           endSession={endSession}
           count={count}
+          time={time}
+          setTime={setTime}
         />
       )}
       {!speakerView && (

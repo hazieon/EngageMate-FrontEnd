@@ -1,37 +1,15 @@
 import React, { useState } from "react";
 import style from "./index.module.css";
 import { Select } from "@chakra-ui/react";
-import { Input } from "@chakra-ui/react";
-import { Button, ButtonGroup, Icon } from "@chakra-ui/react";
+import { Button, Icon } from "@chakra-ui/react";
 import { MdUpdate, MdStop, MdPeople } from "react-icons/md";
 import Thumb from "../thumb";
 import Timer from "../timer/index";
 
-// startSessionBtn.addEventListener("click", (e) => {
-//   e.preventDefault();
-//   const question = document.querySelector("#questionInput").value;
-//   const timer = document.querySelector("#timerInput").value;
+function SkView({ data, startSession, endSession, count, time, setTime }) {
+  const [question, setQuestion] = useState("Forgot to set question");
+  const [timer, setTimer] = useState(5);
 
-//   socket.emit("start", { question, timer });
-
-//   question.value = "";
-// });
-
-// endSessionBtn.addEventListener("click", (e) => {
-//   e.preventDefault();
-//   socket.emit("stopTimer");
-// });
-
-function SkView({ data, startSession, endSession, count }) {
-  // question
-  //maybe have dropdown (with preset questions) and input (for create questions)
-  // Thumb
-  // overall mood
-  // timer (start button?)
-  // participants
-  const [question, setQuestion] = useState("");
-  const [timer, setTimer] = useState(0);
-  const [value, setValue] = useState(0);
   function handleSession(e) {
     setQuestion(e.target.value);
     console.log(question);
@@ -39,16 +17,18 @@ function SkView({ data, startSession, endSession, count }) {
 
   function handleTimer(e) {
     setTimer(Number(e.target.value));
+    setTime(Number(e.target.value));
     console.log(timer);
   }
-  console.log({ data });
-  console.log({ count });
-  console.log({ question });
-  console.log({ timer });
+
   return (
     <div className={style.container}>
       {/* <h1>The Question Here</h1> */}
-      <Select placeholder="Select question" onClick={handleSession}>
+      <Select
+        placeholder="Select question"
+        onChange={handleSession}
+        isDisabled={count > 0 ? true : false}
+      >
         <option value="How are you feeling?">How are you feeling?</option>
         <option value="Did you understand that?">
           Did you understand that?
@@ -57,8 +37,13 @@ function SkView({ data, startSession, endSession, count }) {
           Are you comfortable with moving on?
         </option>
       </Select>
+
       {/* <Input placeholder="Write your own question?" /> */}
-      <Select placeholder="Timer Amount" onClick={handleTimer}>
+      <Select
+        placeholder="Timer Amount"
+        onChange={handleTimer}
+        isDisabled={count > 0 ? true : false}
+      >
         <option value="10">10 Seconds</option>
         <option value="15">15 Seconds</option>
         <option value="20">20 Seconds</option>
@@ -66,16 +51,28 @@ function SkView({ data, startSession, endSession, count }) {
         <option value="30">30 Seconds</option>
       </Select>
 
-      <Thumb value={value} />
+      <Thumb value={data.outcome} />
+
       <div className={style.valueInformation}>
-        <h3>Value: {value}%</h3>
-        <p>25/30{<Icon as={MdPeople} />}</p>
+        <h3>Value: {data.outcome}%</h3>
+        <p>
+          {data.responses}/{data.participants} {<Icon as={MdPeople} />}
+        </p>
       </div>
-      <Timer />
+
+      <Timer count={count} time={time} />
+      <p>{count}</p>
+
       <div className={style.buttons}>
-        <Button leftIcon={<MdStop />} colorScheme="red" onClick={endSession}>
+        <Button
+          leftIcon={<MdStop />}
+          colorScheme="red"
+          onClick={endSession}
+          isDisabled={count > 0 ? false : true}
+        >
           Stop Timer
         </Button>
+
         <Button
           rightIcon={<MdUpdate />}
           colorScheme="green"
