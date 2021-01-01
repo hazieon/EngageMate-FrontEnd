@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import style from "./index.module.css";
 import Thumb from "../thumb";
 import {
@@ -11,7 +11,7 @@ import { Icon } from "@chakra-ui/react";
 import { MdPeople } from "react-icons/md";
 import Timer from "../timer/index";
 
-function PtView({ data, submitData, time, count }) {
+function PtView({ data, submit, time, count }) {
   // display the question
   // rotatable thumb
   // slider
@@ -20,6 +20,12 @@ function PtView({ data, submitData, time, count }) {
 
   const [value, setValue] = useState(0);
 
+  useEffect(() => {
+    if (count > 0) {
+      submit(value);
+    }
+  }, [value]);
+
   // slider.addEventListener("change", () => {
   //   sliderVal.innerText = `Value: ${slider.value}`;
   //   socket.emit("submission", { value: slider.value });
@@ -27,12 +33,13 @@ function PtView({ data, submitData, time, count }) {
 
   return (
     <div className={style.container}>
-      <h1>Question Here</h1>
+      <h1>{data.question}</h1>
       <Thumb value={value} />
       <Slider
         aria-label="slider-ex-1"
         defaultValue={30}
         onChangeEnd={(val) => setValue(val)}
+        isDisabled={count > 0 ? false : true}
       >
         <SliderTrack>
           <SliderFilledTrack />
@@ -40,8 +47,11 @@ function PtView({ data, submitData, time, count }) {
         <SliderThumb />
       </Slider>
       <h3>Value: {value}%</h3>
-      <p>25/30{<Icon as={MdPeople} />}</p>
-      <Timer />
+      <p>
+        {data.responses}/{data.participants} {<Icon as={MdPeople} />}
+      </p>
+      <p>{count}</p>
+      <Timer count={count} time={time} />
     </div>
   );
 }
