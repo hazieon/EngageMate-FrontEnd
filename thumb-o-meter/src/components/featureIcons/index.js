@@ -1,37 +1,22 @@
-import { Image, Box, Text, Center } from "@chakra-ui/react";
+import { Box, Text, Center, VStack } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
+import styles from "./featureIcons.module.css";
 
-export default function FeatureIcon({ src, alt, link, heading, subheading }) {
+export default function FeatureIcon({ link, heading, subheading, src, alt }) {
   return (
-    <Box p={5} display={{ md: "flex" }} alignItems="center" textAlign="center">
-      <Center>
-        <Box flexShrink={0}>
+    <Center>
+      <VStack className={styles.container}>
+        <Box className={styles.box}>
           <Link to={link}>
-            <Image src={src} alt={alt} borderRadius="xl" boxSize="100px" />
+            {/* <Icon as={icon} className={styles.myIcon} /> */}
+            <img className={styles.myIcon} src={src} alt={alt} />
           </Link>
         </Box>
-      </Center>
-
-      <Box mt={{ base: 4, md: 0 }} ml={{ md: 6 }} textAlign="center">
-        <Text
-          fontWeight="bold"
-          textTransform="uppercase"
-          fontSize="sm"
-          letterSpacing="wide"
-          color="teal.600"
-        >
-          {heading}
-        </Text>
-        <Text
-          mt={1}
-          display="block"
-          fontSize="sm"
-          lineHeight="normal"
-          fontWeight="semibold"
-        >
-          {subheading}
-        </Text>
-      </Box>
-    </Box>
+        <Box className={styles.textBox}>
+          <Text>{heading}</Text>
+          {/* <Text className={styles.textBox}>{subheading}</Text> */}
+        </Box>
+      </VStack>
+    </Center>
   );
 }

@@ -1,11 +1,12 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import { useState, useEffect } from "react";
 import styles from "./app.module.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Login from "../../pages/login/index";
 import Authorised from "../../pages/authorised/authorised";
 import Admin from "../../pages/admin";
-import Menu from "../../pages/featureMenu";
+import RaiseHand from "../../pages/raise-hand";
+import Quiz from "../../pages/quiz";
+import Deck from "../../pages/dj-deck";
 import Thumb from "../../pages/thumb-o-meter";
 
 function App() {
@@ -18,8 +19,14 @@ function App() {
           <Route path="/admin">
             <Admin />
           </Route>
-          <Route path="/menu">
-            <Menu />
+          <Route path="/raisehand">
+            <RaiseHand />
+          </Route>
+          <Route path="/quiz">
+            <Quiz />
+          </Route>
+          <Route path="/deck">
+            <Deck />
           </Route>
           <Route path="/thumb">
             <Thumb />

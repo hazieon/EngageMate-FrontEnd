@@ -78,6 +78,8 @@ const Thumbometer = () => {
           startSession={startSession}
           endSession={endSession}
           count={count}
+          time={time}
+          setTime={setTime}
         />
       )}
       {!speakerView && (

@@ -6,7 +6,7 @@ import "./featureMenu.module.css";
 
 const ParticipantFeaturedMenu = ({ role }) => {
   return (
-    <VStack spacing={10} align="center" bg="white">
+    <VStack spacing={10} align="center">
       <FeatureIcon
         alt="thumbometer"
         src="/thumb.png"

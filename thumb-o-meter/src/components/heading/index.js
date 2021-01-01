@@ -1,13 +1,12 @@
 import React from "react";
-import { Text, Box } from "@chakra-ui/react";
+import { Heading } from "@chakra-ui/react";
+import styles from "./heading.module.css";
 
-const Title = ({ text }) => {
+const Title = ({ text, user }) => {
   return (
-    <Box p={5} display={{ md: "flex" }} bg="white" justifyContent="center">
-      <Text color="white" fontSize="xl">
-        {text}
-      </Text>
-    </Box>
+    <Heading className={styles.container}>
+      {text} {user.given_name}
+    </Heading>
   );
 };
 
