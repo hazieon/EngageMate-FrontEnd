@@ -18,20 +18,15 @@ const Authorised = () => {
   useEffect(() => {
     async function getUsers() {
       setLoggedUser(user);
-      const res = await fetch(url);
-      const result = await res.json();
+      const data = await fetch(url);
+      const result = await data.json();
       result.data === undefined ? setRole("guest") : setRole(result.data.role);
-      // const userRole = data.map((item) => item.role);
-      // const userEmail = data.map((item) => item.email);
-      // userEmail.includes(loggedUser.email) ? setRole() : setRole("guest");
     }
 
     getUsers();
 
     //loggedUser is the Auth0 information
   }, [loggedUser, role, user, url]);
-
-  console.log(role);
   return (
     <div>
       <Route path="/">

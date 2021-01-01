@@ -1,60 +1,59 @@
 import React, { useState } from "react";
-import { Box, Heading, Flex, Text } from "@chakra-ui/react";
-import { HamburgerIcon } from "@chakra-ui/icons";
+import { Link } from "react-router-dom";
 import LogoutButton from "../logout/index";
+import { Box, Flex, Text, useColorModeValue } from "@chakra-ui/react";
+import ThemeToggler from "../theme";
+import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
+
+import styles from "./navBar.module.css";
+
 const MenuItems = ({ children }) => (
-  <Text mt={{ base: 4, md: 0 }} mr={6} display="block">
-    {children}
-  </Text>
+  <Text className={styles.menu}>{children}</Text>
 );
 
-// Note: This code could be better, so I'd recommend you to understand how I solved and you could write yours better :)
-const Header = () => {
+const Header = ({ role }) => {
   const [show, setShow] = useState(false);
-  const handleToggle = () => setShow(!show);
+  const toggleMenu = () => setShow(!show);
 
+  const bg = useColorModeValue("#7f56f2", "#110042");
+  const color = useColorModeValue("#110042", "white");
   return (
-    <Flex
-      as="nav"
-      align="center"
-      justify="space-between"
-      wrap="wrap"
-      padding="1.5rem"
-      bg="teal.500"
-      color="white"
-    >
-      <Flex align="center" mr={5}>
-        <Heading as="h1" size="lg">
-          Logo Here
-        </Heading>
-      </Flex>
-
-      <Box
-        display={{ base: "block", md: "none" }}
-        mr={5}
-        onClick={handleToggle}
-      >
-        <HamburgerIcon />
+    <Flex className={styles.container} as="nav" bg={bg} color={color}>
+      {/* <Icon as={FaCat} /> */}
+      <ThemeToggler />
+      <Box className={styles.icon} onClick={toggleMenu}>
+        {show ? <CloseIcon /> : <HamburgerIcon />}
       </Box>
 
       <Box
-        display={{ sm: show ? "block" : "none", md: "flex" }}
-        width={{ sm: "full", md: "auto" }}
-        alignItems="center"
-        flexGrow={1}
+        className={styles.box}
+        display={{ base: show ? "block" : "none", md: "block" }}
       >
-        <MenuItems>Thumb-o-meter</MenuItems>
-        <MenuItems>Raise Hand</MenuItems>
-        <MenuItems>Live Quiz</MenuItems>
-      </Box>
-
-      <Box
-        display={{ sm: show ? "block" : "none", md: "block" }}
-        mt={{ base: 4, md: 0 }}
-      >
-        <Box bg="transparent" border="1px" p={2} borderRadius="lg">
-          <LogoutButton />
-        </Box>
+        <Flex className={styles.navigation}>
+          <MenuItems>
+            <Link to="/">Home</Link>
+          </MenuItems>
+          <MenuItems>
+            <Link to="/thumb">Thumb-o-meter</Link>
+          </MenuItems>
+          <MenuItems>
+            <Link to="/raisehand">Raise Hand</Link>
+          </MenuItems>
+          <MenuItems>
+            <Link to="/quiz">Live Quiz</Link>
+          </MenuItems>
+          {role === "coach" && (
+            <>
+              <MenuItems>
+                <Link to="/deck">DJ Deck</Link>
+              </MenuItems>
+              <MenuItems>
+                <Link to="/admin">Admin</Link>
+              </MenuItems>
+            </>
+          )}
+          <LogoutButton bg={bg} color={color} />
+        </Flex>
       </Box>
     </Flex>
   );

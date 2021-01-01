@@ -1,4 +1,50 @@
-/* .container {
+.container {
+  padding: 1.5rem;
   display: flex;
   justify-content: center;
-} */
+}
+.box {
+  border-radius: 100%;
+  background-color: #7f56f2;
+  margin-bottom: 1rem;
+  color: white;
+  padding: 1.5rem;
+}
+
+.textBox {
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.myIcon {
+  width: 2rem;
+  height: auto;
+}
+
+@media only screen and (min-width: 768px) {
+  .myIcon {
+    width: 4rem;
+    height: auto;
+  }
+  .box {
+    padding: 2rem;
+  }
+  .textBox {
+    font-size: 1rem;
+  }
+}
+
+@media only screen and (min-width: 996px) {
+  .myIcon {
+    width: 6rem;
+    height: auto;
+  }
+  .box {
+    padding: 2.5rem;
+  }
+  .textBox {
+    font-size: 1.5rem;
+  }
+}

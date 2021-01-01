@@ -1,19 +1,13 @@
 import React from "react";
 import LoginButton from "../../components/loginButton";
 import styles from "./index.module.css";
-import { Image, Box, Text, Center, StylesProvider } from "@chakra-ui/react";
+import { Center } from "@chakra-ui/react";
 
 function Login() {
   return (
-    <Box>
-      <Center>
-        <Box flexShrink={0}>
-          <main>
-            <LoginButton />
-          </main>
-        </Box>
-      </Center>
-    </Box>
+    <Center className={styles.container}>
+      <LoginButton />
+    </Center>
   );
 }
 

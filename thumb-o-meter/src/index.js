@@ -3,24 +3,39 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./components/app/App";
 import reportWebVitals from "./reportWebVitals";
-import { ChakraProvider } from "@chakra-ui/react";
+import {
+  ChakraProvider,
+  ThemeProvider,
+  theme,
+  ColorModeProvider,
+  CSSReset,
+} from "@chakra-ui/react";
 import { Auth0Provider } from "@auth0/auth0-react";
 
 const domain = process.env.REACT_APP_AUTH0_DOMAIN;
 const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
 
 ReactDOM.render(
-  <Auth0Provider
-    domain={domain}
-    clientId={clientId}
-    redirectUri={window.location.origin}
-  >
-    <ChakraProvider>
-      <React.StrictMode>
-        <App />
-      </React.StrictMode>
-    </ChakraProvider>
-  </Auth0Provider>,
+  <ThemeProvider theme={theme}>
+    <ColorModeProvider
+      options={{
+        useSystsemColorMode: true,
+      }}
+    >
+      <Auth0Provider
+        domain={domain}
+        clientId={clientId}
+        redirectUri={window.location.origin}
+      >
+        <ChakraProvider>
+          <React.StrictMode>
+            <App />
+            <CSSReset />
+          </React.StrictMode>
+        </ChakraProvider>
+      </Auth0Provider>
+    </ColorModeProvider>
+  </ThemeProvider>,
   document.getElementById("root")
 );
 
