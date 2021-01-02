@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import style from "./index.module.css";
 import NavBar from "../../components/navBar";
 import AddUserForm from "../../components/addUserForm";
 import UserTable from "../../components/userTable";
@@ -26,24 +27,27 @@ const Admin = ({ role }) => {
   return (
     <>
       <NavBar />
-      <Accordion allowToggle>
-        <AccordionItem>
-          <AccordionButton>
-            <Box flex="1" textAlign="left">
-              Add User Form
-            </Box>
-            <AccordionIcon />
-          </AccordionButton>
-          <AccordionPanel pb={4}>
-            <AddUserForm
-              updatePage={updatePage}
-              setUpdatePage={setUpdatePage}
-            />
-          </AccordionPanel>
-        </AccordionItem>
-      </Accordion>
-
-      <UserTable tableData={userTableData} />
+      <main className={style.main}>
+        <Accordion className={style.accordion} allowToggle>
+          <AccordionItem>
+            <AccordionButton>
+              <Box flex="1" textAlign="left">
+                Add User Form
+              </Box>
+              <AccordionIcon />
+            </AccordionButton>
+            <AccordionPanel pb={4}>
+              <AddUserForm
+                updatePage={updatePage}
+                setUpdatePage={setUpdatePage}
+              />
+            </AccordionPanel>
+          </AccordionItem>
+        </Accordion>
+        <div className={style.userTable}>
+          <UserTable tableData={userTableData} />
+        </div>
+      </main>
     </>
   );
 };
