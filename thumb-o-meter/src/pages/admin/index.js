@@ -17,7 +17,7 @@ const Admin = ({ role }) => {
   const [updatePage, setUpdatePage] = useState(false);
 
   useEffect(() => {
-    fetch("http://localhost:5000/users")
+    fetch("https://callback-cats.herokuapp.com/users/")
       .then((response) => response.json())
       .then((payload) => setUserTableData(payload.data))
       .catch((error) => console.log(error));

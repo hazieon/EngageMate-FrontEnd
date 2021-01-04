@@ -14,10 +14,10 @@ const FeaturedMenu = ({ role }) => {
 
   return (
     <Box bg={bg} color={color}>
-      <Header role={role} />
+      <Header role={role} bg={bg} color={color} />
       <Title text="Nice to see you again" user={user} />
       <Menu role={role} />
-      <Footer />
+      <Footer role={role} bg={bg} color={color} />
     </Box>
   );
 };

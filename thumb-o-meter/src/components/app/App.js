@@ -10,7 +10,7 @@ import Deck from "../../pages/dj-deck";
 import Thumb from "../../pages/thumb-o-meter";
 
 function App() {
-  const { isAuthenticated } = useAuth0();
+  const { isAuthenticated, user } = useAuth0();
 
   return (
     <Router>
@@ -26,7 +26,7 @@ function App() {
             <Quiz />
           </Route>
           <Route path="/deck">
-            <Deck />
+            <Deck user={user} />
           </Route>
           <Route path="/thumb">
             <Thumb />

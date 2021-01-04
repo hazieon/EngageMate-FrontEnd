@@ -6,7 +6,7 @@ import PtView from "../../components/ptView";
 import SkView from "../../components/skView";
 
 import socketIOClient from "socket.io-client";
-const ENDPOINT = "http://localhost:5000";
+const ENDPOINT = "https://callback-cats.herokuapp.com";
 let socket;
 
 const Thumbometer = () => {

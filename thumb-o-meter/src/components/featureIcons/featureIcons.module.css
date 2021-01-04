@@ -1,5 +1,4 @@
 .container {
-  padding: 1.5rem;
   display: flex;
   justify-content: center;
 }
@@ -19,14 +18,24 @@
 }
 
 .myIcon {
-  width: 2rem;
-  height: auto;
+  width: 5rem;
+  height: 5rem;
 }
 
+@media only screen and (min-width: 500px) {
+  .myIcon {
+    width: 8rem;
+    height: 8rem;
+  }
+
+  .textBox {
+    font-size: 1rem;
+  }
+}
 @media only screen and (min-width: 768px) {
   .myIcon {
-    width: 4rem;
-    height: auto;
+    width: 8rem;
+    height: 8rem;
   }
   .box {
     padding: 2rem;
@@ -38,12 +47,13 @@
 
 @media only screen and (min-width: 996px) {
   .myIcon {
-    width: 6rem;
-    height: auto;
+    width: 9rem;
+    height: 9rem;
   }
   .box {
     padding: 2.5rem;
   }
+
   .textBox {
     font-size: 1.5rem;
   }
