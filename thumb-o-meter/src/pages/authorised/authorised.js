@@ -13,7 +13,7 @@ const Authorised = () => {
   console.log(loggedUser);
   let url =
     process.env.REACT_APP_BACKEND_URL ||
-    `http://localhost:5000/users/${loggedUser.email}`;
+    `https://callback-cats.herokuapp.com/users/${loggedUser.email}`;
 
   useEffect(() => {
     async function getUsers() {

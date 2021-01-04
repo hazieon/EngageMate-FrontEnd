@@ -1,0 +1,9 @@
+.footer {
+  list-style-type: none;
+  text-decoration: none;
+  display: inline-flex;
+}
+
+.footer li {
+  margin: 0 10px;
+}
