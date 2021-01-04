@@ -19,13 +19,7 @@ const Authorised = () => {
   const { isAuthenticated, user } = useAuth0();
   console.log(user);
   // const [loggedUser, setLoggedUser] = useState(user);
-  function unauthorised() {
-    // Popup with message to contact administrator redirect to login
-    // create a landing page for unauthorised users
-    <Login />;
 
-    /* <Redirect to="/unauthorised" />; */
-  }
   let url =
     process.env.REACT_APP_BACKEND_URL ||
     `https://callback-cats.herokuapp.com/users/${user.email}`;
@@ -35,11 +29,9 @@ const Authorised = () => {
       const data = await fetch(url);
       const result = await data.json();
       console.log(result.success);
-      result.success === false ? (
-        <Redirect to="/unauthorised" />
-      ) : (
-        setRole(result.data.role)
-      );
+      result.success === false
+        ? setRole("unauthorised")
+        : setRole(result.data.role);
       console.log(role);
     }
 
@@ -49,13 +41,11 @@ const Authorised = () => {
   }, []);
   return (
     <div>
-      <Route path="/">
-        {isAuthenticated && role !== "" ? (
-          <FeaturedMenu role={role} />
-        ) : (
-          <Unauthorised />
-        )}
-      </Route>
+      {role === "unauthorised" ? (
+        <Unauthorised />
+      ) : (
+        <FeaturedMenu role={role} />
+      )}
     </div>
   );
 };
