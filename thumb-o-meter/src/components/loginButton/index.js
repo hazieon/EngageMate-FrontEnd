@@ -11,10 +11,14 @@ const LoginButton = () => {
       <Box className={styles.container}>
         <VStack>
           <Box className={styles.box}>
-            <Heading>Callback Cats</Heading>
+            <Heading id="loginHeading">Callback Cats</Heading>
           </Box>
           <Center className={styles.loginButton}>
-            <Button variant="ghost" onClick={() => loginWithRedirect()}>
+            <Button
+              id="loginButton"
+              variant="ghost"
+              onClick={() => loginWithRedirect()}
+            >
               Log In
             </Button>
           </Center>
