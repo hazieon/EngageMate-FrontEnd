@@ -17,7 +17,7 @@ import socketIOClient from "socket.io-client";
 const ENDPOINT = "https://callback-cats.herokuapp.com";
 let socket;
 
-const Thumbometer = () => {
+const Thumbometer = ({ role }) => {
   const [response, setResponse] = useState("");
   const [speakerView, setSpeakerView] = useState();
   const [data, setData] = useState({});
@@ -92,6 +92,7 @@ const Thumbometer = () => {
             <h1 className={styles.heading}>Thumb-O-Meter</h1>
           </Center>
           <Center>
+            {/* instead of the button we want to render either participant view or speaker view based on the role of the user */}
             <Button
               className={styles.button}
               bg="#7f56f2"

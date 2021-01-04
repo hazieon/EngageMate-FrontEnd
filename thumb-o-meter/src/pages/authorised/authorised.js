@@ -3,8 +3,11 @@ import { Route } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import FeaturedMenu from "../../pages/featureMenu";
 import Login from "../../pages/login/index";
+import useRoleContext from "../../context/roleContext";
 
 const Authorised = () => {
+  const myRole = useRoleContext();
+  console.log(myRole);
   const [role, setRole] = useState("");
 
   const { isAuthenticated, user } = useAuth0();
