@@ -1,7 +1,9 @@
 import React from "react";
 import { Button, Center, VStack } from "@chakra-ui/react";
+import { Route } from "react-router-dom";
 import FeatureIcon from "../featureIcons";
 import styles from "./menu.module.css";
+import Thumbometer from "../../pages/thumb-o-meter/index";
 
 import {
   FaQuestionCircle,

@@ -5,6 +5,8 @@ import styles from "./index.module.css";
 import PtView from "../../components/ptView";
 import SkView from "../../components/skView";
 import { createStandaloneToast } from "@chakra-ui/react";
+import useRoleContext from "../../context/roleContext";
+
 import {
   Flex,
   Box,
@@ -26,6 +28,7 @@ const Thumbometer = () => {
   const [count, setCount] = useState(0);
   const bg = useColorModeValue("white", "#110042");
   const color = useColorModeValue("#110042", "white");
+
 
   async function handleSubmit({ sessionData }) {
     //https://callback-cats.herokuapp.com/session
@@ -75,6 +78,11 @@ const Thumbometer = () => {
     });
     console.log(error);
   }
+
+
+  const result = useRoleContext();
+  const role = result[2];
+  console.log(role);
 
   useEffect(() => {
     socket = socketIOClient(ENDPOINT);
@@ -145,16 +153,17 @@ const Thumbometer = () => {
             <h1 className={styles.heading}>Thumb-O-Meter</h1>
           </Center>
           <Center>
-            <Button
+            {/* instead of the button we want to render either participant view or speaker view based on the role of the user */}
+            {/* <Button
               className={styles.button}
               bg="#7f56f2"
               onClick={() => setSpeakerView(!speakerView)}
             >
               {speakerView ? "Show ptView" : "Show skView"}
-            </Button>
+            </Button> */}
           </Center>
           <Center>
-            {speakerView && (
+            {role !== "bootcamper" && (
               <SkView
                 data={data}
                 startSession={startSession}
@@ -164,7 +173,7 @@ const Thumbometer = () => {
                 setTime={setTime}
               />
             )}
-            {!speakerView && (
+            {role === "bootcamper" && (
               <PtView
                 data={data}
                 submit={submitData}
