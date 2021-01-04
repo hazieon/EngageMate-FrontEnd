@@ -1,3 +1,4 @@
+import style from "./userTable.module.css";
 import {
   Table,
   Thead,

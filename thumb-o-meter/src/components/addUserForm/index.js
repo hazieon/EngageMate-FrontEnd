@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import style from "./addUserForm.module.css";
 import {
   FormControl,
   FormLabel,
@@ -33,7 +34,7 @@ const AddUserFunction = ({ updatePage, setUpdatePage }) => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className={style.form} onSubmit={handleSubmit}>
       <FormControl id="bootcamperId" isRequired>
         <FormLabel> Bootcamper Id</FormLabel>
         <NumberInput>
@@ -66,7 +67,9 @@ const AddUserFunction = ({ updatePage, setUpdatePage }) => {
         <FormLabel>Email address</FormLabel>
         <Input type="email" onChange={handleChange} />
       </FormControl>
-      <Button type="submit">Add user</Button>
+      <Button type="submit" colorScheme="teal">
+        Add user
+      </Button>
     </form>
   );
 };

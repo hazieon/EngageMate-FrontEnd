@@ -1,4 +1,15 @@
-main {
+.main {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.accordion {
+  width: 90%;
+  max-width: 500px;
+}
+
+.userTable {
+  width: 80%;
+  overflow-x: scroll;
 }
