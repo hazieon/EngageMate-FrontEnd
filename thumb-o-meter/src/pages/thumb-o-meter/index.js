@@ -4,6 +4,8 @@ import styles from "./index.module.css";
 // import { Button } from "@chakra-ui/react";
 import PtView from "../../components/ptView";
 import SkView from "../../components/skView";
+import useRoleContext from "../../context/roleContext";
+
 import {
   Flex,
   Box,
@@ -17,7 +19,7 @@ import socketIOClient from "socket.io-client";
 const ENDPOINT = "https://callback-cats.herokuapp.com";
 let socket;
 
-const Thumbometer = ({ role }) => {
+const Thumbometer = () => {
   const [response, setResponse] = useState("");
   const [speakerView, setSpeakerView] = useState();
   const [data, setData] = useState({});
@@ -25,7 +27,9 @@ const Thumbometer = ({ role }) => {
   const [count, setCount] = useState(0);
   const bg = useColorModeValue("white", "#110042");
   const color = useColorModeValue("#110042", "white");
-
+  const result = useRoleContext();
+  const role = result[2];
+  console.log(role);
   useEffect(() => {
     socket = socketIOClient(ENDPOINT);
     socket.emit("connection");
@@ -93,16 +97,16 @@ const Thumbometer = ({ role }) => {
           </Center>
           <Center>
             {/* instead of the button we want to render either participant view or speaker view based on the role of the user */}
-            <Button
+            {/* <Button
               className={styles.button}
               bg="#7f56f2"
               onClick={() => setSpeakerView(!speakerView)}
             >
               {speakerView ? "Show ptView" : "Show skView"}
-            </Button>
+            </Button> */}
           </Center>
           <Center>
-            {speakerView && (
+            {role !== "bootcamper" && (
               <SkView
                 data={data}
                 startSession={startSession}
@@ -112,7 +116,7 @@ const Thumbometer = ({ role }) => {
                 setTime={setTime}
               />
             )}
-            {!speakerView && (
+            {role === "bootcamper" && (
               <PtView
                 data={data}
                 submit={submitData}

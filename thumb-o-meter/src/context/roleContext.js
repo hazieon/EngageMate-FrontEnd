@@ -1,27 +1,33 @@
 import React, { useState, createContext, useContext, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 
-const RoleContext = createContext("");
+const RoleContext = createContext(undefined);
 
 export function RoleProvider({ children }) {
   const [role, setRole] = useState("");
   const { user } = useAuth0();
-  const [loggedUser, setLoggedUser] = useState(user);
-
+  const [loggedUser, setLoggedUser] = useState("");
+  const [result, setResult] = useState("");
+  function myRole(string) {
+    setRole(string);
+  }
   useEffect(() => {
     async function getUsers() {
       setLoggedUser(user);
-      const data = await fetch(
-        `https://callback-cats.herokuapp.com/users/${loggedUser.email}`
-      );
-      const result = await data.json();
-      result.data === undefined ? setRole("guest") : setRole(result.data.role);
+      const data = await fetch(`https://callback-cats.herokuapp.com/users`);
+      const response = await data.json();
+      setResult(response);
     }
     getUsers();
-    //loggedUser is the Auth0 information
-  }, [loggedUser, role, user]);
 
-  return <RoleContext.Provider value={role}>{children}</RoleContext.Provider>;
+    //loggedUser is the Auth0 information
+  }, []);
+
+  return (
+    <RoleContext.Provider value={[result, loggedUser, role, myRole]}>
+      {children}
+    </RoleContext.Provider>
+  );
 }
 
 export default function useRoleContext() {
