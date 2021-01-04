@@ -4,6 +4,7 @@ import styles from "./index.module.css";
 // import { Button } from "@chakra-ui/react";
 import PtView from "../../components/ptView";
 import SkView from "../../components/skView";
+import { createStandaloneToast } from "@chakra-ui/react";
 import useRoleContext from "../../context/roleContext";
 
 import {
@@ -27,9 +28,62 @@ const Thumbometer = () => {
   const [count, setCount] = useState(0);
   const bg = useColorModeValue("white", "#110042");
   const color = useColorModeValue("#110042", "white");
+
+
+  async function handleSubmit({ sessionData }) {
+    //https://callback-cats.herokuapp.com/session
+    console.log(sessionData);
+    const res = await fetch("https://callback-cats.herokuapp.com/session", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(sessionData),
+    });
+
+    //check the status of the data that is returned. If not 200 then its an error!
+    //will add a toast pop up here
+    if (res.status === 200) {
+      //calls the toast function to create a success popup
+      successToast({
+        name: "Session Submit Success.",
+        message: "successfully submitted data from the session.",
+      });
+      console.log("Success: session data posted");
+    } else {
+      burntToast({
+        name: "Failed Session Submission",
+        message: "failed to submit session data to the database.",
+      });
+    }
+  }
+
+  function successToast(successObject) {
+    const toast = createStandaloneToast();
+    toast({
+      title: successObject.name,
+      description: successObject.message,
+      status: "success",
+      duration: 9000,
+      isClosable: true,
+    });
+  }
+
+  function burntToast(error) {
+    const toast = createStandaloneToast();
+    toast({
+      title: error.name,
+      description: error.message,
+      status: "error",
+      duration: 10000,
+      isClosable: true,
+    });
+    console.log(error);
+  }
+
+
   const result = useRoleContext();
   const role = result[2];
   console.log(role);
+
   useEffect(() => {
     socket = socketIOClient(ENDPOINT);
     socket.emit("connection");
@@ -65,6 +119,9 @@ const Thumbometer = () => {
       setData(sessionData);
       console.log("finished session");
       console.log({ sessionData });
+      //call function that posts to session table
+      //success or burnt toast
+      handleSubmit({ sessionData });
       //disable slider here - state
       setCount(0);
     });

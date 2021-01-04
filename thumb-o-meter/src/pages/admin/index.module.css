@@ -9,7 +9,12 @@
   max-width: 500px;
 }
 
-.userTable {
-  width: 80%;
+.userTable,
+.sessionTable {
+  width: 100%;
   overflow-x: scroll;
+}
+
+.tab {
+  width: 90%;
 }
