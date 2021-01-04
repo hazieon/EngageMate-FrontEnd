@@ -44,5 +44,9 @@ Cypress.Commands.add("login", (overrides = {}) => {
       client_secret: Cypress.env("auth_client_secret"),
     },
   };
-  cy.request(options);
+  console.log(options);
+
+  cy.request(options, function (error) {
+    if (error) throw new Error(error);
+  });
 });
