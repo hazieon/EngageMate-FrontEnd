@@ -11,8 +11,32 @@ import {
 } from "@chakra-ui/react";
 import { v4 as uuidv4 } from "uuid";
 
+import { createStandaloneToast } from "@chakra-ui/react";
+
 const AddUserFunction = ({ updatePage, setUpdatePage }) => {
   const [formData, setFormData] = useState({});
+
+  function successToast() {
+    const toast = createStandaloneToast();
+    toast({
+      title: "User Created",
+      description: "User has been inputted to the database.",
+      status: "success",
+      duration: 9000,
+      isClosable: true,
+    });
+  }
+
+  function burntToast() {
+    const toast = createStandaloneToast();
+    toast({
+      title: "User NOT Created",
+      description: "User could NOT be inputted to the database.",
+      status: "error",
+      duration: 10000,
+      isClosable: true,
+    });
+  }
 
   function handleChange(e) {
     setFormData({ ...formData, [e.target.id]: e.target.value });
@@ -28,8 +52,12 @@ const AddUserFunction = ({ updatePage, setUpdatePage }) => {
     //check the status of the data that is returned. If not 200 then its an error!
     //will add a toast pop up here
     if (res.status === 200) {
+      //calls the toast function to create a success popup
+      successToast();
       console.log("Success: user added");
       setUpdatePage(!updatePage);
+    } else {
+      burntToast();
     }
   }
 

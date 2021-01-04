@@ -4,6 +4,8 @@ import NavBar from "../../components/navBar";
 import AddUserForm from "../../components/addUserForm";
 import UserTable from "../../components/userTable";
 import SessionTable from "../../components/sessionTable";
+import { createStandaloneToast } from "@chakra-ui/react";
+
 import {
   Accordion,
   AccordionItem,
@@ -28,14 +30,14 @@ const Admin = ({ role }) => {
     fetch("https://callback-cats.herokuapp.com/users/")
       .then((response) => response.json())
       .then((payload) => setUserTableData(payload.data))
-      .catch((error) => console.log(error));
+      .catch((error) => burntToast(error));
   }, [updatePage]);
 
   useEffect(() => {
     fetch("https://callback-cats.herokuapp.com/session")
       .then((response) => response.json())
       .then((payload) => setSessionTableData(payload.data))
-      .catch((error) => console.log(error));
+      .catch((error) => burntToast(error));
   }, [updatePage]);
 
   function deleteUser(id) {
@@ -46,9 +48,17 @@ const Admin = ({ role }) => {
         .then((response) => response.json())
         .then((data) => {
           if (data.success === true) {
+            successToast({
+              name: "User Delete Success",
+              message: "Successfully deleted user from the database.",
+            });
             console.log("success", data.payload);
             setUpdatePage(!updatePage);
           } else {
+            burntToast({
+              name: "Delete User Fail",
+              message: "Failed to delete user.",
+            });
             console.log("Failure", data.payload);
           }
         });
@@ -63,13 +73,43 @@ const Admin = ({ role }) => {
         .then((response) => response.json())
         .then((data) => {
           if (data.success === true) {
+            successToast({
+              name: "Session Delete Success",
+              message: "Successfully deleted session from the database.",
+            });
             console.log("success! Session deleted");
             setUpdatePage(!updatePage);
           } else {
+            burntToast({
+              name: "Delete Session Fail",
+              message: "Failed to delete session",
+            });
             console.log("Failure!");
           }
         });
     }
+  }
+  function successToast(successObject) {
+    const toast = createStandaloneToast();
+    toast({
+      title: successObject.name,
+      description: successObject.message,
+      status: "success",
+      duration: 9000,
+      isClosable: true,
+    });
+  }
+
+  function burntToast(error) {
+    const toast = createStandaloneToast();
+    toast({
+      title: error.name,
+      description: error.message,
+      status: "error",
+      duration: 10000,
+      isClosable: true,
+    });
+    console.log(error);
   }
 
   return (
