@@ -25,16 +25,17 @@ const Admin = ({ role }) => {
   const [userTableData, setUserTableData] = useState([]);
   const [sessionTableData, setSessionTableData] = useState([]);
   const [updatePage, setUpdatePage] = useState(false);
+  const url = process.env.REACT_APP_url;
 
   useEffect(() => {
-    fetch("https://callback-cats.herokuapp.com/users/")
+    fetch(`${url}/users`)
       .then((response) => response.json())
       .then((payload) => setUserTableData(payload.data))
       .catch((error) => burntToast(error));
   }, [updatePage]);
 
   useEffect(() => {
-    fetch("https://callback-cats.herokuapp.com/session")
+    fetch(`${url}/session`)
       .then((response) => response.json())
       .then((payload) => setSessionTableData(payload.data))
       .catch((error) => burntToast(error));
@@ -42,7 +43,7 @@ const Admin = ({ role }) => {
 
   function deleteUser(id) {
     if (window.confirm("Are you sure?")) {
-      fetch(`https://callback-cats.herokuapp.com/users/${id}`, {
+      fetch(`${url}/users/${id}`, {
         method: "DELETE",
       })
         .then((response) => response.json())
@@ -67,7 +68,7 @@ const Admin = ({ role }) => {
 
   function deleteSession(uuid) {
     if (window.confirm("Are you sure?")) {
-      fetch(`https://callback-cats.herokuapp.com/session/${uuid}`, {
+      fetch(`${url}/session/${uuid}`, {
         method: "DELETE",
       })
         .then((response) => response.json())

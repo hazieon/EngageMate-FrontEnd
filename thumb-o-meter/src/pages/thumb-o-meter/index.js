@@ -17,6 +17,7 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import socketIOClient from "socket.io-client";
+const url = process.env.REACT_APP_url;
 const ENDPOINT = "https://callback-cats.herokuapp.com";
 let socket;
 
@@ -29,11 +30,10 @@ const Thumbometer = () => {
   const bg = useColorModeValue("white", "#110042");
   const color = useColorModeValue("#110042", "white");
 
-
   async function handleSubmit({ sessionData }) {
     //https://callback-cats.herokuapp.com/session
     console.log(sessionData);
-    const res = await fetch("https://callback-cats.herokuapp.com/session", {
+    const res = await fetch(`${url}/session`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(sessionData),
@@ -78,7 +78,6 @@ const Thumbometer = () => {
     });
     console.log(error);
   }
-
 
   const result = useRoleContext();
   const role = result[2];
