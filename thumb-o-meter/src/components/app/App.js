@@ -7,7 +7,8 @@ import Admin from "../../pages/admin";
 import RaiseHand from "../../pages/raise-hand";
 import Quiz from "../../pages/quiz";
 import Deck from "../../pages/dj-deck";
-import Thumb from "../../pages/thumb-o-meter";
+import Thumbometer from "../../pages/thumb-o-meter";
+import Unauthorised from "../../pages/unauthorised";
 
 function App() {
   const { isAuthenticated, user } = useAuth0();
@@ -19,6 +20,9 @@ function App() {
           <Route path="/admin">
             <Admin />
           </Route>
+          <Route path="/unauthorised">
+            <Unauthorised />
+          </Route>
           <Route path="/raisehand">
             <RaiseHand />
           </Route>
@@ -29,7 +33,7 @@ function App() {
             <Deck user={user} />
           </Route>
           <Route path="/thumb">
-            <Thumb />
+            <Thumbometer />
           </Route>
           <Route path="/">{isAuthenticated ? <Authorised /> : <Login />}</Route>
         </Switch>
