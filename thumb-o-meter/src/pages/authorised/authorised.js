@@ -6,7 +6,7 @@ import Login from "../../pages/login/index";
 import Unauthorised from "../unauthorised";
 
 import useRoleContext from "../../context/roleContext";
-
+const envUrl = process.env.REACT_APP_url;
 const Authorised = () => {
   const data = useRoleContext();
   const role = data[2];
@@ -21,8 +21,7 @@ const Authorised = () => {
   // const [loggedUser, setLoggedUser] = useState(user);
 
   let url =
-    process.env.REACT_APP_BACKEND_URL ||
-    `https://callback-cats.herokuapp.com/users/${user.email}`;
+    process.env.REACT_APP_BACKEND_URL || `${envUrl}/users/${user.email}`;
 
   useEffect(() => {
     async function getUsers() {
