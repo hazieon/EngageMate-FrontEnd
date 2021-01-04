@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import style from "./index.module.css";
 import { Select } from "@chakra-ui/react";
-import { Button, Icon } from "@chakra-ui/react";
+import { Button, Icon, useColorModeValue } from "@chakra-ui/react";
 import { MdUpdate, MdStop, MdPeople } from "react-icons/md";
 import Thumb from "../thumb";
 import Timer from "../timer/index";
@@ -9,6 +9,8 @@ import Timer from "../timer/index";
 function SkView({ data, startSession, endSession, count, time, setTime }) {
   const [question, setQuestion] = useState("Forgot to set question");
   const [timer, setTimer] = useState(5);
+  const bg = useColorModeValue("#7f56f2", "#110042");
+  const color = useColorModeValue("#110042", "white");
 
   function handleSession(e) {
     setQuestion(e.target.value);
@@ -22,7 +24,7 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
   }
 
   return (
-    <div className={style.container}>
+    <div className={style.container} bg={bg} color={color}>
       {/* <h1>The Question Here</h1> */}
       <Select
         placeholder="Select question"

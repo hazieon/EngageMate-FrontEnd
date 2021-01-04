@@ -6,6 +6,7 @@ import {
   SliderTrack,
   SliderFilledTrack,
   SliderThumb,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import { Icon } from "@chakra-ui/react";
 import { MdPeople } from "react-icons/md";
@@ -19,6 +20,8 @@ function PtView({ data, submit, time, count }) {
   // timer
 
   const [value, setValue] = useState(0);
+  const bg = useColorModeValue("#110042", "white");
+  const color = useColorModeValue("white", "#110042");
 
   useEffect(() => {
     if (count > 0) {
@@ -32,7 +35,7 @@ function PtView({ data, submit, time, count }) {
   // });
 
   return (
-    <div className={style.container}>
+    <div className={style.container} bg={bg} color={color}>
       <h1>{data.question}</h1>
       <Thumb value={value} />
       <Slider

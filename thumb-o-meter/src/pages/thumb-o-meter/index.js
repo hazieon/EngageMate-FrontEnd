@@ -1,10 +1,18 @@
 import React, { useState, useEffect } from "react";
 import NavBar from "../../components/navBar";
-import "./index.module.css";
-import { Button } from "@chakra-ui/react";
+import styles from "./index.module.css";
+// import { Button } from "@chakra-ui/react";
 import PtView from "../../components/ptView";
 import SkView from "../../components/skView";
-
+import {
+  Flex,
+  Box,
+  Button,
+  Heading,
+  VStack,
+  Center,
+  useColorModeValue,
+} from "@chakra-ui/react";
 import socketIOClient from "socket.io-client";
 const ENDPOINT = "http://localhost:5000";
 let socket;
@@ -15,6 +23,8 @@ const Thumbometer = () => {
   const [data, setData] = useState({});
   const [time, setTime] = useState(0);
   const [count, setCount] = useState(0);
+  const bg = useColorModeValue("white", "#110042");
+  const color = useColorModeValue("#110042", "white");
 
   useEffect(() => {
     socket = socketIOClient(ENDPOINT);
@@ -74,26 +84,45 @@ const Thumbometer = () => {
   }
 
   return (
-    <main>
-      <NavBar />
-      <h1>Thumbometer</h1>
-      <Button colorScheme="blue" onClick={() => setSpeakerView(!speakerView)}>
-        {speakerView ? "Show ptView" : "Show skView"}
-      </Button>
-      {speakerView && (
-        <SkView
-          data={data}
-          startSession={startSession}
-          endSession={endSession}
-          count={count}
-          time={time}
-          setTime={setTime}
-        />
-      )}
-      {!speakerView && (
-        <PtView data={data} submit={submitData} time={time} count={count} />
-      )}
-    </main>
+    <Flex>
+      <Box className={styles.container} bg={bg} color={color}>
+        <main>
+          <NavBar />
+          <Center>
+            <h1 className={styles.heading}>Thumb-O-Meter</h1>
+          </Center>
+          <Center>
+            <Button
+              className={styles.button}
+              bg="#7f56f2"
+              onClick={() => setSpeakerView(!speakerView)}
+            >
+              {speakerView ? "Show ptView" : "Show skView"}
+            </Button>
+          </Center>
+          <Center>
+            {speakerView && (
+              <SkView
+                data={data}
+                startSession={startSession}
+                endSession={endSession}
+                count={count}
+                time={time}
+                setTime={setTime}
+              />
+            )}
+            {!speakerView && (
+              <PtView
+                data={data}
+                submit={submitData}
+                time={time}
+                count={count}
+              />
+            )}
+          </Center>
+        </main>
+      </Box>
+    </Flex>
   );
 };
 
