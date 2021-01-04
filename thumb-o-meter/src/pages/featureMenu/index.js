@@ -10,7 +10,7 @@ import { Box, useColorModeValue } from "@chakra-ui/react";
 const FeaturedMenu = ({ role }) => {
   const { user } = useAuth0();
   const bg = useColorModeValue("white", "#110042");
-  const color = useColorModeValue("black", "white");
+  const color = useColorModeValue("#110042", "white");
 
   return (
     <Box bg={bg} color={color}>
