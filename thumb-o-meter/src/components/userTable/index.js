@@ -7,14 +7,17 @@ import {
   Th,
   Td,
   TableCaption,
+  Icon,
 } from "@chakra-ui/react";
+import { IoTrashBinOutline } from "react-icons/io5";
 
-const UserTable = ({ tableData }) => {
+const UserTable = ({ tableData, deleteUser }) => {
   return (
     <Table variant="simple">
       <TableCaption placement="top">Registered users</TableCaption>
       <Thead>
         <Tr>
+          <Th></Th>
           <Th>Id</Th>
           <Th>Uuid</Th>
           <Th>Bootcamper Id</Th>
@@ -29,6 +32,12 @@ const UserTable = ({ tableData }) => {
         {tableData.map((user) => {
           return (
             <Tr key={user.uuid}>
+              <Td>
+                <Icon
+                  as={IoTrashBinOutline}
+                  onClick={() => deleteUser(user.bootcamperid)}
+                />
+              </Td>
               <Td>{user.id}</Td>
               <Td data-uuid={user.uuid}>{`${user.uuid.substr(0, 6)}...`}</Td>
               <Td>{user.bootcamperid}</Td>

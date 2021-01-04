@@ -20,7 +20,7 @@ const AddUserFunction = ({ updatePage, setUpdatePage }) => {
   async function handleSubmit(e) {
     e.preventDefault();
     const obj = { ...formData, uuid: uuidv4() };
-    const res = await fetch("http://localhost:5000/users", {
+    const res = await fetch("https://callback-cats.herokuapp.com/users", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(obj),
