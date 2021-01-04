@@ -26,7 +26,7 @@
 
 //const cy = Cypress._;
 
-Cypress.Commands.add("login", (overrides = {}) => {
+Cypress.Commands.add("login", () => {
   Cypress.log({
     name: "loginViaAuth0",
   });
