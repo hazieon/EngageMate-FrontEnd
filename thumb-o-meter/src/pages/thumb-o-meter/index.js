@@ -27,13 +27,13 @@ const Thumbometer = () => {
   const bg = useColorModeValue("white", "#110042");
   const color = useColorModeValue("#110042", "white");
 
-  async function handleSubmit() {
+  async function handleSubmit({ sessionData }) {
     //https://callback-cats.herokuapp.com/session
-    console.log(data);
+    console.log(sessionData);
     const res = await fetch("https://callback-cats.herokuapp.com/session", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
+      body: JSON.stringify(sessionData),
     });
 
     //check the status of the data that is returned. If not 200 then its an error!
@@ -113,7 +113,7 @@ const Thumbometer = () => {
       console.log({ sessionData });
       //call function that posts to session table
       //success or burnt toast
-      handleSubmit();
+      handleSubmit({ sessionData });
       //disable slider here - state
       setCount(0);
     });
