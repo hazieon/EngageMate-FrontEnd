@@ -1,38 +1,90 @@
 import React, { useState, useEffect } from "react";
 import NavBar from "../../components/navBar";
 import styles from "./index.module.css";
-// import { Button } from "@chakra-ui/react";
 import PtView from "../../components/ptView";
 import SkView from "../../components/skView";
-import {
-  Flex,
-  Box,
-  Button,
-  Heading,
-  VStack,
-  Center,
-  useColorModeValue,
-} from "@chakra-ui/react";
+import { createStandaloneToast } from "@chakra-ui/react";
+import useRoleContext from "../../context/roleContext";
+import CustomButton from "../../components/button";
+import { ArrowBackIcon } from "@chakra-ui/icons";
+
+import { Flex, Box, Center, useColorModeValue } from "@chakra-ui/react";
 import socketIOClient from "socket.io-client";
+const url = process.env.REACT_APP_url;
 const ENDPOINT = "https://callback-cats.herokuapp.com";
 let socket;
 
 const Thumbometer = () => {
-  const [response, setResponse] = useState("");
-  const [speakerView, setSpeakerView] = useState();
+  // const [speakerView, setSpeakerView] = useState();
   const [data, setData] = useState({});
   const [time, setTime] = useState(0);
   const [count, setCount] = useState(0);
   const bg = useColorModeValue("white", "#110042");
   const color = useColorModeValue("#110042", "white");
 
+  async function handleSubmit({ sessionData }) {
+    //https://callback-cats.herokuapp.com/session
+    console.log(sessionData);
+    const res = await fetch(`${url}/session`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(sessionData),
+    });
+
+    //check the status of the data that is returned. If not 200 then its an error!
+    //will add a toast pop up here
+    if (res.status === 200) {
+      //calls the toast function to create a success popup
+      successToast({
+        name: "Session Submit Success.",
+        message: "successfully submitted data from the session.",
+      });
+      console.log("Success: session data posted");
+    } else {
+      burntToast({
+        name: "Failed Session Submission",
+        message: "failed to submit session data to the database.",
+      });
+    }
+  }
+
+  function successToast(successObject) {
+    const toast = createStandaloneToast();
+    toast({
+      title: successObject.name,
+      description: successObject.message,
+      status: "success",
+      duration: 9000,
+      isClosable: true,
+    });
+  }
+
+  function burntToast(error) {
+    const toast = createStandaloneToast();
+    toast({
+      title: error.name,
+      description: error.message,
+      status: "error",
+      duration: 10000,
+      isClosable: true,
+    });
+    console.log(error);
+  }
+
+  const result = useRoleContext();
+  const role = result[0];
+  const loggedUser = result[2];
+  const name = loggedUser?.given_name;
+  console.log(role);
+  console.log(loggedUser);
+
   useEffect(() => {
     socket = socketIOClient(ENDPOINT);
     socket.emit("connection");
     //join room request - get name, role from auth
     socket.emit("joinroom", {
-      name: "Ben", //take from auth
-      role: "coach",
+      name: name, //take from auth
+      role: role,
       room: "thumbometer",
     });
 
@@ -61,6 +113,11 @@ const Thumbometer = () => {
       setData(sessionData);
       console.log("finished session");
       console.log({ sessionData });
+      //call function that posts to session table
+      //success or burnt toast
+      role === "coach" &&
+        name === sessionData.coach &&
+        handleSubmit({ sessionData });
       //disable slider here - state
       setCount(0);
     });
@@ -70,7 +127,7 @@ const Thumbometer = () => {
 
   //hand this function down to speaker view - pass in q and timer
   function startSession({ question, timer }) {
-    socket.emit("start", { question, timer });
+    socket.emit("start", { question, timer, name });
     console.log("started session");
   }
 
@@ -91,17 +148,21 @@ const Thumbometer = () => {
           <Center>
             <h1 className={styles.heading}>Thumb-O-Meter</h1>
           </Center>
+          <Center className={styles.backButton}>
+            <CustomButton link="/" icon={<ArrowBackIcon />} text={"Back"} />
+          </Center>
           <Center>
-            <Button
+            {/* instead of the button we want to render either participant view or speaker view based on the role of the user */}
+            {/* <Button
               className={styles.button}
               bg="#7f56f2"
               onClick={() => setSpeakerView(!speakerView)}
             >
               {speakerView ? "Show ptView" : "Show skView"}
-            </Button>
+            </Button> */}
           </Center>
           <Center>
-            {speakerView && (
+            {role !== "bootcamper" && (
               <SkView
                 data={data}
                 startSession={startSession}
@@ -111,7 +172,7 @@ const Thumbometer = () => {
                 setTime={setTime}
               />
             )}
-            {!speakerView && (
+            {role === "bootcamper" && (
               <PtView
                 data={data}
                 submit={submitData}

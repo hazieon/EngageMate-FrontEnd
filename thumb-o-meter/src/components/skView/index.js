@@ -13,14 +13,27 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
   const color = useColorModeValue("#110042", "white");
 
   function handleSession(e) {
-    setQuestion(e.target.value);
-    console.log(question);
+    if (e.target.value !== "custom") {
+      setQuestion(e.target.value);
+      console.log({ question });
+    } else {
+      let customQ = prompt("whats your question?");
+      setQuestion(customQ);
+      console.log({ question });
+    }
   }
 
   function handleTimer(e) {
-    setTimer(Number(e.target.value));
-    setTime(Number(e.target.value));
-    console.log(timer);
+    if (e.target.value !== "custom") {
+      setTimer(Number(e.target.value));
+      setTime(Number(e.target.value));
+      console.log({ timer });
+    } else {
+      let customT = prompt("How many seconds should be allowed?");
+      setTimer(Number(customT));
+      setTime(Number(customT));
+      console.log({ timer });
+    }
   }
 
   return (
@@ -38,9 +51,10 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
         <option value="Are you comfortable with moving on?">
           Are you comfortable with moving on?
         </option>
+        {/* custom question */}
+        <option value="custom">Set custom question.</option>
       </Select>
 
-      {/* <Input placeholder="Write your own question?" /> */}
       <Select
         placeholder="Timer Amount"
         onChange={handleTimer}
@@ -51,6 +65,7 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
         <option value="20">20 Seconds</option>
         <option value="25">25 Seconds</option>
         <option value="30">30 Seconds</option>
+        <option value="custom">Set custom time</option>
       </Select>
 
       <Thumb value={data.outcome} />

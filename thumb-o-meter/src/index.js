@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./components/app/App";
 import reportWebVitals from "./reportWebVitals";
+import { RoleProvider } from "../src/context/roleContext";
 import {
   ChakraProvider,
   ThemeProvider,
@@ -27,12 +28,14 @@ ReactDOM.render(
         clientId={clientId}
         redirectUri={window.location.origin}
       >
-        <ChakraProvider>
-          <React.StrictMode>
-            <App />
-            <CSSReset />
-          </React.StrictMode>
-        </ChakraProvider>
+        <RoleProvider>
+          <ChakraProvider>
+            <React.StrictMode>
+              <App />
+              <CSSReset />
+            </React.StrictMode>
+          </ChakraProvider>
+        </RoleProvider>
       </Auth0Provider>
     </ColorModeProvider>
   </ThemeProvider>,

@@ -1,8 +1,7 @@
 import React from "react";
-import { Button, Center, VStack } from "@chakra-ui/react";
 import FeatureIcon from "../featureIcons";
 import styles from "./menu.module.css";
-
+import useRoleContext from "../../context/roleContext";
 import {
   FaQuestionCircle,
   FaMusic,
@@ -10,9 +9,12 @@ import {
   FaThumbsUp,
 } from "react-icons/fa";
 
-const Menu = ({ role }) => {
+const Menu = () => {
+  const result = useRoleContext();
+  const role = result[0];
+
   return (
-    <>
+    <main>
       <div className={styles.container}>
         <div className={styles.players}>
           <section>
@@ -64,7 +66,7 @@ const Menu = ({ role }) => {
           )}
         </div>
       </div>
-    </>
+    </main>
   );
 };
 
