@@ -25,16 +25,16 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
   }
 
   function handleTimer(e) {
-    // if (e.target.value !== "custom") {
-    setTimer(Number(e.target.value));
-    setTime(Number(e.target.value));
-    console.log({ timer });
-    // } else {
-    //   let customT = prompt("How many seconds should be allowed?");
-    //   setTimer(Number(customT));
-    //   setTime(Number(customT));
-    //   console.log({ timer });
-    // }
+    if (e.target.value !== "custom") {
+      setTimer(Number(e.target.value));
+      setTime(Number(e.target.value));
+      console.log({ timer });
+    } else {
+      let customT = prompt("How many seconds should be allowed?");
+      setTimer(Number(customT));
+      setTime(Number(customT));
+      console.log({ timer });
+    }
   }
 
   return (
