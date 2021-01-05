@@ -20,20 +20,21 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
       let customQ = prompt("whats your question?");
       setQuestion(customQ);
       console.log({ question });
+      return <input placeholder="hello"></input>;
     }
   }
 
   function handleTimer(e) {
-    if (e.target.value !== "custom") {
-      setTimer(Number(e.target.value));
-      setTime(Number(e.target.value));
-      console.log({ timer });
-    } else {
-      let customT = prompt("How many seconds should be allowed?");
-      setTimer(customT);
-      setTime(customT);
-      console.log({ timer });
-    }
+    // if (e.target.value !== "custom") {
+    setTimer(Number(e.target.value));
+    setTime(Number(e.target.value));
+    console.log({ timer });
+    // } else {
+    //   let customT = prompt("How many seconds should be allowed?");
+    //   setTimer(Number(customT));
+    //   setTime(Number(customT));
+    //   console.log({ timer });
+    // }
   }
 
   return (
