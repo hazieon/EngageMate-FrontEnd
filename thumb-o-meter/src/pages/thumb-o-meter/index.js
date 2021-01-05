@@ -73,13 +73,14 @@ const Thumbometer = () => {
   const role = result[2];
   const loggedUser = result[1];
   console.log(role);
+  console.log(loggedUser);
 
   useEffect(() => {
     socket = socketIOClient(ENDPOINT);
     socket.emit("connection");
     //join room request - get name, role from auth
     socket.emit("joinroom", {
-      name: loggedUser.firstName, //take from auth
+      name: loggedUser?.given_name, //take from auth
       role: role,
       room: "thumbometer",
     });
