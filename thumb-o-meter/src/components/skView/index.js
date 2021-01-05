@@ -24,9 +24,16 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
   }
 
   function handleTimer(e) {
-    setTimer(Number(e.target.value));
-    setTime(Number(e.target.value));
-    console.log(timer);
+    if (e.target.value !== "custom") {
+      setTimer(Number(e.target.value));
+      setTime(Number(e.target.value));
+      console.log({ timer });
+    } else {
+      let customT = prompt("How many seconds should be allowed?");
+      setTimer(customT);
+      setTime(customT);
+      console.log({ timer });
+    }
   }
 
   return (
@@ -45,7 +52,7 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
           Are you comfortable with moving on?
         </option>
         {/* custom question */}
-        <option value="custom">Set your own question.</option>
+        <option value="custom">Set custom question.</option>
       </Select>
 
       <Select
@@ -58,6 +65,7 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
         <option value="20">20 Seconds</option>
         <option value="25">25 Seconds</option>
         <option value="30">30 Seconds</option>
+        <option value="custom">Set custom time</option>
       </Select>
 
       <Thumb value={data.outcome} />
