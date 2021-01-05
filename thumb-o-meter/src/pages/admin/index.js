@@ -4,7 +4,9 @@ import NavBar from "../../components/navBar";
 import AddUserForm from "../../components/addUserForm";
 import UserTable from "../../components/userTable";
 import SessionTable from "../../components/sessionTable";
+import BackToHome from "../back-home";
 import { createStandaloneToast } from "@chakra-ui/react";
+import useRoleContext from "../../context/roleContext";
 
 import {
   Accordion,
@@ -20,12 +22,14 @@ import {
   TabPanel,
 } from "@chakra-ui/react";
 
-const Admin = ({ role }) => {
+const Admin = () => {
   // need to sort role authentication so this page only visible to coaches
   const [userTableData, setUserTableData] = useState([]);
   const [sessionTableData, setSessionTableData] = useState([]);
   const [updatePage, setUpdatePage] = useState(false);
   const url = process.env.REACT_APP_url;
+  const result = useRoleContext();
+  const role = result[2];
 
   useEffect(() => {
     fetch(`${url}/users`)
@@ -116,47 +120,54 @@ const Admin = ({ role }) => {
   return (
     <>
       <NavBar />
-      <main className={style.main}>
-        <Accordion className={style.accordion} allowToggle>
-          <AccordionItem>
-            <AccordionButton>
-              <Box flex="1" textAlign="left">
-                Add User Form
-              </Box>
-              <AccordionIcon />
-            </AccordionButton>
-            <AccordionPanel pb={4}>
-              <AddUserForm
-                updatePage={updatePage}
-                setUpdatePage={setUpdatePage}
-              />
-            </AccordionPanel>
-          </AccordionItem>
-        </Accordion>
-
-        <Tabs className={style.tab}>
-          <TabList>
-            <Tab>Users</Tab>
-            <Tab>Sessions</Tab>
-          </TabList>
-
-          <TabPanels>
-            <TabPanel>
-              <div className={style.userTable}>
-                <UserTable tableData={userTableData} deleteUser={deleteUser} />
-              </div>
-            </TabPanel>
-            <TabPanel>
-              <div className={style.sessionTable}>
-                <SessionTable
-                  tableData={sessionTableData}
-                  deleteSession={deleteSession}
+      {role === "coach" ? (
+        <main className={style.main}>
+          <Accordion className={style.accordion} allowToggle>
+            <AccordionItem>
+              <AccordionButton>
+                <Box flex="1" textAlign="left">
+                  Add User Form
+                </Box>
+                <AccordionIcon />
+              </AccordionButton>
+              <AccordionPanel pb={4}>
+                <AddUserForm
+                  updatePage={updatePage}
+                  setUpdatePage={setUpdatePage}
                 />
-              </div>
-            </TabPanel>
-          </TabPanels>
-        </Tabs>
-      </main>
+              </AccordionPanel>
+            </AccordionItem>
+          </Accordion>
+
+          <Tabs className={style.tab}>
+            <TabList>
+              <Tab>Users</Tab>
+              <Tab>Sessions</Tab>
+            </TabList>
+
+            <TabPanels>
+              <TabPanel>
+                <div className={style.userTable}>
+                  <UserTable
+                    tableData={userTableData}
+                    deleteUser={deleteUser}
+                  />
+                </div>
+              </TabPanel>
+              <TabPanel>
+                <div className={style.sessionTable}>
+                  <SessionTable
+                    tableData={sessionTableData}
+                    deleteSession={deleteSession}
+                  />
+                </div>
+              </TabPanel>
+            </TabPanels>
+          </Tabs>
+        </main>
+      ) : (
+        <BackToHome />
+      )}
     </>
   );
 };

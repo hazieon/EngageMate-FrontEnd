@@ -4,19 +4,20 @@ import LogoutButton from "../logout/index";
 import { Box, Flex, Text, useColorModeValue } from "@chakra-ui/react";
 import ThemeToggler from "../theme";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
-
+import useRoleContext from "../../context/roleContext";
 import styles from "./navBar.module.css";
 
 const MenuItems = ({ children }) => (
   <Text className={styles.menu}>{children}</Text>
 );
 
-const Header = ({ role }) => {
+const Header = () => {
   const [show, setShow] = useState(false);
   const toggleMenu = () => setShow(!show);
-
   const bg = useColorModeValue("#7f56f2", "#110042");
   const color = useColorModeValue("#110042", "white");
+  const result = useRoleContext();
+  const role = result[2];
   return (
     <Flex className={styles.container} as="nav" bg={bg} color={color}>
       {/* <Icon as={FaCat} /> */}

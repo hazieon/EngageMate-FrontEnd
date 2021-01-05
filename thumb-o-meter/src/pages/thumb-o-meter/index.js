@@ -1,29 +1,19 @@
 import React, { useState, useEffect } from "react";
 import NavBar from "../../components/navBar";
 import styles from "./index.module.css";
-// import { Button } from "@chakra-ui/react";
 import PtView from "../../components/ptView";
 import SkView from "../../components/skView";
 import { createStandaloneToast } from "@chakra-ui/react";
 import useRoleContext from "../../context/roleContext";
 
-import {
-  Flex,
-  Box,
-  Button,
-  Heading,
-  VStack,
-  Center,
-  useColorModeValue,
-} from "@chakra-ui/react";
+import { Flex, Box, Center, useColorModeValue } from "@chakra-ui/react";
 import socketIOClient from "socket.io-client";
 const url = process.env.REACT_APP_url;
 const ENDPOINT = "https://callback-cats.herokuapp.com";
 let socket;
 
 const Thumbometer = () => {
-  const [response, setResponse] = useState("");
-  const [speakerView, setSpeakerView] = useState();
+  // const [speakerView, setSpeakerView] = useState();
   const [data, setData] = useState({});
   const [time, setTime] = useState(0);
   const [count, setCount] = useState(0);
@@ -81,6 +71,7 @@ const Thumbometer = () => {
 
   const result = useRoleContext();
   const role = result[2];
+  const loggedUser = result[1];
   console.log(role);
 
   useEffect(() => {
@@ -88,8 +79,8 @@ const Thumbometer = () => {
     socket.emit("connection");
     //join room request - get name, role from auth
     socket.emit("joinroom", {
-      name: "Ben", //take from auth
-      role: "coach",
+      name: loggedUser.firstName, //take from auth
+      role: role,
       room: "thumbometer",
     });
 
