@@ -17,7 +17,7 @@ const Header = () => {
   const bg = useColorModeValue("#7f56f2", "#110042");
   const color = useColorModeValue("#110042", "white");
   const result = useRoleContext();
-  const role = result[2];
+  const role = result[0];
   return (
     <Flex className={styles.container} as="nav" bg={bg} color={color}>
       {/* <Icon as={FaCat} /> */}
