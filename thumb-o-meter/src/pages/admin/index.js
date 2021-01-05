@@ -29,7 +29,7 @@ const Admin = () => {
   const [updatePage, setUpdatePage] = useState(false);
   const url = process.env.REACT_APP_url;
   const result = useRoleContext();
-  const role = result[2];
+  const role = result[0];
 
   useEffect(() => {
     fetch(`${url}/users`)
