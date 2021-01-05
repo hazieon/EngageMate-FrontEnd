@@ -5,26 +5,31 @@ const RoleContext = createContext(undefined);
 
 export function RoleProvider({ children }) {
   const [role, setRole] = useState("");
-  const { user } = useAuth0();
+  //const { user } = useAuth0();
   const [loggedUser, setLoggedUser] = useState("");
-  const [result, setResult] = useState("");
+  //const [result, setResult] = useState("");
   function myRole(string) {
     setRole(string);
   }
-  useEffect(() => {
-    async function getUsers() {
-      setLoggedUser(user);
-      const data = await fetch(`https://callback-cats.herokuapp.com/users`);
-      const response = await data.json();
-      setResult(response);
-    }
-    getUsers();
+  function myUser(obj) {
+    setLoggedUser(obj);
+  }
+  // useEffect(() => {
+  //   async function getUsers() {
+  //     // setLoggedUser(user);
+  //     const data = await fetch(
+  //       `https://callback-cats.herokuapp.com/users`
+  //     );
+  //     const response = await data.json();
+  //     setResult(response);
+  //   }
+  //   getUsers();
 
-    //loggedUser is the Auth0 information
-  }, []);
+  //   //loggedUser is the Auth0 information
+  // }, []);
 
   return (
-    <RoleContext.Provider value={[result, loggedUser, role, myRole]}>
+    <RoleContext.Provider value={[role, myRole, loggedUser, myUser]}>
       {children}
     </RoleContext.Provider>
   );

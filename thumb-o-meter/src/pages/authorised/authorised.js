@@ -9,14 +9,15 @@ import useRoleContext from "../../context/roleContext";
 const envUrl = process.env.REACT_APP_url;
 const Authorised = () => {
   const data = useRoleContext();
-  const role = data[2];
-  const setRole = data[3];
-  const loggedUser = data[1];
+  const role = data[0];
+  const setRole = data[1];
+  const setLoggedUser = data[3];
+  // const loggedUser = data[2];
 
   // console.log(myRole[2]);
   // const [role, setRole] = useState("");
 
-  const { isAuthenticated, user } = useAuth0();
+  const { user } = useAuth0();
   console.log(user);
   // const [loggedUser, setLoggedUser] = useState(user);
 
@@ -25,6 +26,7 @@ const Authorised = () => {
 
   useEffect(() => {
     async function getUsers() {
+      setLoggedUser(user);
       const data = await fetch(url);
       const result = await data.json();
       console.log(result.success);
