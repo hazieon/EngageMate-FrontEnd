@@ -20,7 +20,6 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
       let customQ = prompt("whats your question?");
       setQuestion(customQ);
       console.log({ question });
-      return <input placeholder="hello"></input>;
     }
   }
 
