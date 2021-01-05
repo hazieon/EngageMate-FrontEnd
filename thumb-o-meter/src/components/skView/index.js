@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import style from "./index.module.css";
 import { Select } from "@chakra-ui/react";
-import { Button, Icon, useColorModeValue } from "@chakra-ui/react";
+import { Button, Icon } from "@chakra-ui/react";
 import { MdUpdate, MdStop, MdPeople } from "react-icons/md";
 import Thumb from "../thumb";
 import Timer from "../timer/index";
@@ -9,8 +9,7 @@ import Timer from "../timer/index";
 function SkView({ data, startSession, endSession, count, time, setTime }) {
   const [question, setQuestion] = useState("Forgot to set question");
   const [timer, setTimer] = useState(5);
-  const bg = useColorModeValue("#7f56f2", "#110042");
-  const color = useColorModeValue("#110042", "white");
+  const [myColor, setMyColor] = useState("#2C276B");
 
   function handleSession(e) {
     if (e.target.value !== "custom") {
@@ -35,9 +34,20 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
       console.log({ timer });
     }
   }
+  useEffect(() => {
+    if (data.outcome === 0) {
+      setMyColor("#2C276B");
+    } else if (data.outcome <= 33) {
+      setMyColor("red");
+    } else if (data.outcome > 33 && data.outcome <= 66) {
+      setMyColor("orange");
+    } else if (data.outcome > 66 && data.outcome <= 100) {
+      setMyColor("green");
+    }
+  }, [data.outcome]);
 
   return (
-    <div className={style.container} bg={bg} color={color}>
+    <div className={style.container} style={{ backgroundColor: myColor }}>
       {/* <h1>The Question Here</h1> */}
       <Select
         placeholder="Select question"
@@ -54,7 +64,6 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
         {/* custom question */}
         <option value="custom">Set custom question.</option>
       </Select>
-
       <Select
         placeholder="Timer Amount"
         onChange={handleTimer}
@@ -67,19 +76,15 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
         <option value="30">30 Seconds</option>
         <option value="custom">Set custom time</option>
       </Select>
-
       <Thumb value={data.outcome} />
-
       <div className={style.valueInformation}>
         <h3>Value: {data.outcome}%</h3>
         <p>
           {data.responses}/{data.participants} {<Icon as={MdPeople} />}
         </p>
       </div>
-
       <Timer count={count} time={time} />
       <p>{count}</p>
-
       <div className={style.buttons}>
         <Button
           leftIcon={<MdStop />}

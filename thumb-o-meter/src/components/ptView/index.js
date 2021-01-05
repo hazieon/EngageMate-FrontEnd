@@ -6,13 +6,13 @@ import {
   SliderTrack,
   SliderFilledTrack,
   SliderThumb,
-  useColorModeValue,
 } from "@chakra-ui/react";
 import { Icon } from "@chakra-ui/react";
 import { MdPeople } from "react-icons/md";
 import Timer from "../timer/index";
 
 function PtView({ data, submit, time, count }) {
+  const [myColor, setMyColor] = useState("#2C276B");
   // display the question
   // rotatable thumb
   // slider
@@ -20,8 +20,6 @@ function PtView({ data, submit, time, count }) {
   // timer
 
   const [value, setValue] = useState(0);
-  const bg = useColorModeValue("#110042", "white");
-  const color = useColorModeValue("white", "#110042");
 
   useEffect(() => {
     if (count > 0) {
@@ -33,9 +31,20 @@ function PtView({ data, submit, time, count }) {
   //   sliderVal.innerText = `Value: ${slider.value}`;
   //   socket.emit("submission", { value: slider.value });
   // });
+  useEffect(() => {
+    if (data.outcome === 0) {
+      setMyColor("#2C276B");
+    } else if (data.outcome <= 33) {
+      setMyColor("red");
+    } else if (data.outcome > 33 && data.outcome <= 66) {
+      setMyColor("orange");
+    } else if (data.outcome > 66 && data.outcome <= 100) {
+      setMyColor("green");
+    }
+  }, [data.outcome]);
 
   return (
-    <div className={style.container} bg={bg} color={color}>
+    <div className={style.container} style={{ backgroundColor: myColor }}>
       <h1>{data.question}</h1>
       <Thumb value={value} />
       <Slider
