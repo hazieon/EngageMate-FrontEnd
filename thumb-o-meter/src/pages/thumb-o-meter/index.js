@@ -70,8 +70,9 @@ const Thumbometer = () => {
   }
 
   const result = useRoleContext();
-  const role = result[2];
-  const loggedUser = result[1];
+  const role = result[0];
+  const loggedUser = result[2];
+  const name = loggedUser?.given_name;
   console.log(role);
   console.log(loggedUser);
 
@@ -80,7 +81,7 @@ const Thumbometer = () => {
     socket.emit("connection");
     //join room request - get name, role from auth
     socket.emit("joinroom", {
-      name: loggedUser?.given_name, //take from auth
+      name: name, //take from auth
       role: role,
       room: "thumbometer",
     });
@@ -112,7 +113,9 @@ const Thumbometer = () => {
       console.log({ sessionData });
       //call function that posts to session table
       //success or burnt toast
-      handleSubmit({ sessionData });
+      role === "coach" &&
+        name === sessionData.coach &&
+        handleSubmit({ sessionData });
       //disable slider here - state
       setCount(0);
     });
@@ -122,7 +125,7 @@ const Thumbometer = () => {
 
   //hand this function down to speaker view - pass in q and timer
   function startSession({ question, timer }) {
-    socket.emit("start", { question, timer });
+    socket.emit("start", { question, timer, name });
     console.log("started session");
   }
 
