@@ -87,20 +87,22 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
       <p>{count}</p>
       <div className={style.buttons}>
         <Button
+          className={style.button}
+          rightIcon={<MdUpdate />}
+          colorScheme="green"
+          onClick={() => startSession({ question, timer })}
+        >
+          Start Timer
+        </Button>
+
+        <Button
+          className={style.button}
           leftIcon={<MdStop />}
           colorScheme="red"
           onClick={endSession}
           isDisabled={count > 0 ? false : true}
         >
           Stop Timer
-        </Button>
-
-        <Button
-          rightIcon={<MdUpdate />}
-          colorScheme="green"
-          onClick={() => startSession({ question, timer })}
-        >
-          Start Timer
         </Button>
       </div>
     </div>
