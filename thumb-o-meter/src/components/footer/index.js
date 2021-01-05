@@ -13,7 +13,7 @@ const Footer = () => {
     Math.floor(Math.random() * advice.length)
   );
   const result = useRoleContext();
-  const role = result[2];
+  const role = result[0];
 
   const handleChange = (event) => setValue(event.target.value);
   const handleJoke = () => {
