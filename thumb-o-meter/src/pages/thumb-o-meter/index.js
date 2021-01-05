@@ -170,6 +170,8 @@ const Thumbometer = () => {
                 count={count}
                 time={time}
                 setTime={setTime}
+                bg={bg}
+                color={color}
               />
             )}
             {role === "bootcamper" && (
