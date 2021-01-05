@@ -11,11 +11,7 @@ const Deck = ({ user }) => {
     <>
       <NavBar />
       <div>
-        <CustomButton
-          link="/localhost3000"
-          icon={<ArrowBackIcon />}
-          text={"Back"}
-        />
+        <CustomButton link="/" icon={<ArrowBackIcon />} text={"Back"} />
       </div>
       <div className={styles.container}>
         <header className={styles.title}> </header>

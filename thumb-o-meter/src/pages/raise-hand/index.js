@@ -6,11 +6,7 @@ const RaiseHand = () => {
   return (
     <div>
       <NavBar />
-      <CustomButton
-        link="/localhost3000"
-        icon={<ArrowBackIcon />}
-        text={"Back"}
-      />
+      <CustomButton link="/" icon={<ArrowBackIcon />} text={"Back"} />
     </div>
   );
 };

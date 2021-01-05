@@ -146,11 +146,7 @@ const Thumbometer = () => {
             <h1 className={styles.heading}>Thumb-O-Meter</h1>
           </Center>
           <Center className={styles.backButton}>
-            <CustomButton
-              link="/localhost3000"
-              icon={<ArrowBackIcon />}
-              text={"Back"}
-            />
+            <CustomButton link="/" icon={<ArrowBackIcon />} text={"Back"} />
           </Center>
           <Center>
             {/* instead of the button we want to render either participant view or speaker view based on the role of the user */}
