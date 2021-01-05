@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { HStack, Box, Button, Input, Center } from "@chakra-ui/react";
+import { HStack, Button, Input, Center } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import styles from "./footer.module.css";
 import useRoleContext from "../../context/roleContext";
-let randomNumber;
 
 const Footer = () => {
   const [joke, setJoke] = useState("");
@@ -21,7 +20,7 @@ const Footer = () => {
       const response = await fetch(
         "https://v2.jokeapi.dev/joke/Programming,Miscellaneous,Dark,Pun?blacklistFlags=nsfw,religious,racist,sexist,explicit&type=single"
       );
-      let data = await response.json();
+      const data = await response.json();
 
       setJoke(data.joke);
     }
@@ -73,7 +72,9 @@ const Footer = () => {
       ]),
     [value, advice.length]
   );
-  randomNumber = Math.floor(Math.random() * advice.length);
+
+
+  let randomNumber = Math.floor(Math.random() * advice.length);
 
   return (
     <>

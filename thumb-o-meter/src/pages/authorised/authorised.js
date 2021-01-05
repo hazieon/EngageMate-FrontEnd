@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { Route, Redirect } from "react-router-dom";
+import React, { useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import FeaturedMenu from "../../pages/featureMenu";
-import Login from "../../pages/login/index";
 import Unauthorised from "../unauthorised";
 
 import useRoleContext from "../../context/roleContext";
