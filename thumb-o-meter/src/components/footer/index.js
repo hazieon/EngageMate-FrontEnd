@@ -2,14 +2,19 @@ import React, { useState, useEffect } from "react";
 import { HStack, Box, Button, Input, Center } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import styles from "./footer.module.css";
+import useRoleContext from "../../context/roleContext";
 let randomNumber;
-const Footer = ({ role }) => {
+
+const Footer = () => {
   const [joke, setJoke] = useState("");
   const [value, setValue] = useState("");
   const [advice, setAdvice] = useState([[]]);
   const [random, setRandom] = useState(
     Math.floor(Math.random() * advice.length)
   );
+  const result = useRoleContext();
+  const role = result[2];
+
   const handleChange = (event) => setValue(event.target.value);
   const handleJoke = () => {
     async function getJoke() {
@@ -69,7 +74,6 @@ const Footer = ({ role }) => {
     [value, advice.length]
   );
   randomNumber = Math.floor(Math.random() * advice.length);
-  console.log(randomNumber);
   return (
     <>
       <HStack justify="center">
@@ -93,7 +97,7 @@ const Footer = ({ role }) => {
               </li>{" "}
             </>
           )}
-          {role === "participant" && <li>{advice[random]}</li>}
+          {role === "bootcamper" && <li>{advice[random]}</li>}
         </ul>
       </HStack>
       <Center>

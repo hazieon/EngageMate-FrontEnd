@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
-import Login from "../../pages/login/index";
+import useRoleContext from "../../context/roleContext";
 import { createStandaloneToast } from "@chakra-ui/react";
+import FeaturedMenu from "../../pages/featureMenu";
 
-const Unauthorised = () => {
+const BackToHome = () => {
   //function for failed popup
   //pass in or create an object with {name: "", message: ""}
   function burntToast(error) {
@@ -24,12 +25,13 @@ const Unauthorised = () => {
       message: "Authorisation FAILED, contact administrator",
     });
   }, []);
-
+  const data = useRoleContext();
+  const role = data[2];
   return (
     <div>
-      <Login />
+      <FeaturedMenu role={role} />
     </div>
   );
 };
 
-export default Unauthorised;
+export default BackToHome;
