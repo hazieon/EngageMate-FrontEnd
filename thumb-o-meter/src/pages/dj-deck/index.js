@@ -2,12 +2,17 @@ import React from "react";
 import Player from "../../components/player";
 import NavBar from "../../components/navBar";
 import FeatureIcon from "../../components/featureIcons";
+import CustomButton from "../../components/button";
+import { ArrowBackIcon } from "@chakra-ui/icons";
 
 import styles from "./deck.module.css";
 const Deck = ({ user }) => {
   return (
     <>
       <NavBar />
+      <div>
+        <CustomButton link="/" icon={<ArrowBackIcon />} text={"Back"} />
+      </div>
       <div className={styles.container}>
         <header className={styles.title}> </header>
         <div className={styles.players}>

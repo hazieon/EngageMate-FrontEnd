@@ -5,6 +5,8 @@ import PtView from "../../components/ptView";
 import SkView from "../../components/skView";
 import { createStandaloneToast } from "@chakra-ui/react";
 import useRoleContext from "../../context/roleContext";
+import CustomButton from "../../components/button";
+import { ArrowBackIcon } from "@chakra-ui/icons";
 
 import { Flex, Box, Center, useColorModeValue } from "@chakra-ui/react";
 import socketIOClient from "socket.io-client";
@@ -145,6 +147,9 @@ const Thumbometer = () => {
           <NavBar />
           <Center>
             <h1 className={styles.heading}>Thumb-O-Meter</h1>
+          </Center>
+          <Center className={styles.backButton}>
+            <CustomButton link="/" icon={<ArrowBackIcon />} text={"Back"} />
           </Center>
           <Center>
             {/* instead of the button we want to render either participant view or speaker view based on the role of the user */}
