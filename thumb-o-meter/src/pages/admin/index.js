@@ -7,7 +7,7 @@ import SessionTable from "../../components/sessionTable";
 import BackToHome from "../back-home";
 import { createStandaloneToast } from "@chakra-ui/react";
 import useRoleContext from "../../context/roleContext";
-
+import { config } from "../../config";
 import {
   Accordion,
   AccordionItem,
@@ -27,9 +27,9 @@ const Admin = () => {
   const [userTableData, setUserTableData] = useState([]);
   const [sessionTableData, setSessionTableData] = useState([]);
   const [updatePage, setUpdatePage] = useState(false);
-  const url = process.env.REACT_APP_url;
   const result = useRoleContext();
   const role = result[0];
+  const { url } = config;
 
   useEffect(() => {
     fetch(`${url}/users`)

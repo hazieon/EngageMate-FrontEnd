@@ -10,8 +10,9 @@ import { ArrowBackIcon } from "@chakra-ui/icons";
 
 import { Flex, Box, Center, useColorModeValue } from "@chakra-ui/react";
 import socketIOClient from "socket.io-client";
-const url = process.env.REACT_APP_url;
-const ENDPOINT = "https://callback-cats.herokuapp.com";
+import { config } from "../../config";
+const { url } = config;
+const ENDPOINT = url;
 let socket;
 
 const Thumbometer = () => {
