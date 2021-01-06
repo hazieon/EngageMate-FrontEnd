@@ -1,15 +1,21 @@
 import React, { useState, useEffect } from "react";
 import style from "./index.module.css";
-import { Select } from "@chakra-ui/react";
-import { Button, Icon } from "@chakra-ui/react";
+
+import { Select, Switch } from "@chakra-ui/react";
+import { Button, Icon, useColorModeValue } from "@chakra-ui/react";
+
 import { MdUpdate, MdStop, MdPeople } from "react-icons/md";
 import Thumb from "../thumb";
 import Timer from "../timer/index";
 
 function SkView({ data, startSession, endSession, count, time, setTime }) {
-  const [question, setQuestion] = useState("Set Custom Question");
-  const [timer, setTimer] = useState("Custom");
-  const [myColor, setMyColor] = useState("#2C276B");
+
+  const [question, setQuestion] = useState("Forgot to set question");
+  const [throwaway, setThrowaway] = useState(false);
+  const [timer, setTimer] = useState(5);
+  const bg = useColorModeValue("#7f56f2", "#110042");
+  const color = useColorModeValue("#110042", "white");
+
 
   function handleSession(e) {
     if (e.target.value !== "custom") {
@@ -104,7 +110,24 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
         >
           Stop Timer
         </Button>
+
+
+        <Button
+          rightIcon={<MdUpdate />}
+          colorScheme="green"
+          onClick={() => startSession({ question, timer, throwaway })}
+        >
+          Start Timer
+        </Button>
+
       </div>
+      <p className={style.throwaway}>
+        Throwaway:
+        <Switch
+          isDisabled={count > 0 ? true : false}
+          onChange={() => setThrowaway(!throwaway)}
+        />
+      </p>
     </div>
   );
 }

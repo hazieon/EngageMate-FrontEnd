@@ -13,16 +13,28 @@
 
 .buttons {
   display: flex;
-  justify-content: space-evenly;
+  width: 70%;
+  justify-content: space-between;
+
 }
 .button {
   margin: 10px;
+
 }
 
 .valueInformation {
   display: flex;
   width: 70%;
   justify-content: space-evenly;
+}
+
+
+.throwaway {
+  margin-top: 10px;
+}
+
+.throwaway > * {
+  margin: 10px;
 }
 
 @media only screen and (min-width: 996px) {
@@ -52,4 +64,5 @@
     height: auto;
     margin: 20px 20px;
   }
+
 }
