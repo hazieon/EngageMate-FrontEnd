@@ -30,9 +30,9 @@ function sessionTable({ tableData, deleteSession }) {
         </Tr>
       </Thead>
       <Tbody>
-        {tableData.map((session) => {
+        {tableData.map((session, index) => {
           return (
-            <Tr key={session.uuid}>
+            <Tr key={index}>
               <Td>
                 <Icon
                   as={IoTrashBinOutline}
