@@ -10,16 +10,26 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
   const [question, setQuestion] = useState("Set Custom Question");
   const [timer, setTimer] = useState("Custom");
   const [myColor, setMyColor] = useState("#2C276B");
+  const [custom, setCustom] = useState(false);
+  const [def, setDef] = useState(true);
 
+  console.log({ question });
   function handleSession(e) {
     if (e.target.value !== "custom") {
+      setCustom(false);
+      setDef(true);
       setQuestion(e.target.value);
       console.log({ question });
-    } else {
-      let customQ = prompt("whats your question?");
-      setQuestion(customQ);
-      console.log({ question });
     }
+    if (e.target.value === "custom") {
+      setCustom(true);
+      setDef(false);
+    }
+    //else {
+    //   let customQ = prompt("whats your question?");
+    //   setQuestion(customQ);
+    //   console.log({ question });
+    // }
   }
 
   function handleTimer(e) {
@@ -62,8 +72,23 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
           Are you comfortable with moving on?
         </option>
         {/* custom question */}
-        <option value="custom">{question}</option>
+        <option value="custom">Set a custom question.</option>
       </Select>
+      <input
+        style={
+          custom
+            ? {
+                display: "block",
+                color: "black",
+                borderRadius: "30px",
+                textAlign: "center",
+              }
+            : { display: "none" }
+        }
+        placeholder="set custom question..."
+        type="text"
+        onChange={(e) => setQuestion(e.target.value)}
+      />
       <Select
         placeholder="Timer Amount"
         onChange={handleTimer}
