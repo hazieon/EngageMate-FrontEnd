@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import style from "./index.module.css";
-import { Select } from "@chakra-ui/react";
-import { Button, Icon } from "@chakra-ui/react";
+import { Button, Icon, Input, Select } from "@chakra-ui/react";
 import { MdUpdate, MdStop, MdPeople } from "react-icons/md";
 import Thumb from "../thumb";
 import Timer from "../timer/index";
@@ -11,19 +10,18 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
   const [timer, setTimer] = useState("Custom");
   const [myColor, setMyColor] = useState("#2C276B");
   const [custom, setCustom] = useState(false);
-  const [def, setDef] = useState(true);
+  const [customTime, setCustomTime] = useState(false);
 
   console.log({ question });
   function handleSession(e) {
     if (e.target.value !== "custom") {
       setCustom(false);
-      setDef(true);
+
       setQuestion(e.target.value);
       console.log({ question });
     }
     if (e.target.value === "custom") {
       setCustom(true);
-      setDef(false);
     }
     //else {
     //   let customQ = prompt("whats your question?");
@@ -34,16 +32,23 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
 
   function handleTimer(e) {
     if (e.target.value !== "custom") {
+      setCustomTime(false);
       setTimer(Number(e.target.value));
       setTime(Number(e.target.value));
       console.log({ timer });
-    } else {
-      let customT = prompt("How many seconds should be allowed?");
-      setTimer(Number(customT));
-      setTime(Number(customT));
-      console.log({ timer });
     }
+    if (e.target.value === "custom") {
+      setCustomTime(true);
+      console.log(customTime);
+    }
+    // } else {
+    //   let customT = prompt("How many seconds should be allowed?");
+    //   setTimer(Number(customT));
+    //   setTime(Number(customT));
+    //   console.log({ timer });
+    // }
   }
+
   useEffect(() => {
     if (data.outcome === 0) {
       setMyColor("#2C276B");
@@ -63,6 +68,7 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
         placeholder="Select Question"
         onChange={handleSession}
         isDisabled={count > 0 ? true : false}
+        className={style.borderColor}
       >
         <option value="How are you feeling?">How are you feeling?</option>
         <option value="Did you understand that?">
@@ -74,14 +80,15 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
         {/* custom question */}
         <option value="custom">Set a custom question.</option>
       </Select>
-      <input
+      <Input
+        focusBorderColor="lime"
+        className={style.borderColor}
         style={
           custom
             ? {
                 display: "block",
-                color: "black",
-                borderRadius: "30px",
                 textAlign: "center",
+                borderColor: "grey",
               }
             : { display: "none" }
         }
@@ -91,6 +98,7 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
       />
       <Select
         placeholder="Timer Amount"
+        className={style.borderColor}
         onChange={handleTimer}
         isDisabled={count > 0 ? true : false}
       >
@@ -99,8 +107,24 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
         <option value="20">20 Seconds</option>
         <option value="25">25 Seconds</option>
         <option value="30">30 Seconds</option>
-        <option value="custom">{`${timer} Seconds`}</option>
+        <option value="custom">Set a custom time.</option>
       </Select>
+      <Input
+        focusBorderColor="lime"
+        className={style.borderColor}
+        style={
+          customTime
+            ? {
+                display: "block",
+                textAlign: "center",
+                borderColor: "grey",
+              }
+            : { display: "none" }
+        }
+        placeholder="set custom time..."
+        type="Number"
+        onChange={(e) => setTimer(e.target.value)}
+      />
       <Thumb value={data.outcome} />
       <div className={style.valueInformation}>
         <h3>Value: {data.outcome}%</h3>

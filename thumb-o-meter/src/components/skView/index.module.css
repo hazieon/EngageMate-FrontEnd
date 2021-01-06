@@ -53,12 +53,6 @@
     margin: 20px 20px;
   }
 }
-
-.customInput {
-  display: block;
-}
-
-.disabledInput {
-  display: none;
-  background-color: blue;
+.borderColor {
+  border-color: grey;
 }
