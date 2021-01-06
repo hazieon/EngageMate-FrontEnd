@@ -5,6 +5,7 @@ import { Box, Flex, Text, useColorModeValue } from "@chakra-ui/react";
 import ThemeToggler from "../theme";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import useRoleContext from "../../context/roleContext";
+import { menuItems, coachMenuItems } from "./data";
 import styles from "./navBar.module.css";
 
 const MenuItems = ({ children }) => (
@@ -31,28 +32,22 @@ const Header = () => {
         display={{ base: show ? "block" : "none", md: "block" }}
       >
         <Flex className={styles.navigation}>
-          <MenuItems>
-            <Link to="/">Home</Link>
-          </MenuItems>
-          <MenuItems>
-            <Link to="/thumb">Thumb-o-meter</Link>
-          </MenuItems>
-          <MenuItems>
-            <Link to="/raisehand">Raise Hand</Link>
-          </MenuItems>
-          <MenuItems>
-            <Link to="/quiz">Live Quiz</Link>
-          </MenuItems>
-          {role === "coach" && (
-            <>
-              <MenuItems>
-                <Link to="/deck">DJ Deck</Link>
-              </MenuItems>
-              <MenuItems>
-                <Link to="/admin">Admin</Link>
-              </MenuItems>
-            </>
-          )}
+          {role === "coach"
+            ? coachMenuItems.map((item) => {
+                return (
+                  <MenuItems key={item.value}>
+                    <Link to={item.link}>{item.value}</Link>
+                  </MenuItems>
+                );
+              })
+            : menuItems.map((item) => {
+                return (
+                  <MenuItems key={item.value}>
+                    <Link to={item.link}>{item.value}</Link>
+                  </MenuItems>
+                );
+              })}
+
           <LogoutButton bg={bg} color={color} />
         </Flex>
       </Box>

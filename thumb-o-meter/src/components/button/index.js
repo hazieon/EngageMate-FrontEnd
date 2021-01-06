@@ -5,7 +5,9 @@ import { Link } from "react-router-dom";
 const CustomButton = ({ link, text, icon }) => {
   return (
     <Link to={link}>
-      <Button leftIcon={icon}>{text}</Button>
+      <Button style={{ color: "black" }} leftIcon={icon}>
+        {text}
+      </Button>
     </Link>
   );
 };

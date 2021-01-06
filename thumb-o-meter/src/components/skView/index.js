@@ -7,8 +7,8 @@ import Thumb from "../thumb";
 import Timer from "../timer/index";
 
 function SkView({ data, startSession, endSession, count, time, setTime }) {
-  const [question, setQuestion] = useState("Forgot to set question");
-  const [timer, setTimer] = useState(5);
+  const [question, setQuestion] = useState("Set Custom Question");
+  const [timer, setTimer] = useState("Custom");
   const [myColor, setMyColor] = useState("#2C276B");
 
   function handleSession(e) {
@@ -50,7 +50,7 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
     <div className={style.container} style={{ backgroundColor: myColor }}>
       {/* <h1>The Question Here</h1> */}
       <Select
-        placeholder="Select question"
+        placeholder="Select Question"
         onChange={handleSession}
         isDisabled={count > 0 ? true : false}
       >
@@ -62,7 +62,7 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
           Are you comfortable with moving on?
         </option>
         {/* custom question */}
-        <option value="custom">Set custom question.</option>
+        <option value="custom">{question}</option>
       </Select>
       <Select
         placeholder="Timer Amount"
@@ -74,7 +74,7 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
         <option value="20">20 Seconds</option>
         <option value="25">25 Seconds</option>
         <option value="30">30 Seconds</option>
-        <option value="custom">Set custom time</option>
+        <option value="custom">{`${timer} Seconds`}</option>
       </Select>
       <Thumb value={data.outcome} />
       <div className={style.valueInformation}>
