@@ -1,45 +1,55 @@
+
 import React, { useState, useEffect } from "react";
 import style from "./index.module.css";
-
-import { Select, Switch } from "@chakra-ui/react";
-import { Button, Icon, useColorModeValue } from "@chakra-ui/react";
-
+import { Button, Icon, Input, Select } from "@chakra-ui/react";
 import { MdUpdate, MdStop, MdPeople } from "react-icons/md";
 import Thumb from "../thumb";
 import Timer from "../timer/index";
 
 function SkView({ data, startSession, endSession, count, time, setTime }) {
-
-  const [question, setQuestion] = useState("Forgot to set question");
+  const [question, setQuestion] = useState("Set Custom Question");
+  const [timer, setTimer] = useState("Custom");
+  const [myColor, setMyColor] = useState("#2C276B");
+  const [custom, setCustom] = useState(false);
+  const [customTime, setCustomTime] = useState(false);
   const [throwaway, setThrowaway] = useState(false);
-  const [timer, setTimer] = useState(5);
-  const bg = useColorModeValue("#7f56f2", "#110042");
-  const color = useColorModeValue("#110042", "white");
-
-
+  console.log({ question });
   function handleSession(e) {
     if (e.target.value !== "custom") {
+      setCustom(false);
+
       setQuestion(e.target.value);
       console.log({ question });
-    } else {
-      let customQ = prompt("whats your question?");
-      setQuestion(customQ);
-      console.log({ question });
     }
+    if (e.target.value === "custom") {
+      setCustom(true);
+    }
+    //else {
+    //   let customQ = prompt("whats your question?");
+    //   setQuestion(customQ);
+    //   console.log({ question });
+    // }
   }
 
   function handleTimer(e) {
     if (e.target.value !== "custom") {
+      setCustomTime(false);
       setTimer(Number(e.target.value));
       setTime(Number(e.target.value));
       console.log({ timer });
-    } else {
-      let customT = prompt("How many seconds should be allowed?");
-      setTimer(Number(customT));
-      setTime(Number(customT));
-      console.log({ timer });
     }
+    if (e.target.value === "custom") {
+      setCustomTime(true);
+      console.log(customTime);
+    }
+    // } else {
+    //   let customT = prompt("How many seconds should be allowed?");
+    //   setTimer(Number(customT));
+    //   setTime(Number(customT));
+    //   console.log({ timer });
+    // }
   }
+
   useEffect(() => {
     if (data.outcome === 0) {
       setMyColor("#2C276B");
@@ -59,6 +69,7 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
         placeholder="Select Question"
         onChange={handleSession}
         isDisabled={count > 0 ? true : false}
+        className={style.borderColor}
       >
         <option value="How are you feeling?">How are you feeling?</option>
         <option value="Did you understand that?">
@@ -68,10 +79,27 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
           Are you comfortable with moving on?
         </option>
         {/* custom question */}
-        <option value="custom">{question}</option>
+        <option value="custom">Set a custom question.</option>
       </Select>
+      <Input
+        focusBorderColor="lime"
+        className={style.borderColor}
+        style={
+          custom
+            ? {
+                display: "block",
+                textAlign: "center",
+                borderColor: "grey",
+              }
+            : { display: "none" }
+        }
+        placeholder="set custom question..."
+        type="text"
+        onChange={(e) => setQuestion(e.target.value)}
+      />
       <Select
         placeholder="Timer Amount"
+        className={style.borderColor}
         onChange={handleTimer}
         isDisabled={count > 0 ? true : false}
       >
@@ -80,8 +108,24 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
         <option value="20">20 Seconds</option>
         <option value="25">25 Seconds</option>
         <option value="30">30 Seconds</option>
-        <option value="custom">{`${timer} Seconds`}</option>
+        <option value="custom">Set a custom time.</option>
       </Select>
+      <Input
+        focusBorderColor="lime"
+        className={style.borderColor}
+        style={
+          customTime
+            ? {
+                display: "block",
+                textAlign: "center",
+                borderColor: "grey",
+              }
+            : { display: "none" }
+        }
+        placeholder="set custom time..."
+        type="Number"
+        onChange={(e) => setTimer(e.target.value)}
+      />
       <Thumb value={data.outcome} />
       <div className={style.valueInformation}>
         <h3>Value: {data.outcome}%</h3>
@@ -92,11 +136,11 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
       <Timer count={count} time={time} />
       <p>{count}</p>
       <div className={style.buttons}>
+
         <Button
-          className={style.button}
           rightIcon={<MdUpdate />}
           colorScheme="green"
-          onClick={() => startSession({ question, timer })}
+          onClick={() => startSession({ question, timer, throwaway })}
         >
           Start Timer
         </Button>
@@ -112,14 +156,6 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
         </Button>
 
 
-        <Button
-          rightIcon={<MdUpdate />}
-          colorScheme="green"
-          onClick={() => startSession({ question, timer, throwaway })}
-        >
-          Start Timer
-        </Button>
-
       </div>
       <p className={style.throwaway}>
         Throwaway:
@@ -128,6 +164,7 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
           onChange={() => setThrowaway(!throwaway)}
         />
       </p>
+      </div>
     </div>
   );
 }
