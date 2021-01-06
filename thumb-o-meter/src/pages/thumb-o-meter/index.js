@@ -20,7 +20,7 @@ const Thumbometer = () => {
   const [time, setTime] = useState(0);
   const [count, setCount] = useState(0);
   const bg = useColorModeValue("white", "#110042");
-  const color = useColorModeValue("#110042", "white");
+  const color = useColorModeValue("white", "white");
 
   async function handleSubmit({ sessionData }) {
     //https://callback-cats.herokuapp.com/session
