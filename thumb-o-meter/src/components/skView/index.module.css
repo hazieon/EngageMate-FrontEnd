@@ -21,10 +21,20 @@
 
 .buttons {
   display: flex;
+  width: 70%;
+  justify-content: space-between;
 }
 
 .valueInformation {
   display: flex;
   width: 70%;
   justify-content: space-evenly;
+}
+
+.throwaway {
+  margin-top: 10px;
+}
+
+.throwaway > * {
+  margin: 10px;
 }

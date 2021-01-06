@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import style from "./index.module.css";
-import { Select } from "@chakra-ui/react";
+import { Select, Switch } from "@chakra-ui/react";
 import { Button, Icon, useColorModeValue } from "@chakra-ui/react";
 import { MdUpdate, MdStop, MdPeople } from "react-icons/md";
 import Thumb from "../thumb";
@@ -98,6 +98,10 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
           Start Timer
         </Button>
       </div>
+      <p className={style.throwaway}>
+        Throwaway:
+        <Switch />
+      </p>
     </div>
   );
 }
