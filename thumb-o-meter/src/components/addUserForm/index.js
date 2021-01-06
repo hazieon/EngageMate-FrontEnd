@@ -10,12 +10,13 @@ import {
   Button,
 } from "@chakra-ui/react";
 import { v4 as uuidv4 } from "uuid";
+import { config } from "../../config";
 
 import { createStandaloneToast } from "@chakra-ui/react";
 
 const AddUserFunction = ({ updatePage, setUpdatePage }) => {
   const [formData, setFormData] = useState({});
-
+  const { url } = config;
   function successToast() {
     const toast = createStandaloneToast();
     toast({
@@ -44,7 +45,7 @@ const AddUserFunction = ({ updatePage, setUpdatePage }) => {
   async function handleSubmit(e) {
     e.preventDefault();
     const obj = { ...formData, uuid: uuidv4() };
-    const res = await fetch("https://callback-cats.herokuapp.com/users", {
+    const res = await fetch(`${url}/users`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(obj),

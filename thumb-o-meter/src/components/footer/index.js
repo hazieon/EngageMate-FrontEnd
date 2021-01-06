@@ -72,7 +72,10 @@ const Footer = () => {
       ]),
     [value, advice.length]
   );
+
+
   let randomNumber = Math.floor(Math.random() * advice.length);
+
   return (
     <>
       <HStack justify="center">

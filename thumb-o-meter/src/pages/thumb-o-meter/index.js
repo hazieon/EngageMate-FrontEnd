@@ -10,8 +10,9 @@ import { ArrowBackIcon } from "@chakra-ui/icons";
 
 import { Flex, Box, Center, useColorModeValue } from "@chakra-ui/react";
 import socketIOClient from "socket.io-client";
-const url = process.env.REACT_APP_url;
-const ENDPOINT = "https://callback-cats.herokuapp.com";
+import { config } from "../../config";
+const { url } = config;
+const ENDPOINT = url;
 let socket;
 
 const Thumbometer = () => {
@@ -20,7 +21,7 @@ const Thumbometer = () => {
   const [time, setTime] = useState(0);
   const [count, setCount] = useState(0);
   const bg = useColorModeValue("white", "#110042");
-  const color = useColorModeValue("#110042", "white");
+  const color = useColorModeValue("white", "white");
 
   async function handleSubmit({ sessionData }) {
     //https://callback-cats.herokuapp.com/session
@@ -170,6 +171,8 @@ const Thumbometer = () => {
                 count={count}
                 time={time}
                 setTime={setTime}
+                bg={bg}
+                color={color}
               />
             )}
             {role === "bootcamper" && (

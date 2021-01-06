@@ -1,17 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import style from "./index.module.css";
+
 import { Select, Switch } from "@chakra-ui/react";
 import { Button, Icon, useColorModeValue } from "@chakra-ui/react";
+
 import { MdUpdate, MdStop, MdPeople } from "react-icons/md";
 import Thumb from "../thumb";
 import Timer from "../timer/index";
 
 function SkView({ data, startSession, endSession, count, time, setTime }) {
+
   const [question, setQuestion] = useState("Forgot to set question");
   const [throwaway, setThrowaway] = useState(false);
   const [timer, setTimer] = useState(5);
   const bg = useColorModeValue("#7f56f2", "#110042");
   const color = useColorModeValue("#110042", "white");
+
 
   function handleSession(e) {
     if (e.target.value !== "custom") {
@@ -36,12 +40,23 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
       console.log({ timer });
     }
   }
+  useEffect(() => {
+    if (data.outcome === 0) {
+      setMyColor("#2C276B");
+    } else if (data.outcome <= 33) {
+      setMyColor("red");
+    } else if (data.outcome > 33 && data.outcome <= 66) {
+      setMyColor("orange");
+    } else if (data.outcome > 66 && data.outcome <= 100) {
+      setMyColor("green");
+    }
+  }, [data.outcome]);
 
   return (
-    <div className={style.container} bg={bg} color={color}>
+    <div className={style.container} style={{ backgroundColor: myColor }}>
       {/* <h1>The Question Here</h1> */}
       <Select
-        placeholder="Select question"
+        placeholder="Select Question"
         onChange={handleSession}
         isDisabled={count > 0 ? true : false}
       >
@@ -53,9 +68,8 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
           Are you comfortable with moving on?
         </option>
         {/* custom question */}
-        <option value="custom">Set custom question.</option>
+        <option value="custom">{question}</option>
       </Select>
-
       <Select
         placeholder="Timer Amount"
         onChange={handleTimer}
@@ -66,23 +80,29 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
         <option value="20">20 Seconds</option>
         <option value="25">25 Seconds</option>
         <option value="30">30 Seconds</option>
-        <option value="custom">Set custom time</option>
+        <option value="custom">{`${timer} Seconds`}</option>
       </Select>
-
       <Thumb value={data.outcome} />
-
       <div className={style.valueInformation}>
         <h3>Value: {data.outcome}%</h3>
         <p>
           {data.responses}/{data.participants} {<Icon as={MdPeople} />}
         </p>
       </div>
-
       <Timer count={count} time={time} />
       <p>{count}</p>
-
       <div className={style.buttons}>
         <Button
+          className={style.button}
+          rightIcon={<MdUpdate />}
+          colorScheme="green"
+          onClick={() => startSession({ question, timer })}
+        >
+          Start Timer
+        </Button>
+
+        <Button
+          className={style.button}
           leftIcon={<MdStop />}
           colorScheme="red"
           onClick={endSession}
@@ -91,6 +111,7 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
           Stop Timer
         </Button>
 
+
         <Button
           rightIcon={<MdUpdate />}
           colorScheme="green"
@@ -98,6 +119,7 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
         >
           Start Timer
         </Button>
+
       </div>
       <p className={style.throwaway}>
         Throwaway:
