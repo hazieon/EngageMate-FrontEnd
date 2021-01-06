@@ -8,6 +8,7 @@ import Timer from "../timer/index";
 
 function SkView({ data, startSession, endSession, count, time, setTime }) {
   const [question, setQuestion] = useState("Forgot to set question");
+  const [throwaway, setThrowaway] = useState(false);
   const [timer, setTimer] = useState(5);
   const bg = useColorModeValue("#7f56f2", "#110042");
   const color = useColorModeValue("#110042", "white");
@@ -93,14 +94,17 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
         <Button
           rightIcon={<MdUpdate />}
           colorScheme="green"
-          onClick={() => startSession({ question, timer })}
+          onClick={() => startSession({ question, timer, throwaway })}
         >
           Start Timer
         </Button>
       </div>
       <p className={style.throwaway}>
         Throwaway:
-        <Switch />
+        <Switch
+          isDisabled={count > 0 ? true : false}
+          onChange={() => setThrowaway(!throwaway)}
+        />
       </p>
     </div>
   );

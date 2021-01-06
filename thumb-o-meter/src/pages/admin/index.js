@@ -43,6 +43,7 @@ const Admin = () => {
       .then((response) => response.json())
       .then((payload) => setSessionTableData(payload.data))
       .catch((error) => burntToast(error));
+    console.log(sessionTableData);
   }, [updatePage]);
 
   function deleteUser(id) {

@@ -19,14 +19,13 @@ function sessionTable({ tableData, deleteSession }) {
       <Thead>
         <Tr>
           <Th></Th>
-          <Th>Id</Th>
-          <Th>UUID</Th>
+          <Th>Date</Th>
+          <Th>Question</Th>
+          <Th>Outcome</Th>
+          <Th>Coach</Th>
           <Th>Participants</Th>
           <Th>Responses</Th>
-          <Th>Outcome</Th>
-          <Th>Question</Th>
-          <Th>Coach</Th>
-          <Th>Date</Th>
+          <Th>Throwaway</Th>
         </Tr>
       </Thead>
       <Tbody>
@@ -39,17 +38,13 @@ function sessionTable({ tableData, deleteSession }) {
                   onClick={() => deleteSession(session.uuid)}
                 />
               </Td>
-              <Td>{session.id}</Td>
-              <Td data-uuid={session.uuid}>{`${session.uuid.substr(
-                0,
-                6
-              )}...`}</Td>
+              <Td>{session.date}</Td>
+              <Td>{session.question}</Td>
+              <Td>{session.outcome + "%"}</Td>
+              <Td>{session.coach}</Td>
               <Td>{session.participants}</Td>
               <Td>{session.responses}</Td>
-              <Td>{session.outcome}</Td>
-              <Td>{session.question}</Td>
-              <Td>{session.coach}</Td>
-              <Td>{session.date}</Td>
+              <Td>{session.throwaway ? " ✅ " : "❌ "}</Td>
             </Tr>
           );
         })}
