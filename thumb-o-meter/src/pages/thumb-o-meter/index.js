@@ -10,8 +10,9 @@ import { ArrowBackIcon } from "@chakra-ui/icons";
 
 import { Flex, Box, Center, useColorModeValue } from "@chakra-ui/react";
 import socketIOClient from "socket.io-client";
-const url = process.env.REACT_APP_url;
-const ENDPOINT = "https://callback-cats.herokuapp.com";
+import { config } from "../../config";
+const { url } = config;
+const ENDPOINT = url;
 let socket;
 
 const Thumbometer = () => {
@@ -126,8 +127,8 @@ const Thumbometer = () => {
   }, []);
 
   //hand this function down to speaker view - pass in q and timer
-  function startSession({ question, timer }) {
-    socket.emit("start", { question, timer, name });
+  function startSession({ question, timer, throwaway }) {
+    socket.emit("start", { question, timer, name, throwaway });
     console.log("started session");
   }
 

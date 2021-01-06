@@ -4,7 +4,8 @@ import FeaturedMenu from "../../pages/featureMenu";
 import Unauthorised from "../unauthorised";
 
 import useRoleContext from "../../context/roleContext";
-const envUrl = process.env.REACT_APP_url;
+import { config } from "../../config";
+const envUrl = config.url;
 const Authorised = () => {
   const data = useRoleContext();
   const role = data[0];
@@ -19,8 +20,7 @@ const Authorised = () => {
   console.log(user);
   // const [loggedUser, setLoggedUser] = useState(user);
 
-  let url =
-    process.env.REACT_APP_BACKEND_URL || `${envUrl}/users/${user.email}`;
+  let url = `${envUrl}/users/${user.email}`;
 
   useEffect(() => {
     async function getUsers() {

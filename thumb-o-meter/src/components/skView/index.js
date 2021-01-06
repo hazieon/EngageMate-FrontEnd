@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import style from "./index.module.css";
 import { Button, Icon, Input, Select } from "@chakra-ui/react";
@@ -11,7 +12,7 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
   const [myColor, setMyColor] = useState("#2C276B");
   const [custom, setCustom] = useState(false);
   const [customTime, setCustomTime] = useState(false);
-
+  const [throwaway, setThrowaway] = useState(false);
   console.log({ question });
   function handleSession(e) {
     if (e.target.value !== "custom") {
@@ -135,11 +136,11 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
       <Timer count={count} time={time} />
       <p>{count}</p>
       <div className={style.buttons}>
+
         <Button
-          className={style.button}
           rightIcon={<MdUpdate />}
           colorScheme="green"
-          onClick={() => startSession({ question, timer })}
+          onClick={() => startSession({ question, timer, throwaway })}
         >
           Start Timer
         </Button>
@@ -153,6 +154,16 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
         >
           Stop Timer
         </Button>
+
+
+      </div>
+      <p className={style.throwaway}>
+        Throwaway:
+        <Switch
+          isDisabled={count > 0 ? true : false}
+          onChange={() => setThrowaway(!throwaway)}
+        />
+      </p>
       </div>
     </div>
   );
