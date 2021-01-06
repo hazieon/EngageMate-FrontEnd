@@ -1,7 +1,6 @@
-
 import React, { useState, useEffect } from "react";
 import style from "./index.module.css";
-import { Button, Icon, Input, Select } from "@chakra-ui/react";
+import { Button, Icon, Input, Select, Switch } from "@chakra-ui/react";
 import { MdUpdate, MdStop, MdPeople } from "react-icons/md";
 import Thumb from "../thumb";
 import Timer from "../timer/index";
@@ -136,7 +135,6 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
       <Timer count={count} time={time} />
       <p>{count}</p>
       <div className={style.buttons}>
-
         <Button
           rightIcon={<MdUpdate />}
           colorScheme="green"
@@ -154,8 +152,6 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
         >
           Stop Timer
         </Button>
-
-
       </div>
       <p className={style.throwaway}>
         Throwaway:
@@ -164,7 +160,6 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
           onChange={() => setThrowaway(!throwaway)}
         />
       </p>
-      </div>
     </div>
   );
 }
