@@ -3,7 +3,7 @@ import styles from "./hand.module.css";
 
 function Hand({ clicked }) {
   return (
-    <div>
+    <div className={styles.container}>
       <img
         src="/raisehand.png"
         alt="Hand Raise Icon"

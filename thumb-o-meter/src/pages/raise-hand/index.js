@@ -7,6 +7,7 @@ const RaiseHand = () => {
   return (
     <div>
       <NavBar />
+      <Hand />
       <CustomButton link="/" icon={<ArrowBackIcon />} text={"Back"} />
     </div>
   );
