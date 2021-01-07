@@ -3,7 +3,7 @@ import NavBar from "../../components/navBar";
 import styles from "./index.module.css";
 import PtView from "../../components/ptView";
 import SkView from "../../components/skView";
-import { createStandaloneToast } from "@chakra-ui/react";
+import { createStandaloneToast, LightMode } from "@chakra-ui/react";
 import useRoleContext from "../../context/roleContext";
 import CustomButton from "../../components/button";
 import { ArrowBackIcon } from "@chakra-ui/icons";
@@ -143,26 +143,17 @@ const Thumbometer = () => {
 
   return (
     <Flex>
-      <Box className={styles.container} bg={bg} color={color}>
-        <main>
-          <NavBar />
-          <Center>
-            <h1 className={styles.heading}>Thumb-O-Meter</h1>
-          </Center>
-          <Center className={styles.backButton}>
-            <CustomButton link="/" icon={<ArrowBackIcon />} text={"Back"} />
-          </Center>
-          <Center>
-            {/* instead of the button we want to render either participant view or speaker view based on the role of the user */}
-            {/* <Button
-              className={styles.button}
-              bg="#7f56f2"
-              onClick={() => setSpeakerView(!speakerView)}
-            >
-              {speakerView ? "Show ptView" : "Show skView"}
-            </Button> */}
-          </Center>
-          <Center>
+      <Box className={styles.container} bg={bg} color={color} h="50%" w="100%">
+        <NavBar />
+        <Center>
+          <h1 className={styles.heading}>Thumb-O-Meter</h1>
+        </Center>
+        <Center className={styles.backButton}>
+          <CustomButton link="/" icon={<ArrowBackIcon />} text={"Back"} />
+        </Center>
+
+        <Center>
+          <LightMode>
             {role !== "bootcamper" && (
               <SkView
                 data={data}
@@ -181,10 +172,12 @@ const Thumbometer = () => {
                 submit={submitData}
                 time={time}
                 count={count}
+                bg={bg}
+                color={color}
               />
             )}
-          </Center>
-        </main>
+          </LightMode>
+        </Center>
       </Box>
     </Flex>
   );
