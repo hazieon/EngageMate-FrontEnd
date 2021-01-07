@@ -35,6 +35,7 @@
   color: skyblue;
 }
 .notify {
+  font-family: "trebuchet ms";
   position: absolute;
   background-color: greenyellow;
   border-radius: 80px;
@@ -43,6 +44,7 @@
   top: 50vh;
   color: black;
   text-align: center;
+  font-weight: bold;
   width: 40px;
   height: 40px;
 }
@@ -52,7 +54,7 @@
 
 @media (prefers-reduced-motion: no-preference) {
   .notify {
-    animation: notifyFlash infinite 2s alternate;
+    animation: notifyFlash infinite 3s alternate;
   }
 }
 
@@ -64,3 +66,7 @@
     background-color: rgb(131, 223, 70);
   }
 }
+/* 
+ul {
+  list-style-image: url("raisehand.png");
+} */
