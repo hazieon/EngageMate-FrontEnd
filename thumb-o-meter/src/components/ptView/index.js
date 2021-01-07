@@ -45,7 +45,7 @@ function PtView({ data, submit, time, count }) {
 
   return (
     <div className={style.container} style={{ backgroundColor: myColor }}>
-      <h1>{data.question}</h1>
+      <h1>{data.question || "Waiting session start"}</h1>
       <Thumb value={value} />
       <Slider
         aria-label="slider-ex-1"
@@ -58,9 +58,10 @@ function PtView({ data, submit, time, count }) {
         </SliderTrack>
         <SliderThumb />
       </Slider>
-      <h3>Value: {value}%</h3>
+      <h3>Value: {value || "0"}%</h3>
       <p>
-        {data.responses}/{data.participants} {<Icon as={MdPeople} />}
+        {data.responses || "0"}/{data.participants || "0"}{" "}
+        {<Icon as={MdPeople} />}
       </p>
       <p>{count}</p>
       <Timer count={count} time={time} />
