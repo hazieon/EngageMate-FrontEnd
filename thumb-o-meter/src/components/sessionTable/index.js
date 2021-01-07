@@ -13,6 +13,8 @@ import {
 import { IoTrashBinOutline } from "react-icons/io5";
 
 function SessionTable({ tableData, deleteSession }) {
+  // START OF FILTER FUNCTIONALITY (Consider making it its own component or possibly a custom hook).
+
   const [criteria, setCriteria] = useState("date"); // date, question, coach, throwaway
   const [inputType, setInputType] = useState("date"); // date, text
   const [term, setTerm] = useState(""); // Search term entered into input
@@ -64,12 +66,15 @@ function SessionTable({ tableData, deleteSession }) {
     });
   }
 
+  // END OF FILTER FUNCTIONALITY
+
   useEffect(() => {
     setFilteredData(filterSessions());
   }, [term]);
 
   return (
     <>
+      {/* FILTER STARTS HERE */}
       <div className={style.filterDiv}>
         <h3>Filter By:</h3>
         <div className={style.filterInputs}>
@@ -87,8 +92,6 @@ function SessionTable({ tableData, deleteSession }) {
           <input
             className={criteria === "throwaway" ? style.checkbox : style.input}
             type={inputType}
-            name=""
-            id=""
             value={term}
             placeholder="Enter value"
             onChange={(e) => {
@@ -100,6 +103,8 @@ function SessionTable({ tableData, deleteSession }) {
           />
         </div>
       </div>
+      {/* FILTER ENDS HERE */}
+
       <Table variant="simple">
         <TableCaption placement="top">Previous Sessions</TableCaption>
         <Thead>
