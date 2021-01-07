@@ -1,11 +1,11 @@
 import React from "react";
 import styles from "./hand.module.css";
 
-function Hand({ clicked }) {
+function Hand({ clicked, raiseHand }) {
   return (
-    <div className={styles.container}>
+    <div onClick={raiseHand} className={styles.container}>
       <img
-        src="/raisehand.png"
+        src={clicked ? "/handDown.png" : "/raisehand.png"}
         alt="Hand Raise Icon"
         className={styles.hand}
       ></img>
