@@ -147,7 +147,9 @@ const Thumbometer = () => {
         <main>
           <NavBar />
           <Center>
-            <h1 className={styles.heading}>Thumb-O-Meter</h1>
+            <h1 data-testid="thumbHeading" className={styles.heading}>
+              Thumb-O-Meter
+            </h1>
           </Center>
           <Center className={styles.backButton}>
             <CustomButton link="/" icon={<ArrowBackIcon />} text={"Back"} />

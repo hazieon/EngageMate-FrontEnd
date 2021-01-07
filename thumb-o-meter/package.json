@@ -52,6 +52,7 @@
     ]
   },
   "devDependencies": {
-    "eslint-plugin-cypress": "^2.11.2"
+    "eslint-plugin-cypress": "^2.11.2",
+    "jest": "^26.6.0"
   }
 }
