@@ -65,25 +65,6 @@ const AddUserForm = ({ updatePage, setUpdatePage }) => {
 
   return (
     <form className={style.form} onSubmit={handleSubmit}>
-      {isBootcamper && (
-        <FormControl id="bootcamperId" isRequired>
-          <FormLabel> Bootcamper Id</FormLabel>
-          <NumberInput>
-            <NumberInputField onChange={handleChange} />
-          </NumberInput>
-        </FormControl>
-      )}
-
-      <FormControl id="firstName" isRequired>
-        <FormLabel>First name</FormLabel>
-        <Input placeholder="First name" onChange={handleChange} />
-      </FormControl>
-
-      <FormControl id="surname" isRequired>
-        <FormLabel>Surname</FormLabel>
-        <Input placeholder="Surname" onChange={handleChange} />
-      </FormControl>
-
       <FormControl id="role" isRequired>
         <FormLabel>Role</FormLabel>
         <Select
@@ -103,6 +84,25 @@ const AddUserForm = ({ updatePage, setUpdatePage }) => {
           <option value="coach">Coach</option>
           <option value="guest">Guest</option>
         </Select>
+      </FormControl>
+
+      {isBootcamper && (
+        <FormControl id="bootcamperId" isRequired>
+          <FormLabel> Bootcamper Id</FormLabel>
+          <NumberInput>
+            <NumberInputField onChange={handleChange} />
+          </NumberInput>
+        </FormControl>
+      )}
+
+      <FormControl id="firstName" isRequired>
+        <FormLabel>First name</FormLabel>
+        <Input placeholder="First name" onChange={handleChange} />
+      </FormControl>
+
+      <FormControl id="surname" isRequired>
+        <FormLabel>Surname</FormLabel>
+        <Input placeholder="Surname" onChange={handleChange} />
       </FormControl>
 
       {isBootcamper && (
