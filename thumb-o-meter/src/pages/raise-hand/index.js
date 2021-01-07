@@ -1,11 +1,15 @@
 import React from "react";
 import NavBar from "../../components/navBar";
+import PtHand from "../../components/ptHand";
 import CustomButton from "../../components/button";
 import { ArrowBackIcon } from "@chakra-ui/icons";
+
 import useRoleContext from "../../context/roleContext";
 import SkHand from "../../components/skHand";
 import { Flex, Box, Center, useColorModeValue } from "@chakra-ui/react";
 import styles from "./index.module.css";
+
+
 const RaiseHand = () => {
   const bg = useColorModeValue("white", "#110042");
   const color = useColorModeValue("white", "white");
@@ -14,6 +18,7 @@ const RaiseHand = () => {
 
   return (
     <div>
+
       <Flex>
         <Box className={styles.container} bg={bg} color={color}>
           <main>
@@ -31,6 +36,11 @@ const RaiseHand = () => {
           </main>
         </Box>
       </Flex>
+
+      <NavBar />
+      <PtHand />
+      <CustomButton link="/" icon={<ArrowBackIcon />} text={"Back"} />
+
     </div>
   );
 };

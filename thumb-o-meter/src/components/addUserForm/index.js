@@ -14,7 +14,8 @@ import { config } from "../../config";
 
 import { createStandaloneToast } from "@chakra-ui/react";
 
-const AddUserFunction = ({ updatePage, setUpdatePage }) => {
+const AddUserForm = ({ updatePage, setUpdatePage }) => {
+  const [isBootcamper, setIsBootcamper] = useState(false);
   const [formData, setFormData] = useState({});
   const { url } = config;
   function successToast() {
@@ -64,38 +65,60 @@ const AddUserFunction = ({ updatePage, setUpdatePage }) => {
 
   return (
     <form className={style.form} onSubmit={handleSubmit}>
-      <FormControl id="bootcamperId" isRequired>
-        <FormLabel> Bootcamper Id</FormLabel>
-        <NumberInput>
-          <NumberInputField onChange={handleChange} />
-        </NumberInput>
-      </FormControl>
-      <FormControl id="firstName" isRequired>
-        <FormLabel>First name</FormLabel>
-        <Input placeholder="First name" onChange={handleChange} />
-      </FormControl>
-      <FormControl id="surname" isRequired>
-        <FormLabel>Surname</FormLabel>
-        <Input placeholder="Surname" onChange={handleChange} />
-      </FormControl>
       <FormControl id="role" isRequired>
         <FormLabel>Role</FormLabel>
-        <Select placeholder="Select role" onChange={handleChange}>
+        <Select
+          placeholder="Select role"
+          onChange={(e) => {
+            handleChange(e);
+            if (e.target.value === "bootcamper") {
+              setIsBootcamper(true);
+              return;
+            } else {
+              setIsBootcamper(false);
+              return;
+            }
+          }}
+        >
           <option value="bootcamper">Bootcamper</option>
           <option value="coach">Coach</option>
           <option value="guest">Guest</option>
         </Select>
       </FormControl>
-      <FormControl id="cohortNo" isRequired>
-        <FormLabel> Cohort number</FormLabel>
-        <NumberInput>
-          <NumberInputField onChange={handleChange} />
-        </NumberInput>
+
+      {isBootcamper && (
+        <FormControl id="bootcamperId" isRequired>
+          <FormLabel> Bootcamper Id</FormLabel>
+          <NumberInput>
+            <NumberInputField onChange={handleChange} />
+          </NumberInput>
+        </FormControl>
+      )}
+
+      <FormControl id="firstName" isRequired>
+        <FormLabel>First name</FormLabel>
+        <Input placeholder="First name" onChange={handleChange} />
       </FormControl>
+
+      <FormControl id="surname" isRequired>
+        <FormLabel>Surname</FormLabel>
+        <Input placeholder="Surname" onChange={handleChange} />
+      </FormControl>
+
+      {isBootcamper && (
+        <FormControl id="cohortNo" isRequired>
+          <FormLabel> Cohort number</FormLabel>
+          <NumberInput>
+            <NumberInputField onChange={handleChange} />
+          </NumberInput>
+        </FormControl>
+      )}
+
       <FormControl id="email" isRequired>
         <FormLabel>Email address</FormLabel>
         <Input type="email" onChange={handleChange} />
       </FormControl>
+
       <Button type="submit" colorScheme="teal">
         Add user
       </Button>
@@ -103,4 +126,4 @@ const AddUserFunction = ({ updatePage, setUpdatePage }) => {
   );
 };
 
-export default AddUserFunction;
+export default AddUserForm;

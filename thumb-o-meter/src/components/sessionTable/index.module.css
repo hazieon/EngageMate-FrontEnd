@@ -1,0 +1,32 @@
+.filterDiv {
+  color: #000;
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+}
+
+.filterDiv h3 {
+  color: #fff;
+  margin-bottom: 5px;
+}
+
+.filterInputs {
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+
+.checkbox {
+  transform: scale(2.5);
+}
+
+.input,
+.checkbox {
+  margin-left: 20px;
+}
+
+.select,
+.input {
+  height: 100%;
+  padding: 5px;
+}

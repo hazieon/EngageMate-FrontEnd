@@ -68,7 +68,7 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
         placeholder="Select Question"
         onChange={handleSession}
         isDisabled={count > 0 ? true : false}
-        className={style.borderColor}
+        className={style.select}
       >
         <option value="How are you feeling?">How are you feeling?</option>
         <option value="Did you understand that?">
@@ -98,7 +98,7 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
       />
       <Select
         placeholder="Timer Amount"
-        className={style.borderColor}
+        className={style.select}
         onChange={handleTimer}
         isDisabled={count > 0 ? true : false}
       >
@@ -127,13 +127,15 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
       />
       <Thumb value={data.outcome} />
       <div className={style.valueInformation}>
-        <h3>Value: {data.outcome}%</h3>
+        <h3>Value: {data.outcome || "0"}%</h3>
         <p>
-          {data.responses}/{data.participants} {<Icon as={MdPeople} />}
+          {data.responses || "0"}/{data.participants || "0"}{" "}
+          {<Icon as={MdPeople} />}
         </p>
       </div>
+
       <Timer count={count} time={time} />
-      <p>{count}</p>
+      <p className={style.count}>{count}</p>
       <div className={style.buttons}>
         <Button
           rightIcon={<MdUpdate />}
@@ -158,6 +160,7 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
         <Switch
           isDisabled={count > 0 ? true : false}
           onChange={() => setThrowaway(!throwaway)}
+          colorScheme="green"
         />
       </p>
     </div>
