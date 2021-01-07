@@ -1,5 +1,7 @@
 .container {
-  color: #fff;
+  color: white;
+  height: 100vh;
+  width: 100vw;
 }
 
 .heading {
