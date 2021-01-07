@@ -70,7 +70,7 @@ function SessionTable({ tableData, deleteSession }) {
 
   useEffect(() => {
     setFilteredData(filterSessions());
-  }, [term]);
+  }, [term, tableData]);
 
   return (
     <>
@@ -93,12 +93,12 @@ function SessionTable({ tableData, deleteSession }) {
             className={criteria === "throwaway" ? style.checkbox : style.input}
             type={inputType}
             value={term}
-            placeholder="Enter value"
             onChange={(e) => {
               if (criteria === "throwaway") {
-                return setTerm(e.target.checked);
+                setTerm(e.target.checked);
+              } else {
+                setTerm(e.target.value);
               }
-              return setTerm(e.target.value);
             }}
           />
         </div>
