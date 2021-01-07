@@ -1,0 +1,37 @@
+.container {
+  color: white;
+  height: 100vh;
+  width: 100vw;
+}
+
+.heading {
+  font-size: 1.5rem;
+  text-align: center;
+  padding: 0.5rem;
+}
+
+.button {
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
+}
+
+.backButton {
+  margin: 1em;
+}
+
+.handsList {
+  border: 2px solid slateblue;
+  border-radius: 30px;
+  padding: 2.5rem;
+}
+
+.handRaise:hover {
+  color: skyblue;
+}
+
+.notify {
+  position: absolute;
+  border: 1px solid greenyellow;
+  border-radius: 100%;
+  padding: 1rem;
+}
