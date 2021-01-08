@@ -20,4 +20,6 @@ function ParticipantViewTest() {
   LogOut();
 }
 
+ParticipantViewTest();
+
 export default ParticipantViewTest;

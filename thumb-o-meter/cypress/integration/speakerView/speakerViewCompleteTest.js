@@ -9,18 +9,21 @@ import BackButton from "./backButton";
 import LogOut from "./logOut";
 
 function SpeakerViewTest() {
-  OpeningScreen();
+  //OpeningScreen();
   LogIn("speakerview@gmail.com", "(callbackCats)");
   CheckingFeatureMenu();
-  ThumbOMeter();
-  BackButton();
-  RaiseAHand();
-  BackButton();
-  LiveQuiz();
-  BackButton();
+  // ThumbOMeter();
+  // BackButton();
+  // RaiseAHand();
+  // BackButton();
+  // LiveQuiz();
+  // BackButton();
   DJDeck();
   BackButton();
+  CheckingFeatureMenu();
   LogOut();
 }
+OpeningScreen();
+SpeakerViewTest();
 
 export default SpeakerViewTest;
