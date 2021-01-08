@@ -13,7 +13,7 @@ const RaiseHand = () => {
   const color = useColorModeValue("white", "white");
   const result = useRoleContext();
   const role = result[0];
-
+  console.log(role);
   return (
     <Flex>
       <Box className={styles.container} bg={bg} color={color}>
@@ -26,7 +26,7 @@ const RaiseHand = () => {
             <CustomButton link="/" icon={<ArrowBackIcon />} text={"Back"} />
           </Center>
           <Center>
-            {role !== "bootcamper" && <SkHand />}
+            {role === "coach" && <SkHand />}
             {role === "bootcamper" && <PtHand />}
           </Center>
         </main>

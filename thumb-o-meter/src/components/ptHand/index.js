@@ -2,13 +2,27 @@ import React, { useState } from "react";
 import Hand from "../hand";
 import Subheading from "../../components/subheading";
 import { Input } from "@chakra-ui/react";
-import styles from "./ptHand.module.css";
-
+import style from "./ptHand.module.css";
+import useSocketContext from "../../context/socketContext";
+import useRoleContext from "../../context/roleContext";
 function PtHand() {
-  const [isRaised, setIsRaised] = useState(true);
+  const [myColor, setMyColor] = useState("#2C276B");
+  const [isRaised, setIsRaised] = useState(false);
   const [topic, setTopic] = useState("");
+  const context = useSocketContext();
+  const socket = context[0];
+  const result = useRoleContext();
 
-  function raiseHand() {
+  const loggedUser = result[2];
+  const name = loggedUser?.given_name;
+  const picture = loggedUser?.picture;
+  function raiseHand(name, topic, picture) {
+    socket.emit("handRaised", { name: name, topic: topic, picture: picture });
+    setIsRaised(!isRaised);
+  }
+
+  function lowerHand() {
+    socket.emit("lowerhand");
     setIsRaised(!isRaised);
   }
 
@@ -18,11 +32,16 @@ function PtHand() {
   }
 
   return (
-    <div className={styles.container}>
+    <div className={style.container} style={{ backgroundColor: myColor }}>
       <Subheading
-        text={isRaised ? "Click To Raise Hand" : "Click To Lower Hand"}
+        text={isRaised ? "Click To Lower Hand" : "Click To Raise Hand"}
       />
-      <Hand raiseHand={raiseHand} clicked={isRaised} />
+      <Hand
+        raiseHand={() =>
+          isRaised ? lowerHand() : raiseHand(name, topic, picture)
+        }
+        clicked={!isRaised}
+      />
       <Input onChange={(e) => handleChange(e.target.value)} />
     </div>
   );

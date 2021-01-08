@@ -9,11 +9,12 @@ import CustomButton from "../../components/button";
 import { ArrowBackIcon } from "@chakra-ui/icons";
 
 import { Flex, Box, Center, useColorModeValue } from "@chakra-ui/react";
-import socketIOClient from "socket.io-client";
+// import socketIOClient from "socket.io-client";
 import { config } from "../../config";
+import useSocketContext from "../../context/socketContext";
 const { url } = config;
-const ENDPOINT = url;
-let socket;
+// const ENDPOINT = url;
+// let socket;
 
 const Thumbometer = () => {
   // const [speakerView, setSpeakerView] = useState();
@@ -22,7 +23,9 @@ const Thumbometer = () => {
   const [count, setCount] = useState(0);
   const bg = useColorModeValue("white", "#110042");
   const color = useColorModeValue("white", "white");
-
+  const context = useSocketContext();
+  const socket = context[0];
+  console.log(socket);
   async function handleSubmit({ sessionData }) {
     //https://callback-cats.herokuapp.com/session
     console.log(sessionData);
@@ -80,8 +83,8 @@ const Thumbometer = () => {
   console.log(loggedUser);
 
   useEffect(() => {
-    socket = socketIOClient(ENDPOINT);
-    socket.emit("connection");
+    // socket = socketIOClient(ENDPOINT);
+    // socket.emit("connection");
     //join room request - get name, role from auth
     socket.emit("joinroom", {
       name: name, //take from auth
@@ -123,7 +126,7 @@ const Thumbometer = () => {
       setCount(0);
     });
 
-    return () => socket.disconnect();
+    // return () => socket.disconnect();
   }, []);
 
   //hand this function down to speaker view - pass in q and timer
