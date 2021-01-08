@@ -5,6 +5,8 @@ import { Input } from "@chakra-ui/react";
 import style from "./ptHand.module.css";
 import useSocketContext from "../../context/socketContext";
 import useRoleContext from "../../context/roleContext";
+import Push from "push.js";
+
 function PtHand() {
   const [myColor, setMyColor] = useState("#2C276B");
   const [isRaised, setIsRaised] = useState(false);
@@ -16,6 +18,7 @@ function PtHand() {
   const loggedUser = result[2];
   const name = loggedUser?.given_name;
   const picture = loggedUser?.picture;
+
   function raiseHand(name, topic, picture) {
     socket.emit("handRaised", { name: name, topic: topic, picture: picture });
     setIsRaised(!isRaised);
