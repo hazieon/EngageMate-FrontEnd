@@ -72,12 +72,17 @@ function SkHand({ usersList, handUsers }) {
     socket.on("handRaiseInfo", ({ handRaiseData }) => {
       // setHandsRaised(handRaiseSubmissions);
       console.log("hand raised info received");
-      setHands(handRaiseData);
+      //setHands(handRaiseData);
+      handleSetHands(handRaiseData);
       console.log("hands -", hands);
       console.log({ handRaiseData });
       createNotifications(handRaiseData[handRaiseData.length - 1]);
     });
   }, []);
+
+  function handleSetHands(data) {
+    setHands(data);
+  }
 
   return (
     <div className={styles.container} style={{ backgroundColor: myColor }}>
