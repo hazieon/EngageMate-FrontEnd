@@ -1,7 +1,7 @@
 //checking DJ Deck
 //check functionality?????
 
-function DJDeck() {
+function dJDeck() {
   //finds DJ Deck link on featuremenu and clicks
   describe("Click the DJ Deck link on the feature menu", () => {
     it("Get the DJ Deck and click the link", () => {
@@ -47,11 +47,11 @@ function DJDeck() {
         .should("have.class", "player_subheading__1oXZ8")
         .eq(3)
         .get("button")
-        .eq(14)
-        .contains("Reset")
+        .eq(13)
+        .contains("Pause")
         .click();
     });
   });
 }
 
-export default DJDeck;
+export default dJDeck;

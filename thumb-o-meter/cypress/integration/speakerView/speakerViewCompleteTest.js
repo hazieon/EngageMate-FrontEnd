@@ -1,29 +1,28 @@
-import OpeningScreen from "./openingScreen";
-import LogIn from "./logIn";
-import CheckingFeatureMenu from "./checkingFeatureMenu";
-import ThumbOMeter from "./checkThumbOMeter";
-import RaiseAHand from "./checkRaiseHand";
-import LiveQuiz from "./checkLiveQuiz";
-import DJDeck from "./checkDJDeck";
-import BackButton from "./backButton";
-import LogOut from "./logOut";
+import openingScreen from "./openingScreen";
+import logIn from "./logIn";
+import checkingFeatureMenu from "./checkingFeatureMenu";
+import thumbOMeter from "./checkThumbOMeter";
+import raiseAHand from "./checkRaiseHand";
+import liveQuiz from "./checkLiveQuiz";
+import dJDeck from "./checkDJDeck";
+import backButton from "./backButton";
+import logOut from "./logOut";
 
-function SpeakerViewTest() {
-  //OpeningScreen();
-  LogIn("speakerview@gmail.com", "(callbackCats)");
-  CheckingFeatureMenu();
-  // ThumbOMeter();
-  // BackButton();
-  // RaiseAHand();
-  // BackButton();
-  // LiveQuiz();
-  // BackButton();
-  DJDeck();
-  BackButton();
-  CheckingFeatureMenu();
-  LogOut();
+function speakerViewTest() {
+  openingScreen();
+  logIn("speakerview@gmail.com", "(callbackCats)");
+  checkingFeatureMenu();
+  thumbOMeter();
+  backButton();
+  raiseAHand();
+  backButton();
+  liveQuiz();
+  backButton();
+  dJDeck();
+  backButton();
+  logOut();
 }
-OpeningScreen();
-SpeakerViewTest();
 
-export default SpeakerViewTest;
+//speakerViewTest();
+
+export default speakerViewTest;

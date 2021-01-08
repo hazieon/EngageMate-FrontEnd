@@ -1,7 +1,7 @@
 /////
 //logging out of the app
 
-function LogOut() {
+function logOut() {
   describe("Log out of app", () => {
     it("Get the logout button by going through the nav bar and div elements checking them with their class names, confirm has 'Log Out' as text and then click the 'Log Out' button", () => {
       cy.wait(1500);
@@ -13,8 +13,10 @@ function LogOut() {
         .should("have.class", "chakra-button logout_btn__1eIMF css-1sqhvct")
         .contains("Log Out")
         .click();
+      cy.wait(5000);
+      cy.end();
     });
   });
 }
 
-export default LogOut;
+export default logOut;

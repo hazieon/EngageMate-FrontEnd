@@ -1,6 +1,6 @@
 //back button pressed to get to feature menu
 
-function BackButton() {
+function backButton() {
   describe("Pressing back button to get to feature menu", () => {
     it("Get the back button", () => {
       cy.get("a").find("button").contains("Back").click();
@@ -8,4 +8,4 @@ function BackButton() {
   });
 }
 
-export default BackButton;
+export default backButton;

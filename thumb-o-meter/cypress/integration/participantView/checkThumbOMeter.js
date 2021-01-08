@@ -1,7 +1,7 @@
 //checking thumbometer for features that are specific to participant
 //check functionality?????
 
-function ThumbOMeter() {
+function thumbOMeter() {
   //finds thumbometer link on featuremenu and clicks
   describe("Click the Thumb-O-Meter link on the feature menu", () => {
     it("Get the Thumb-O-Meter link and click the link", () => {
@@ -42,4 +42,4 @@ function ThumbOMeter() {
   });
 }
 
-export default ThumbOMeter;
+export default thumbOMeter;

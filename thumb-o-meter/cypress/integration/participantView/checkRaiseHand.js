@@ -1,7 +1,7 @@
 //checking raise a hand for features that are specific to participant
 //check functionality?????
 
-function RaiseAHand() {
+function raiseAHand() {
   //finds raise a hand link on featuremenu and clicks
   describe("Click the Raise A Hand link on the feature menu", () => {
     it("Get the Raise A Hand link and click the link", () => {
@@ -47,4 +47,4 @@ function RaiseAHand() {
   });
 }
 
-export default RaiseAHand;
+export default raiseAHand;

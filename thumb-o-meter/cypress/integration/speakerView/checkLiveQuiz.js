@@ -1,7 +1,7 @@
 //checking live quiz for features that are specific to speaker
 //check functionality?????
 
-function LiveQuiz() {
+function liveQuiz() {
   //finds live quiz link on featuremenu and clicks
   describe("Click the Live Quiz link on the feature menu", () => {
     it("Get the Live Quiz and click the link", () => {
@@ -47,4 +47,4 @@ function LiveQuiz() {
   //   });
 }
 
-export default LiveQuiz;
+export default liveQuiz;

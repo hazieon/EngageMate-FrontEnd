@@ -40,10 +40,10 @@ function CheckingForLiveQuiz() {
   });
 }
 
-function CheckingFeatureMenu() {
+function checkingFeatureMenu() {
   CheckingForThumbOMeterFeature();
   CheckingForRaiseAHandFeature();
   CheckingForLiveQuiz();
 }
 
-export default CheckingFeatureMenu;
+export default checkingFeatureMenu;

@@ -1,7 +1,7 @@
 /////
 //sign in and getting to feature menu
 
-function LogIn(email, password) {
+function logIn(email, password) {
   describe("Log in app page", () => {
     it("Get heading by class name and confirm has 'Callback Cats' as the text, get button by class name and confirm has 'Log In' and then clicks the 'Log In' button", () => {
       cy.wait(1000);
@@ -56,4 +56,4 @@ function LogIn(email, password) {
   });
 }
 
-export default LogIn;
+export default logIn;

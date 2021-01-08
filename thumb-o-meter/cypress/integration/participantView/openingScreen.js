@@ -1,6 +1,6 @@
 //getting to the opening screen
 
-function OpeningScreen() {
+function openingScreen() {
   describe("Getting to opening screen", () => {
     it("should show callback cats log in page of app", () => {
       cy.visit("http://localhost:3000");
@@ -11,4 +11,4 @@ function OpeningScreen() {
 
 //may have to change to deployed one
 
-export default OpeningScreen;
+export default openingScreen;

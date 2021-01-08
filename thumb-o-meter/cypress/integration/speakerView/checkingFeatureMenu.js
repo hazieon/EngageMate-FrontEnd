@@ -53,11 +53,11 @@ function CheckingForDJDeck() {
   });
 }
 
-function CheckingFeatureMenu() {
+function checkingFeatureMenu() {
   CheckingForThumbOMeterFeature();
   CheckingForRaiseAHandFeature();
   CheckingForLiveQuiz();
   CheckingForDJDeck();
 }
 
-export default CheckingFeatureMenu;
+export default checkingFeatureMenu;

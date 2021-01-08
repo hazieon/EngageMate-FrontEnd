@@ -1,25 +1,25 @@
-import OpeningScreen from "./openingScreen";
-import LogIn from "./logIn";
-import CheckingFeatureMenu from "./checkingFeatureMenu";
-import ThumbOMeter from "./checkThumbOMeter";
-import RaiseAHand from "./checkRaiseHand";
-import LiveQuiz from "./checkLiveQuiz";
-import BackButton from "./backButton";
-import LogOut from "./logOut";
+import openingScreen from "./openingScreen";
+import logIn from "./logIn";
+import checkingFeatureMenu from "./checkingFeatureMenu";
+import thumbOMeter from "./checkThumbOMeter";
+import raiseAHand from "./checkRaiseHand";
+import liveQuiz from "./checkLiveQuiz";
+import backButton from "./backButton";
+import logOut from "./logOut";
 
-function ParticipantViewTest() {
-  OpeningScreen();
-  LogIn("participantview@gmail.com", "(callbackCats)");
-  CheckingFeatureMenu();
-  ThumbOMeter();
-  BackButton();
-  RaiseAHand();
-  BackButton();
-  LiveQuiz();
-  BackButton();
-  LogOut();
+function participantViewTest() {
+  openingScreen();
+  logIn("participantview@gmail.com", "(callbackCats)");
+  checkingFeatureMenu();
+  thumbOMeter();
+  backButton();
+  raiseAHand();
+  backButton();
+  liveQuiz();
+  backButton();
+  logOut();
 }
 
-ParticipantViewTest();
+//participantViewTest();
 
-export default ParticipantViewTest;
+export default participantViewTest;
