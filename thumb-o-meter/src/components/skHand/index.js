@@ -58,11 +58,11 @@ function SkHand({ usersList, handUsers }) {
   }
 
   useEffect(() => {
-    let intervalId = setInterval(() => {
-      hands.length > 0 && playSound();
+    // let intervalId = setInterval(() => {
+    //   hands.length > 0 && playSound();
 
-      //clearInterval(intervalId);
-    }, 5000);
+    //   //clearInterval(intervalId);
+    // }, 5000);
 
     socket.emit("raisehandroom", {
       name: name,
@@ -77,7 +77,7 @@ function SkHand({ usersList, handUsers }) {
       console.log(handRaiseData);
       createNotifications(handRaiseData[handRaiseData.length - 1]);
     });
-  }, [hands]);
+  }, []);
 
   return (
     <div className={styles.container} style={{ backgroundColor: myColor }}>
