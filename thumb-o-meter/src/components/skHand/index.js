@@ -22,7 +22,7 @@ function SkHand({ usersList, handUsers }) {
   const name = loggedUser?.given_name;
 
   function createNotifications(handData) {
-    console.log(handData);
+    console.log({ handData });
     Push.create(`${handData.name} has raised their hand!`, {
       body: `${handData.topic}`,
       icon: "/raisehand.png",
@@ -73,8 +73,8 @@ function SkHand({ usersList, handUsers }) {
       // setHandsRaised(handRaiseSubmissions);
       console.log("hand raised info received");
       setHands(handRaiseData);
-      console.log("hands -", { hands });
-      console.log(handRaiseData);
+      console.log("hands -", hands);
+      console.log({ handRaiseData });
       createNotifications(handRaiseData[handRaiseData.length - 1]);
     });
   }, []);
