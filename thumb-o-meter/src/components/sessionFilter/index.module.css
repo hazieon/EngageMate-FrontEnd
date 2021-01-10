@@ -1,0 +1,57 @@
+.filterContainer {
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+}
+
+.chakraInputs {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+.numberInputs {
+  display: flex;
+}
+
+.filterInput {
+  width: 150px;
+}
+
+.filterInput:not(:first-of-type) {
+  margin-left: 10px;
+}
+
+.clearBtn {
+  margin-left: 10px;
+}
+
+.accordion {
+  width: 40%;
+  min-width: 375px;
+}
+
+.coach {
+  margin-top: 10px;
+  width: 310px;
+}
+
+.toggleDiv {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 310px;
+  margin-top: 10px;
+}
+
+.toggleDiv div:first-of-type {
+  display: flex;
+  align-items: center;
+}
+
+.checkbox {
+  border-color: dodgerblue;
+  margin-left: 10px;
+  margin-top: 3px;
+  box-shadow: 0px 0px 3px 1px rgba(255, 255, 255, 0.3);
+}
