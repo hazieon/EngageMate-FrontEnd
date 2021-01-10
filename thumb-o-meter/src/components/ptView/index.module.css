@@ -10,6 +10,22 @@
   border-radius: 33px;
   margin-bottom: 30px;
 }
+.valueInformation {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  align-items: center;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.valueInformation p {
+  margin: 5px;
+}
+.valueInformation span {
+  margin-left: 20px;
+}
 
 .container h1 {
   font-size: 1.2rem;
