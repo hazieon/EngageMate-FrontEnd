@@ -35,7 +35,7 @@
 }
 
 .valueInformation p {
-  margin: 5px;
+  margin: 20px;
 }
 .valueInformation span {
   margin-left: 20px;
@@ -47,11 +47,14 @@
 }
 
 .throwaway {
-  margin-top: 10px;
+  margin: 10px 0 10px 0;
 }
 
 .throwaway > * {
   margin: 10px;
+}
+.backButton {
+  color: green;
 }
 
 @media only screen and (min-width: 768px) {
