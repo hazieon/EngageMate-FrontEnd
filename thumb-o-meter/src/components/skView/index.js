@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import style from "./index.module.css";
+import { motion } from "framer-motion";
+import { animationOne, animationTwo } from "../../animations";
 import {
   Button,
   Icon,
@@ -74,7 +76,15 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
   }, [data.outcome]);
 
   return (
-    <div className={style.container} style={{ backgroundColor: "#2C276B" }}>
+    <motion.div
+      className={style.container}
+      style={{ backgroundColor: "#2C276B" }}
+      initial="out"
+      animate="in"
+      exit="out"
+      variants={animationOne}
+      transistion={{ duration: 3 }}
+    >
       {/* <h1>The Question Here</h1> */}
       <Select
         placeholder="Select Question"
@@ -190,7 +200,7 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
         icon={<ArrowBackIcon />}
         text={"Back"}
       />
-    </div>
+    </motion.div>
   );
 }
 

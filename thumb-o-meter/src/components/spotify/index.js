@@ -1,3 +1,5 @@
+import { motion } from "framer-motion";
+import { animationOne, animationTwo } from "../../animations";
 import React, { useEffect, useState } from "react";
 import request from "request";
 import SpotifyButton from "../../components/button/spotifyButton";
@@ -79,25 +81,36 @@ function Spotify() {
   }, [playlistIndex, genre, id, secret]);
 
   return (
-    <div className={style.container}>
+    <motion.div
+      className={style.container}
+      initial="out"
+      animate="in"
+      exit="out"
+      variants={animationOne}
+      transistion={{ duration: 3 }}
+    >
       <div className={style.players}>
-        <iframe
-          title="playlist"
-          src={url}
-          // https://open.spotify.com/embed/playlist/spotify:playlist:37i9dQZF1DX76Wlfdnj7AP
-          width="300"
-          height="540"
-          frameBorder="0"
-          allowtransparency="true"
-          allow="encrypted-media"
-        ></iframe>{" "}
+        {url ? (
+          <iframe
+            title="playlist"
+            src={url}
+            // https://open.spotify.com/embed/playlist/spotify:playlist:37i9dQZF1DX76Wlfdnj7AP
+            width="300"
+            height="540"
+            frameBorder="0"
+            allowtransparency="true"
+            allow="encrypted-media"
+          ></iframe>
+        ) : (
+          <h1>Loading</h1>
+        )}
         {/* <SpotifyButton
           myClass={style.myPlaylistBtn}
           handleClick={handleClick}
           station={"New Playlist"}
         />{" "} */}
       </div>
-    </div>
+    </motion.div>
   );
 }
 

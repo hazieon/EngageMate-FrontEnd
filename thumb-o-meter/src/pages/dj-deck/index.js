@@ -4,6 +4,7 @@ import NavBar from "../../components/navBar";
 import Spotify from "../../components/spotify";
 import CustomButton from "../../components/button";
 import { ArrowBackIcon } from "@chakra-ui/icons";
+import { Box, useColorModeValue } from "@chakra-ui/react";
 
 import styles from "./deck.module.css";
 
@@ -16,8 +17,10 @@ const hackathon = new Audio("hackathon-fridays.mp3");
 const immutable = new Audio("immutable.mp3");
 const waving = new Audio("waving.mp3");
 const Deck = () => {
+  const bg = useColorModeValue("white", "#110042");
+  const color = useColorModeValue("white", "white");
   return (
-    <>
+    <Box bg={bg} color={color}>
       <NavBar />
       <div>
         <CustomButton link="/" icon={<ArrowBackIcon />} text={"Back"} />
@@ -71,7 +74,7 @@ const Deck = () => {
           </section>
         </div>
       </div>
-    </>
+    </Box>
   );
 };
 
