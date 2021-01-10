@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import style from "./index.module.css";
 import {
+  Button,
   Table,
   Thead,
   Tbody,
@@ -9,100 +10,118 @@ import {
   Td,
   TableCaption,
   Icon,
+  InputGroup,
+  InputLeftAddon,
+  Input,
+  LightMode,
+  NumberInput,
+  NumberInputField,
 } from "@chakra-ui/react";
 import { IoTrashBinOutline } from "react-icons/io5";
+import moment from "moment";
 
 function SessionTable({ tableData, deleteSession }) {
   // START OF FILTER FUNCTIONALITY (Consider making it its own component or possibly a custom hook).
-
-  const [criteria, setCriteria] = useState("date"); // date, question, coach, throwaway
-  const [inputType, setInputType] = useState("date"); // date, text
-  const [term, setTerm] = useState(""); // Search term entered into input
   const [filteredData, setFilteredData] = useState(tableData); // holds the filtered data, by default is given all tableData
+  const [dateTerm, setDateTerm] = useState({ week: "", day: "" }); // Holds an object with week number and day number to filter by.
+
+  // Bootcamp Start Date
+  const Bootcamp_Start = moment("2020-09-21 00:00");
 
   /**
-   *  Sets the criteria useState and also set the inputType
-   *  useState which determines which type of input is rendered.
+   *  Function takes in the date string set by moment.JS.
+   *  Calculates the week and day from the bootcamp start date.
+   *  Returns a string with Week Day
    */
-  function setup(value) {
-    setTerm("");
-    setCriteria(value);
-    switch (value) {
-      case "date":
-        setInputType("date");
-        break;
-      case "throwaway":
-        setInputType("checkbox");
-        break;
-      default:
-        setInputType("text");
-    }
+  function calcScheduleDate(date) {
+    // Remove date ordinal (st, nd, rd, th)
+    const dateString = moment(date.replace(/(\d+)(st|nd|rd|th)/, "$1"));
+
+    // Calculate difference between session date and bootcamp start date.
+    const diff = moment.duration(dateString.diff(Bootcamp_Start));
+
+    // Adjust to show actual week and day session happened.
+    const week = Math.floor(diff.asDays() / 7);
+    const day = Math.floor(diff.asDays() % 7);
+
+    return `Week ${week + 1}, Day ${day + 1}`;
   }
 
   /**
-   *  Sets what data is held in the filteredData useState.
-   *  Uses the term useState to filter the tablData.
-   *  If no term, then whole tableData is returned.
+   *  Filters the tableData by the week number and day number entered.
    */
-  function filterSessions() {
-    if (term === "") return tableData;
-
+  function filterByDate() {
+    // Filter data
     return tableData.filter((session) => {
-      if (criteria === "date") {
-        // Remove the 'th' from the date string
-        const dateString = session.date.replace(/th/, "");
+      const dateString = calcScheduleDate(session.date);
 
-        // Convert to YYYY-MM-DD to be same format as date input
-        const convertedDate = new Date(dateString).toISOString();
-
-        return convertedDate.includes(term);
-      } else if (criteria === "throwaway") {
-        const value = session[criteria];
-        return value === term;
-      } else {
-        const value = session[criteria];
-        return String(value).toLowerCase().includes(term.toLowerCase());
-      }
+      return (
+        dateString.includes(`Week ${dateTerm.week}`) &&
+        dateString.includes(`Day ${dateTerm.day}`)
+      );
     });
+  }
+
+  /**
+   *  Function to clear the dateTerm useState.
+   *  Clears the filter ensuring all data is display in the table.
+   */
+  function clearFilter() {
+    setDateTerm({ week: "", day: "" });
   }
 
   // END OF FILTER FUNCTIONALITY
 
   useEffect(() => {
-    setFilteredData(filterSessions());
-  }, [term, tableData]);
+    setFilteredData(filterByDate());
+  }, [dateTerm, tableData]);
 
   return (
     <>
       {/* FILTER STARTS HERE */}
-      <div className={style.filterDiv}>
-        <h3>Filter By:</h3>
-        <div className={style.filterInputs}>
-          <select
-            name=""
-            id=""
-            onChange={(e) => setup(e.target.value)}
-            className={style.select}
-          >
-            <option value="date">Date</option>
-            <option value="question">Question</option>
-            <option value="coach">Coach</option>
-            <option value="throwaway">Throwaway</option>
-          </select>
-          <input
-            className={criteria === "throwaway" ? style.checkbox : style.input}
-            type={inputType}
-            value={term}
-            onChange={(e) => {
-              if (criteria === "throwaway") {
-                setTerm(e.target.checked);
-              } else {
-                setTerm(e.target.value);
-              }
-            }}
-          />
+
+      <LightMode>
+        <div className={style.filterContainer}>
+          <h3>Filter By:</h3>
+
+          <div className={style.chakraInputs}>
+            <InputGroup size="sm" className={style.filterInput}>
+              <InputLeftAddon children="Week" color="black" />
+              <NumberInput max={16}>
+                <NumberInputField
+                  borderRadius="0"
+                  onChange={(e) =>
+                    setDateTerm({ ...dateTerm, week: e.target.value })
+                  }
+                />
+              </NumberInput>
+            </InputGroup>
+
+            <InputGroup size="sm" className={style.filterInput}>
+              <InputLeftAddon children="Day" color="black" />
+              <NumberInput max={7}>
+                <NumberInputField
+                  borderRadius="0"
+                  onChange={(e) =>
+                    setDateTerm({ ...dateTerm, day: e.target.value })
+                  }
+                />
+              </NumberInput>
+            </InputGroup>
+
+            <Button
+              variant="outline"
+              colorScheme="red"
+              size="sm"
+              className={style.clearBtn}
+              onClick={clearFilter}
+            >
+              Clear
+            </Button>
+          </div>
         </div>
-      </div>
+      </LightMode>
+
       {/* FILTER ENDS HERE */}
 
       <Table variant="simple">
@@ -129,7 +148,11 @@ function SessionTable({ tableData, deleteSession }) {
                     onClick={() => deleteSession(session.uuid)}
                   />
                 </Td>
-                <Td>{session.date}</Td>
+                <Td data-date={session.date}>
+                  <abbr title={session.date}>
+                    {calcScheduleDate(session.date)}
+                  </abbr>
+                </Td>
                 <Td>{session.question}</Td>
                 <Td>{session.outcome + "%"}</Td>
                 <Td>{session.coach}</Td>
