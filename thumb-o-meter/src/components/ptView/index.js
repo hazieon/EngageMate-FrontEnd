@@ -58,13 +58,15 @@ function PtView({ data, submit, time, count }) {
         </SliderTrack>
         <SliderThumb />
       </Slider>
-      <h3>Value: {value || "0"}%</h3>
-      <p>
-        {data.responses || "0"}/{data.participants || "0"}{" "}
-        {<Icon as={MdPeople} />}
+      <p className={style.valueInformation}>
+        Value: {value || "0"}%
+        <span>
+          {data.responses || "0"}/{data.participants || "0"}{" "}
+          {<Icon as={MdPeople} />}
+        </span>
       </p>
-      <p>{count}</p>
       <Timer count={count} time={time} />
+      <p className={style.count}>{count}</p>
     </div>
   );
 }

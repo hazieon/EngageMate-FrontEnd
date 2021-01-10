@@ -4,6 +4,7 @@
   font-size: 1.4rem;
   padding: 3rem;
   display: flex;
+  justify-content: space-evenly;
   flex-direction: column;
   align-items: center;
   margin: 20px 20px;
@@ -14,6 +15,7 @@
   width: 90%;
   justify-content: space-between;
   align-items: center;
+  margin-top: 20px;
 }
 
 .select {
@@ -24,9 +26,19 @@
 
 .valueInformation {
   display: flex;
-  width: 70%;
-  justify-content: space-evenly;
-  margin-bottom: 5px;
+  flex-direction: column;
+
+  width: 100%;
+  align-items: center;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.valueInformation p {
+  margin: 5px;
+}
+.valueInformation span {
+  margin-left: 20px;
 }
 
 .count {
@@ -42,15 +54,9 @@
   margin: 10px;
 }
 
-@media only screen and (min-width: 996px) {
+@media only screen and (min-width: 768px) {
   .container {
-    width: 600px;
-    font-size: 1.5rem;
-    padding: 3rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
+    width: 500px;
   }
 
   .buttons {
@@ -61,11 +67,5 @@
 @media only screen and (min-width: 1280px) {
   .container {
     width: 700px;
-    font-size: 1.5rem;
-    padding: 3rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
   }
 }
