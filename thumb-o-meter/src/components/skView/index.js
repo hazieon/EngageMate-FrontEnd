@@ -56,6 +56,7 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
     //   setTime(Number(customT));
     //   console.log({ timer });
     // }
+    onToggle();
   }
 
   useEffect(() => {
@@ -163,7 +164,8 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
           colorScheme="green"
         />
       </p>
-      <div className={style.valueInformation}>
+
+      <Collapse in={isOpen} animateOpacity className={style.valueInformation}>
         {" "}
         <Thumb value={data.outcome} />
         <p>
@@ -175,7 +177,7 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
         </p>
         <Timer count={count} time={time} />
         <p className={style.count}>{count}</p>
-      </div>
+      </Collapse>
     </div>
   );
 }
