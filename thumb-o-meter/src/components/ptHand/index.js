@@ -24,7 +24,7 @@ function PtHand() {
       console.log(myUniqueNumber);
       console.log(socket.id);
       if (myUniqueNumber === socket.id) {
-        setIsRaised(!isRaised);
+        changeHandState();
         console.log(isRaised);
         console.log("hand lowered by coach");
       } else {
@@ -32,6 +32,10 @@ function PtHand() {
       }
     });
   }, []);
+
+  function changeHandState() {
+    setIsRaised((isRaised) => !isRaised);
+  }
 
   function raiseHand() {
     socket.emit("handRaised", { name: name, topic: topic, picture: picture });
