@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 import style from "./index.module.css";
 import Thumb from "../thumb";
+import CustomButton from "../../components/button";
+import { ArrowBackIcon } from "@chakra-ui/icons";
 import {
   Slider,
   SliderTrack,
   SliderFilledTrack,
   SliderThumb,
+  Box,
 } from "@chakra-ui/react";
 import { Icon } from "@chakra-ui/react";
 import { MdPeople } from "react-icons/md";
@@ -46,25 +49,39 @@ function PtView({ data, submit, time, count }) {
   return (
     <div className={style.container} style={{ backgroundColor: myColor }}>
       <h1>{data.question || "Waiting session start"}</h1>
-      <Thumb value={value} />
-      <Slider
-        aria-label="slider-ex-1"
-        defaultValue={30}
-        onChangeEnd={(val) => setValue(val)}
-        isDisabled={count > 0 ? false : true}
-      >
-        <SliderTrack>
-          <SliderFilledTrack />
-        </SliderTrack>
-        <SliderThumb />
-      </Slider>
-      <h3>Value: {value || "0"}%</h3>
-      <p>
-        {data.responses || "0"}/{data.participants || "0"}{" "}
-        {<Icon as={MdPeople} />}
+      <p className={style.valueInformation}>
+        {" "}
+        <Thumb value={value} />
+        <br />
+        <Slider
+          aria-label="slider-ex-1"
+          defaultValue={30}
+          onChangeEnd={(val) => setValue(val)}
+          isDisabled={count > 0 ? false : true}
+        >
+          <SliderTrack>
+            <SliderFilledTrack />
+          </SliderTrack>
+          <SliderThumb />
+        </Slider>
+        <br />
+        <p>
+          Value: {value || "0"}%
+          <span>
+            {data.responses || "0"}/{data.participants || "0"}{" "}
+            {<Icon as={MdPeople} />}
+          </span>
+        </p>
+        <Timer count={count} time={time} />
+        <p className={style.count}>{count}</p>
       </p>
-      <p>{count}</p>
-      <Timer count={count} time={time} />
+
+      <CustomButton
+        className={style.backButton}
+        link="/"
+        icon={<ArrowBackIcon />}
+        text={"Back"}
+      />
     </div>
   );
 }

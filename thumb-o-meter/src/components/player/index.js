@@ -1,24 +1,51 @@
-import React, { useState } from "react";
-import ReactHowler from "react-howler";
+import React from "react";
+import { motion } from "framer-motion";
+import { animationOne, animationTwo } from "../../animations";
+import {
+  FaPlay,
+  FaPlayCircle,
+  FaPause,
+  FaPauseCircle,
+  FaStop,
+  FaStopCircle,
+} from "react-icons/fa";
+
 import styles from "./player.module.css";
 
 const Player = ({ file }) => {
-  const [playing, setPlaying] = useState(false);
-
   const handlePlay = () => {
-    setPlaying(true);
+    file.play();
   };
   const handlePause = () => {
-    setPlaying(false);
+    file.pause();
   };
 
+  const handleStop = () => {
+    file.pause();
+    file.currentTime = 0;
+  };
   return (
-    <div className={styles.subheading}>
-      <ReactHowler src={file} playing={playing} mute={false} />
-      <button onClick={handlePlay}> Play </button>{" "}
-      <button onClick={handlePause}> Pause </button>{" "}
-      <button onClick={() => window.location.reload(false)}>Reset</button>
-    </div>
+    <motion.div
+      className={styles.container}
+      initial="out"
+      animate="in"
+      exit="out"
+      variants={animationOne}
+      transistion={{ duration: 3 }}
+    >
+      <button onClick={() => handlePlay()}>
+        {" "}
+        <FaPlayCircle />{" "}
+      </button>{" "}
+      <button onClick={() => handlePause()}>
+        {" "}
+        <FaPauseCircle />{" "}
+      </button>{" "}
+      <button onClick={() => handleStop()}>
+        {" "}
+        <FaStopCircle />{" "}
+      </button>{" "}
+    </motion.div>
   );
 };
 

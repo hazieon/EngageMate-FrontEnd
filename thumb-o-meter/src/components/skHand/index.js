@@ -7,6 +7,7 @@ import Hand from "../hand";
 import { createStandaloneToast } from "@chakra-ui/react";
 import Push from "push.js";
 
+
 function SkHand({ usersList, handUsers }) {
   //when hand is raised, server adds them to a list of raised hands - name, pic
   const { user } = useAuth0();
@@ -34,6 +35,7 @@ function SkHand({ usersList, handUsers }) {
       },
     });
 
+
     notificationToast(handData);
   }
 
@@ -59,6 +61,7 @@ function SkHand({ usersList, handUsers }) {
       id,
     });
   }
+
 
   useEffect(() => {
     socket.emit("raisehandroom", {
@@ -93,7 +96,11 @@ function SkHand({ usersList, handUsers }) {
   }
 
   return (
-    <div className={styles.container} style={{ backgroundColor: myColor }}>
+    <div
+      className={styles.container}
+      style={{ backgroundColor: "#2C276B" }}
+      
+    >
       <div className={styles.notifySpot}>
         <p className={hands.length > 0 ? styles.notify : styles.noNotify}>
           {hands.length}

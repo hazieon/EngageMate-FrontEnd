@@ -21,6 +21,7 @@ import {
   Tab,
   TabPanel,
 } from "@chakra-ui/react";
+import MassAlert from "../../components/massAlert";
 
 const Admin = () => {
   // need to sort role authentication so this page only visible to coaches
@@ -136,6 +137,18 @@ const Admin = () => {
                   updatePage={updatePage}
                   setUpdatePage={setUpdatePage}
                 />
+              </AccordionPanel>
+            </AccordionItem>
+
+            <AccordionItem>
+              <AccordionButton>
+                <Box flex="1" textAlign="left">
+                  Send App Message
+                </Box>
+                <AccordionIcon />
+              </AccordionButton>
+              <AccordionPanel pb={4}>
+                <MassAlert />
               </AccordionPanel>
             </AccordionItem>
           </Accordion>

@@ -1,0 +1,95 @@
+.myImage {
+  width: 350px;
+  height: 380px;
+  box-shadow: black 20px 10px 50px;
+}
+.underline {
+  text-decoration: underline #4a90e2;
+  text-align: left;
+}
+
+.myBtn {
+  margin: 30px 10px;
+  background-color: #198262;
+  color: white;
+  padding: 5px 10px;
+}
+
+.myPlaylistBtn {
+  margin: 10px 10px;
+  background-color: #4a90e2;
+  color: white;
+  padding: 5px 10px;
+}
+
+.myBtn:hover {
+  background-color: #4a90e2;
+}
+
+.box {
+  display: flex;
+  justify-content: center;
+}
+
+.nav-bar {
+  text-align: left;
+  height: 100px;
+}
+.capitalise {
+  text-transform: uppercase;
+}
+
+.container {
+  max-width: 1300px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+.title {
+  text-align: center;
+  margin-top: 100px auto;
+  font-size: 2.5em;
+}
+
+/* Players flex container */
+.players {
+  max-width: 960px;
+  margin: 0px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.players section {
+  margin: 1.5rem;
+
+  flex: 0 0 30px;
+  padding: 5px 5px;
+  background-color: #7f56f2;
+  border: 2px solid #110042;
+  border-radius: 10px;
+  display: flex;
+
+  text-align: center;
+  position: relative;
+}
+
+.buttons section {
+  margin: 1.5rem;
+  flex-direction: column;
+  height: auto;
+  flex: 0 0 380px;
+  padding: 5px 5px;
+  background-color: #7f56f2;
+  border: 2px solid #110042;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+}
+
+iframe {
+  border-radius: 10px;
+  border: 5px solid #110042;
+}
