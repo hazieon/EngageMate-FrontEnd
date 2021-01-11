@@ -7,6 +7,7 @@ function SkPoll() {
   const [myColor] = useState("#2C276B");
   const [value, setValue] = useState(0);
   const [correct, setCorrect] = useState();
+  const [options, setOptions] = useState([]);
 
   const arr = [];
 
@@ -33,6 +34,12 @@ function SkPoll() {
 
   function add() {
     setValue(value + 1);
+  }
+
+  function handleOptions(event) {
+    //object inside would have different options (options whave what speaker inputs)
+    let option = event.target.value;
+    setOptions([...options, option]);
   }
 
   function handleSession(e) {
