@@ -24,22 +24,29 @@ function PtHand() {
       console.log(socket.id);
       if (myUniqueNumber === socket.id) {
         setIsRaised(!isRaised);
+        console.log(isRaised);
         console.log("hand lowered by coach");
       } else {
         console.log("is this running?");
       }
     });
-  }, []);
+  }, [isRaised]);
+
+  useEffect(() => {
+    isRaised ? lowerHand() : raiseHand(name, topic, picture);
+  }, [isRaised]);
 
   function raiseHand(name, topic, picture) {
     socket.emit("handRaised", { name: name, topic: topic, picture: picture });
-    setIsRaised(!isRaised);
+
+    console.log(isRaised);
   }
 
   function lowerHand() {
     socket.emit("lowerhand");
-    setIsRaised(!isRaised);
+
     console.log("hand lowered by me");
+    console.log(isRaised);
   }
 
   function handleChange(value) {
@@ -52,12 +59,7 @@ function PtHand() {
       <Subheading
         text={isRaised ? "Click To Lower Hand" : "Click To Raise Hand"}
       />
-      <Hand
-        raiseHand={() =>
-          isRaised ? lowerHand() : raiseHand(name, topic, picture)
-        }
-        clicked={!isRaised}
-      />
+      <Hand isRaised={isRaised} setIsRaised={setIsRaised} />
       <Input onChange={(e) => handleChange(e.target.value)} />
     </div>
   );
