@@ -28,6 +28,7 @@ function SkPoll() {
   function remove() {
     arr.pop();
     setValue(value - 1);
+    console.log(arr);
   }
 
   function add() {
