@@ -1,32 +1,22 @@
-.filterDiv {
-  color: #000;
+.filterContainer {
+  width: 350px;
   display: flex;
   flex-direction: column;
-  width: 300px;
 }
 
-.filterDiv h3 {
-  color: #fff;
-  margin-bottom: 5px;
-}
-
-.filterInputs {
+.chakraInputs {
   display: flex;
-  width: 100%;
-  align-items: center;
+  margin-top: 10px;
 }
 
-.checkbox {
-  transform: scale(2.5);
+.filterInput {
+  width: 150px;
 }
 
-.input,
-.checkbox {
-  margin-left: 20px;
+.filterInput:not(:first-of-type) {
+  margin-left: 10px;
 }
 
-.select,
-.input {
-  height: 100%;
-  padding: 5px;
+.clearBtn {
+  margin-left: 10px;
 }

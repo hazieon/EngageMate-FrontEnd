@@ -1,6 +1,18 @@
 import React, { useState, useEffect } from "react";
 import style from "./index.module.css";
-import { Button, Icon, Input, Select, Switch } from "@chakra-ui/react";
+import { motion } from "framer-motion";
+import { animationOne, animationTwo } from "../../animations";
+import {
+  Button,
+  Icon,
+  Input,
+  Select,
+  Switch,
+  Collapse,
+  useDisclosure,
+} from "@chakra-ui/react";
+import CustomButton from "../../components/button";
+import { ArrowBackIcon } from "@chakra-ui/icons";
 import { MdUpdate, MdStop, MdPeople } from "react-icons/md";
 import Thumb from "../thumb";
 import Timer from "../timer/index";
@@ -12,6 +24,7 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
   const [custom, setCustom] = useState(false);
   const [customTime, setCustomTime] = useState(false);
   const [throwaway, setThrowaway] = useState(false);
+  const { isOpen, onToggle } = useDisclosure();
   console.log({ question });
   function handleSession(e) {
     if (e.target.value !== "custom") {
@@ -47,6 +60,7 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
     //   setTime(Number(customT));
     //   console.log({ timer });
     // }
+    onToggle();
   }
 
   useEffect(() => {
@@ -62,7 +76,15 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
   }, [data.outcome]);
 
   return (
-    <div className={style.container} style={{ backgroundColor: myColor }}>
+    <motion.div
+      className={style.container}
+      style={{ backgroundColor: "#2C276B" }}
+      initial="out"
+      animate="in"
+      exit="out"
+      variants={animationOne}
+      transistion={{ duration: 3 }}
+    >
       {/* <h1>The Question Here</h1> */}
       <Select
         placeholder="Select Question"
@@ -125,22 +147,13 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
         type="Number"
         onChange={(e) => setTimer(e.target.value)}
       />
-      <Thumb value={data.outcome} />
-      <div className={style.valueInformation}>
-        <h3>Value: {data.outcome || "0"}%</h3>
-        <p>
-          {data.responses || "0"}/{data.participants || "0"}{" "}
-          {<Icon as={MdPeople} />}
-        </p>
-      </div>
-
-      <Timer count={count} time={time} />
-      <p className={style.count}>{count}</p>
       <div className={style.buttons}>
         <Button
           rightIcon={<MdUpdate />}
           colorScheme="green"
-          onClick={() => startSession({ question, timer, throwaway })}
+          onClick={() => {
+            startSession({ question, timer, throwaway });
+          }}
         >
           Start Timer
         </Button>
@@ -163,7 +176,31 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
           colorScheme="green"
         />
       </p>
-    </div>
+      <Collapse
+        in={isOpen}
+        animateOpacity
+        className={style.valueInformation}
+        style={{ backgroundColor: myColor }}
+      >
+        {" "}
+        <Thumb value={data.outcome} />
+        <p>
+          Value: {data.outcome || "0"}%{" "}
+          <span>
+            {data.responses || "0"}/{data.participants || "0"}{" "}
+            {<Icon as={MdPeople} />}
+          </span>
+        </p>
+        <Timer count={count} time={time} />
+        <p className={style.count}>{count}</p>
+      </Collapse>{" "}
+      <CustomButton
+        className={style.backButton}
+        link="/"
+        icon={<ArrowBackIcon />}
+        text={"Back"}
+      />
+    </motion.div>
   );
 }
 

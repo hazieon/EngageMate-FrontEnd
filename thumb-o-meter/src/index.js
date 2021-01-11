@@ -4,6 +4,7 @@ import "./index.css";
 import App from "./components/app/App";
 import reportWebVitals from "./reportWebVitals";
 import { RoleProvider } from "../src/context/roleContext";
+import { SocketProvider } from "../src/context/socketContext";
 import {
   ChakraProvider,
   ThemeProvider,
@@ -12,7 +13,7 @@ import {
   CSSReset,
 } from "@chakra-ui/react";
 import { Auth0Provider } from "@auth0/auth0-react";
-
+import { BrowserRouter as Router } from "react-router-dom";
 const domain = process.env.REACT_APP_AUTH0_DOMAIN;
 const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
 
@@ -29,16 +30,19 @@ ReactDOM.render(
         redirectUri={window.location.origin}
       >
         <RoleProvider>
-          <ChakraProvider>
-            <React.StrictMode>
-              <App />
-              <CSSReset />
-            </React.StrictMode>
-          </ChakraProvider>
+          <SocketProvider>
+            <ChakraProvider>
+              <React.StrictMode>
+                <App />
+                <CSSReset />,
+              </React.StrictMode>
+            </ChakraProvider>
+          </SocketProvider>
         </RoleProvider>
       </Auth0Provider>
     </ColorModeProvider>
   </ThemeProvider>,
+
   document.getElementById("root")
 );
 

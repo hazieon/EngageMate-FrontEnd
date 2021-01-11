@@ -10,10 +10,41 @@
   border-radius: 33px;
   margin-bottom: 30px;
 }
+.valueInformation {
+  display: flex;
+  flex-direction: column;
 
+  width: 100%;
+  align-items: center;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.valueInformation p {
+  margin-bottom: 20px;
+}
+.valueInformation span {
+  margin-left: 20px;
+}
+.count {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
 .container h1 {
   font-size: 1.2rem;
   font-weight: bold;
+  margin-bottom: 20px;
+}
+.backButton {
+  margin: 10px;
+}
+
+.slider {
+  margin: 20px;
+}
+
+.count {
+  margin: 10px 10px;
 }
 
 @media only screen and (min-width: 996px) {

@@ -1,15 +1,53 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Hand from "../hand";
 import Subheading from "../../components/subheading";
 import { Input } from "@chakra-ui/react";
-import styles from "./ptHand.module.css";
+import style from "./ptHand.module.css";
+import useSocketContext from "../../context/socketContext";
+import useRoleContext from "../../context/roleContext";
+import Push from "push.js";
 
 function PtHand() {
-  const [isRaised, setIsRaised] = useState(true);
+  const [myColor, setMyColor] = useState("#2C276B");
+  const [isRaised, setIsRaised] = useState(false);
   const [topic, setTopic] = useState("");
+  const context = useSocketContext();
+  const socket = context[0];
+  const result = useRoleContext();
+
+  const loggedUser = result[2];
+  const name = loggedUser?.given_name;
+  const picture = loggedUser?.picture;
+
+  useEffect(() => {
+    socket.on("participantLowerHand", ({ myUniqueNumber }) => {
+      console.log(myUniqueNumber);
+      console.log(socket.id);
+      if (myUniqueNumber === socket.id) {
+        changeHandState();
+        console.log(isRaised);
+        console.log("hand lowered by coach");
+      } else {
+        console.log("is this running?");
+      }
+    });
+  }, []);
+
+  function changeHandState() {
+    setIsRaised((isRaised) => !isRaised);
+  }
 
   function raiseHand() {
-    setIsRaised(!isRaised);
+    socket.emit("handRaised", { name: name, topic: topic, picture: picture });
+
+    console.log(isRaised);
+  }
+
+  function lowerHand() {
+    socket.emit("lowerhand");
+
+    console.log("hand lowered by me");
+    console.log(isRaised);
   }
 
   function handleChange(value) {
@@ -18,11 +56,16 @@ function PtHand() {
   }
 
   return (
-    <div className={styles.container}>
+    <div className={style.container} style={{ backgroundColor: myColor }}>
       <Subheading
-        text={isRaised ? "Click To Raise Hand" : "Click To Lower Hand"}
+        text={isRaised ? "Click To Lower Hand" : "Click To Raise Hand"}
       />
-      <Hand raiseHand={raiseHand} clicked={isRaised} />
+      <Hand
+        isRaised={isRaised}
+        setIsRaised={setIsRaised}
+        raiseHand={raiseHand}
+        lowerHand={lowerHand}
+      />
       <Input onChange={(e) => handleChange(e.target.value)} />
     </div>
   );
