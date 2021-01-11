@@ -4,6 +4,8 @@ import useSocketContext from "../../context/socketContext";
 import useRoleContext from "../../context/roleContext";
 import { useAuth0 } from "@auth0/auth0-react";
 import Hand from "../hand";
+import { motion } from "framer-motion";
+import { animationOne, animationTwo } from "../../animations";
 
 function SkHand({ usersList, handUsers }) {
   //when hand is raised, server adds them to a list of raised hands - name, pic
@@ -25,16 +27,16 @@ function SkHand({ usersList, handUsers }) {
     //send a message to back end sockets to remove that user
   }
 
-  function playSound() {
-    console.log("sound played");
-  }
+  // function playSound() {
+  //   console.log("sound played");
+  // }
 
   useEffect(() => {
-    let intervalId = setInterval(() => {
-      hands.length > 0 && playSound();
+    // let intervalId = setInterval(() => {
+    //   hands.length > 0 && playSound();
 
-      //clearInterval(intervalId);
-    }, 5000);
+    //   //clearInterval(intervalId);
+    // }, 5000);
 
     socket.emit("raisehandroom", {
       name: name,
@@ -48,7 +50,15 @@ function SkHand({ usersList, handUsers }) {
     });
   }, [hands]);
   return (
-    <div className={styles.container} style={{ backgroundColor: myColor }}>
+    <motion.div
+      className={styles.container}
+      style={{ backgroundColor: "#2C276B" }}
+      initial="out"
+      animate="in"
+      exit="out"
+      variants={animationOne}
+      transistion={{ duration: 3 }}
+    >
       <div className={styles.notifySpot}>
         <p className={hands.length > 0 ? styles.notify : styles.noNotify}>
           {hands.length}
@@ -67,7 +77,7 @@ function SkHand({ usersList, handUsers }) {
           </ul>
         ))}
       </section>
-    </div>
+    </motion.div>
   );
 }
 

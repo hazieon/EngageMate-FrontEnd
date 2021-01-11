@@ -13,7 +13,7 @@ import {
   CSSReset,
 } from "@chakra-ui/react";
 import { Auth0Provider } from "@auth0/auth0-react";
-
+import { BrowserRouter as Router } from "react-router-dom";
 const domain = process.env.REACT_APP_AUTH0_DOMAIN;
 const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
 
@@ -33,8 +33,11 @@ ReactDOM.render(
           <SocketProvider>
             <ChakraProvider>
               <React.StrictMode>
-                <App />
-                <CSSReset />
+                <Router>
+                  <App />
+                  <CSSReset />
+                </Router>
+                ,
               </React.StrictMode>
             </ChakraProvider>
           </SocketProvider>
@@ -42,6 +45,7 @@ ReactDOM.render(
       </Auth0Provider>
     </ColorModeProvider>
   </ThemeProvider>,
+
   document.getElementById("root")
 );
 

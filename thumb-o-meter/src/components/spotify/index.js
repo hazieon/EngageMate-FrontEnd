@@ -3,6 +3,7 @@ import request from "request";
 import SpotifyButton from "../../components/button/spotifyButton";
 import { config } from "../../config";
 import style from "./spotify.module.css";
+import { animate } from "../../animations";
 
 function Spotify() {
   const id = config.spotifyID;
@@ -79,25 +80,29 @@ function Spotify() {
   }, [playlistIndex, genre, id, secret]);
 
   return (
-    <div className={style.container}>
+    <main className={`${style.container} ${animate.fadeIn} `}>
       <div className={style.players}>
-        <iframe
-          title="playlist"
-          src={url}
-          // https://open.spotify.com/embed/playlist/spotify:playlist:37i9dQZF1DX76Wlfdnj7AP
-          width="300"
-          height="540"
-          frameBorder="0"
-          allowtransparency="true"
-          allow="encrypted-media"
-        ></iframe>{" "}
+        {url ? (
+          <iframe
+            title="playlist"
+            src={url}
+            // https://open.spotify.com/embed/playlist/spotify:playlist:37i9dQZF1DX76Wlfdnj7AP
+            width="300"
+            height="540"
+            frameBorder="0"
+            allowtransparency="true"
+            allow="encrypted-media"
+          ></iframe>
+        ) : (
+          <h1>Loading</h1>
+        )}
         {/* <SpotifyButton
           myClass={style.myPlaylistBtn}
           handleClick={handleClick}
           station={"New Playlist"}
         />{" "} */}
       </div>
-    </div>
+    </main>
   );
 }
 

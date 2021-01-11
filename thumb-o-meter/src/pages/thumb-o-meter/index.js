@@ -3,10 +3,9 @@ import NavBar from "../../components/navBar";
 import styles from "./index.module.css";
 import PtView from "../../components/ptView";
 import SkView from "../../components/skView";
+
 import { createStandaloneToast, LightMode } from "@chakra-ui/react";
 import useRoleContext from "../../context/roleContext";
-import CustomButton from "../../components/button";
-import { ArrowBackIcon } from "@chakra-ui/icons";
 
 import { Flex, Box, Center, useColorModeValue } from "@chakra-ui/react";
 // import socketIOClient from "socket.io-client";
@@ -146,13 +145,10 @@ const Thumbometer = () => {
 
   return (
     <Flex>
-      <Box className={styles.container} bg={bg} color={color} h="50%" w="100%">
+      <Box className={styles.container} bg={bg} color={color} w="100%">
         <NavBar />
         <Center>
           <h1 className={styles.heading}>Thumb-O-Meter</h1>
-        </Center>
-        <Center className={styles.backButton}>
-          <CustomButton link="/" icon={<ArrowBackIcon />} text={"Back"} />
         </Center>
 
         <Center>

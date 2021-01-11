@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import style from "./index.module.css";
+import { motion } from "framer-motion";
+import { animationOne, animationTwo } from "../../animations";
 import {
   Button,
   Icon,
@@ -9,6 +11,8 @@ import {
   Collapse,
   useDisclosure,
 } from "@chakra-ui/react";
+import CustomButton from "../../components/button";
+import { ArrowBackIcon } from "@chakra-ui/icons";
 import { MdUpdate, MdStop, MdPeople } from "react-icons/md";
 import Thumb from "../thumb";
 import Timer from "../timer/index";
@@ -56,6 +60,7 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
     //   setTime(Number(customT));
     //   console.log({ timer });
     // }
+    onToggle();
   }
 
   useEffect(() => {
@@ -71,7 +76,15 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
   }, [data.outcome]);
 
   return (
-    <div className={style.container} style={{ backgroundColor: myColor }}>
+    <motion.div
+      className={style.container}
+      style={{ backgroundColor: "#2C276B" }}
+      initial="out"
+      animate="in"
+      exit="out"
+      variants={animationOne}
+      transistion={{ duration: 3 }}
+    >
       {/* <h1>The Question Here</h1> */}
       <Select
         placeholder="Select Question"
@@ -163,7 +176,12 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
           colorScheme="green"
         />
       </p>
-      <div className={style.valueInformation}>
+      <Collapse
+        in={isOpen}
+        animateOpacity
+        className={style.valueInformation}
+        style={{ backgroundColor: myColor }}
+      >
         {" "}
         <Thumb value={data.outcome} />
         <p>
@@ -175,8 +193,14 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
         </p>
         <Timer count={count} time={time} />
         <p className={style.count}>{count}</p>
-      </div>
-    </div>
+      </Collapse>{" "}
+      <CustomButton
+        className={style.backButton}
+        link="/"
+        icon={<ArrowBackIcon />}
+        text={"Back"}
+      />
+    </motion.div>
   );
 }
 
