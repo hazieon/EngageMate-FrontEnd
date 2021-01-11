@@ -61,18 +61,12 @@ function SkHand({ usersList, handUsers }) {
   }
 
   useEffect(() => {
-    // let intervalId = setInterval(() => {
-    //   hands.length > 0 && playSound();
-
-    //   //clearInterval(intervalId);
-    // }, 5000);
-
     socket.emit("raisehandroom", {
       name: name,
       room: "raisehand",
     });
 
-    socket.on("handRaiseInfo", ({ handRaiseData }) => {
+    const handler = ({ handRaiseData }) => {
       // setHandsRaised(handRaiseSubmissions);
       console.log("hand raised info received");
       //setHands(handRaiseData);
@@ -83,11 +77,14 @@ function SkHand({ usersList, handUsers }) {
       if (handRaiseData.length !== 0) {
         createNotifications(handRaiseData[handRaiseData.length - 1]);
       }
-    });
+    };
+
+    socket.on("handRaiseInfo", handler);
 
     return () => {
       socket.emit("leaveRaiseHand");
       console.log("user left room");
+      socket.off("handRaiseInfo", handler);
     };
   }, []);
 
