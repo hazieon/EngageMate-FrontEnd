@@ -1,10 +1,15 @@
 import React from "react";
 import styles from "./hand.module.css";
 
-function Hand({ isRaised, setIsRaised, raiseHand }) {
+function Hand({ isRaised, setIsRaised, raiseHand, lowerHand }) {
   return (
     <div
       onClick={() => {
+        if (isRaised) {
+          lowerHand();
+        } else {
+          raiseHand();
+        }
         setIsRaised(!isRaised);
       }}
       className={styles.container}

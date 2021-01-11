@@ -33,11 +33,7 @@ function PtHand() {
     });
   }, []);
 
-  useEffect(() => {
-    isRaised ? lowerHand() : raiseHand(name, topic, picture);
-  }, [isRaised]);
-
-  function raiseHand(name, topic, picture) {
+  function raiseHand() {
     socket.emit("handRaised", { name: name, topic: topic, picture: picture });
 
     console.log(isRaised);
@@ -60,7 +56,12 @@ function PtHand() {
       <Subheading
         text={isRaised ? "Click To Lower Hand" : "Click To Raise Hand"}
       />
-      <Hand isRaised={isRaised} setIsRaised={setIsRaised} />
+      <Hand
+        isRaised={isRaised}
+        setIsRaised={setIsRaised}
+        raiseHand={raiseHand}
+        lowerHand={lowerHand}
+      />
       <Input onChange={(e) => handleChange(e.target.value)} />
     </div>
   );
