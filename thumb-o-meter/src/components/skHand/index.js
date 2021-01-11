@@ -23,6 +23,7 @@ function SkHand({ usersList, handUsers }) {
 
   function createNotifications(handData) {
     console.log({ handData });
+
     Push.create(`${handData.name} has raised their hand!`, {
       body: `${handData.topic}`,
       icon: "/raisehand.png",
@@ -32,6 +33,7 @@ function SkHand({ usersList, handUsers }) {
         this.close();
       },
     });
+
     notificationToast(handData);
   }
 
@@ -48,7 +50,9 @@ function SkHand({ usersList, handUsers }) {
   }
 
   function removeHand(index, id) {
-    // immutably remove individual hand raise
+    //   // immutably remove individual hand raise
+    console.log(id);
+    console.log(socket.id);
     setHands([...hands.slice(0, index), ...hands.slice(index + 1)]);
     //send a message to back end sockets to remove that user
     socket.emit("speakerLowerHand", {
@@ -71,15 +75,16 @@ function SkHand({ usersList, handUsers }) {
     socket.on("handRaiseInfo", ({ handRaiseData }) => {
       // setHandsRaised(handRaiseSubmissions);
       console.log(handRaiseData);
-      if (handRaiseData.handData !== undefined) {
+      console.log(handRaiseData.length);
+      if (handRaiseData === [] || handRaiseData === undefined) {
+        handleSetHands(handRaiseData);
+      } else {
         console.log("hand raised info received");
         //setHands(handRaiseData);
         handleSetHands(handRaiseData);
         console.log("hands -", hands);
         console.log({ handRaiseData });
         createNotifications(handRaiseData[handRaiseData.length - 1]);
-      } else {
-        handleSetHands(handRaiseData);
       }
     });
   }, []);

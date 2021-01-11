@@ -18,12 +18,15 @@ function PtHand() {
   const loggedUser = result[2];
   const name = loggedUser?.given_name;
   const picture = loggedUser?.picture;
-
   useEffect(() => {
-    socket.on("participantLowerHand", ({ id }) => {
-      if (id === socket.id) {
+    socket.on("participantLowerHand", ({ myUniqueNumber }) => {
+      console.log(myUniqueNumber);
+      console.log(socket.id);
+      if (myUniqueNumber === socket.id) {
         setIsRaised(!isRaised);
         console.log("hand lowered by coach");
+      } else {
+        console.log("is this running?");
       }
     });
   }, []);
