@@ -27,16 +27,16 @@ function SkHand({ usersList, handUsers }) {
     //send a message to back end sockets to remove that user
   }
 
-  function playSound() {
-    console.log("sound played");
-  }
+  // function playSound() {
+  //   console.log("sound played");
+  // }
 
   useEffect(() => {
-    let intervalId = setInterval(() => {
-      hands.length > 0 && playSound();
+    // let intervalId = setInterval(() => {
+    //   hands.length > 0 && playSound();
 
-      //clearInterval(intervalId);
-    }, 5000);
+    //   //clearInterval(intervalId);
+    // }, 5000);
 
     socket.emit("raisehandroom", {
       name: name,

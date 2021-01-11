@@ -3,19 +3,13 @@ import FeatureIcon from "../featureIcons";
 import styles from "./menu.module.css";
 import useRoleContext from "../../context/roleContext";
 import { features, coachFeatures } from "./data";
-import { motion } from "framer-motion";
-import { animationOne, transistion } from "../../animations";
+import { animate } from "../../animations";
+
 const Menu = () => {
   const result = useRoleContext();
   const role = result[0];
   return (
-    <motion.div
-      initial="out"
-      animate="in"
-      exit="out"
-      variants={animationOne}
-      transistion={{ duration: 2 }}
-    >
+    <>
       <div className={styles.container}>
         <div className={styles.players}>
           {role === "coach"
@@ -49,7 +43,7 @@ const Menu = () => {
               })}
         </div>
       </div>
-    </motion.div>
+    </>
   );
 };
 

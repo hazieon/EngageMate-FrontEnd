@@ -7,21 +7,7 @@ export const animationOne = {
   },
 };
 
-export const transistion = {
-  duration: 5,
-};
-
-export const animationTwo = {
-  in: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transistion: {
-      duration: 5,
-    },
-  },
-  out: {
-    opacity: 0,
-    y: "-100vh",
-  },
+export const animate = {
+  heartbeat: "animate__animated animate__heartBeat",
+  fadeIn: "animate__animated animate__fadeIn animate__slower	",
 };

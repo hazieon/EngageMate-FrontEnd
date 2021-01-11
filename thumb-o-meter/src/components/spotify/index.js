@@ -1,10 +1,9 @@
-import { motion } from "framer-motion";
-import { animationOne, animationTwo } from "../../animations";
 import React, { useEffect, useState } from "react";
 import request from "request";
 import SpotifyButton from "../../components/button/spotifyButton";
 import { config } from "../../config";
 import style from "./spotify.module.css";
+import { animate } from "../../animations";
 
 function Spotify() {
   const id = config.spotifyID;
@@ -81,14 +80,7 @@ function Spotify() {
   }, [playlistIndex, genre, id, secret]);
 
   return (
-    <motion.div
-      className={style.container}
-      initial="out"
-      animate="in"
-      exit="out"
-      variants={animationOne}
-      transistion={{ duration: 3 }}
-    >
+    <main className={`${style.container} ${animate.fadeIn} `}>
       <div className={style.players}>
         {url ? (
           <iframe
@@ -110,7 +102,7 @@ function Spotify() {
           station={"New Playlist"}
         />{" "} */}
       </div>
-    </motion.div>
+    </main>
   );
 }
 
