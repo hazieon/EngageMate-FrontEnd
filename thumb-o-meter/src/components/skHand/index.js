@@ -84,6 +84,11 @@ function SkHand({ usersList, handUsers }) {
         createNotifications(handRaiseData[handRaiseData.length - 1]);
       }
     });
+
+    return () => {
+      socket.emit("leaveRaiseHand");
+      console.log("user left room");
+    };
   }, []);
 
   function handleSetHands(data) {

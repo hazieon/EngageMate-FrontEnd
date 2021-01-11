@@ -18,6 +18,7 @@ function PtHand() {
   const loggedUser = result[2];
   const name = loggedUser?.given_name;
   const picture = loggedUser?.picture;
+
   useEffect(() => {
     socket.on("participantLowerHand", ({ myUniqueNumber }) => {
       console.log(myUniqueNumber);
@@ -30,7 +31,7 @@ function PtHand() {
         console.log("is this running?");
       }
     });
-  }, [isRaised]);
+  }, []);
 
   useEffect(() => {
     isRaised ? lowerHand() : raiseHand(name, topic, picture);
