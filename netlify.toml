@@ -2,7 +2,6 @@
 command = "npm run build"
 publish = "build-output/"
   functions = "out_functions"
-    publish = "output/"
 
 [build.environment]
   CI = "false"
