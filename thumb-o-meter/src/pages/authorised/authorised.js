@@ -5,9 +5,8 @@ import Unauthorised from "../unauthorised";
 import useRoleContext from "../../context/roleContext";
 import { config } from "../../config";
 
-import { Switch, Route, useLocation } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Admin from "../../pages/admin";
-import { AnimatePresence } from "framer-motion";
 import Quiz from "../../pages/quiz";
 import Deck from "../../pages/dj-deck";
 import Thumbometer from "../thumb-o-meter";
@@ -19,7 +18,6 @@ import RaiseHand from "../../pages/raise-hand";
 
 const envUrl = config.url;
 const Authorised = () => {
-  const location = useLocation();
   const data = useRoleContext();
   const role = data[0];
   const setRole = data[1];
@@ -53,8 +51,8 @@ const Authorised = () => {
   }, []);
   return (
     <>
-      <AnimatePresence exitBeforeEnter>
-        <Switch location={location} key={location.pathName}>
+      <Router>
+        <Switch>
           <Route path="/admin">
             <Admin />
           </Route>
@@ -85,7 +83,7 @@ const Authorised = () => {
             )}
           </Route>
         </Switch>
-      </AnimatePresence>
+      </Router>
     </>
   );
 };

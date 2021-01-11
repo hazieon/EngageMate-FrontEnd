@@ -33,11 +33,8 @@ ReactDOM.render(
           <SocketProvider>
             <ChakraProvider>
               <React.StrictMode>
-                <Router>
-                  <App />
-                  <CSSReset />
-                </Router>
-                ,
+                <App />
+                <CSSReset />,
               </React.StrictMode>
             </ChakraProvider>
           </SocketProvider>
