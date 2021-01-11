@@ -43,6 +43,7 @@ const AddUserForm = ({ updatePage, setUpdatePage }) => {
   function handleChange(e) {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   }
+
   async function handleSubmit(e) {
     e.preventDefault();
     const obj = { ...formData, uuid: uuidv4() };
