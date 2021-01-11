@@ -3,12 +3,13 @@ import FeatureIcon from "../featureIcons";
 import styles from "./menu.module.css";
 import useRoleContext from "../../context/roleContext";
 import { features, coachFeatures } from "./data";
+import { animate } from "../../animations";
 
 const Menu = () => {
   const result = useRoleContext();
   const role = result[0];
   return (
-    <main>
+    <>
       <div className={styles.container}>
         <div className={styles.players}>
           {role === "coach"
@@ -21,6 +22,7 @@ const Menu = () => {
                       link={item.link}
                       icon={item.icon}
                       heading={item.heading}
+                      myClass={item.myClass}
                     />
                   </section>
                 );
@@ -34,13 +36,14 @@ const Menu = () => {
                       link={item.link}
                       icon={item.icon}
                       heading={item.heading}
+                      myClass={item.myClass}
                     />
                   </section>
                 );
               })}
         </div>
       </div>
-    </main>
+    </>
   );
 };
 

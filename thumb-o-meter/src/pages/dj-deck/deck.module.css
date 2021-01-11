@@ -1,5 +1,5 @@
 .container {
-  max-width: 1300px;
+  max-width: 1150px;
   height: 100%;
   margin: 0 auto;
   padding: 25px;
@@ -13,7 +13,7 @@
 
 /* Players flex container */
 .players {
-  max-width: 960px;
+  max-width: 1200px;
   margin: 0px auto;
   display: flex;
   flex-flow: row wrap;
@@ -21,9 +21,9 @@
 }
 .players section {
   margin: 1.5rem;
-  max-width: 300px;
+  max-width: 400px;
   height: auto;
-  flex: 0 0 380px;
+  flex: 0 0 300px;
   padding: 15px;
   background-color: #7f56f2;
   border: 2px solid #110042;
@@ -32,4 +32,12 @@
   justify-content: center;
   text-align: center;
   position: relative;
+}
+
+.player {
+  margin: 5px;
+  padding: 5px;
+
+  border: 2px solid #110042;
+  border-radius: 10px;
 }
