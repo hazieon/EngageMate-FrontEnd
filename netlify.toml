@@ -1,7 +1,7 @@
 [build]
-command = "npm run build"
-publish = "build-output/"
+  command   = "npm run build"
   functions = "out_functions"
+
 
 [build.environment]
   CI = "false"
