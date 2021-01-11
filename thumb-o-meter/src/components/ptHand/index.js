@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Hand from "../hand";
 import Subheading from "../../components/subheading";
 import { Input } from "@chakra-ui/react";
@@ -19,6 +19,15 @@ function PtHand() {
   const name = loggedUser?.given_name;
   const picture = loggedUser?.picture;
 
+  useEffect(() => {
+    socket.on("particiapntLowerHand", ({ id }) => {
+      if (id === socket.id) {
+        setIsRaised(!isRaised);
+        console.log("hand lowered by coach");
+      }
+    });
+  }, []);
+
   function raiseHand(name, topic, picture) {
     socket.emit("handRaised", { name: name, topic: topic, picture: picture });
     setIsRaised(!isRaised);
@@ -27,6 +36,7 @@ function PtHand() {
   function lowerHand() {
     socket.emit("lowerhand");
     setIsRaised(!isRaised);
+    console.log("hand lowered by me");
   }
 
   function handleChange(value) {

@@ -27,7 +27,7 @@ function SkHand({ usersList, handUsers }) {
       body: `${handData.topic}`,
       icon: "/raisehand.png",
       timeout: 4000,
-      onClick: function () {
+      onClick: function() {
         window.focus();
         this.close();
       },
@@ -47,14 +47,13 @@ function SkHand({ usersList, handUsers }) {
     });
   }
 
-  function removeHand(index) {
+  function removeHand(index, id) {
     // immutably remove individual hand raise
     setHands([...hands.slice(0, index), ...hands.slice(index + 1)]);
     //send a message to back end sockets to remove that user
-  }
-
-  function playSound() {
-    // console.log("sound played");
+    socket.emit("speakerLowerHand", {
+      id,
+    });
   }
 
   useEffect(() => {
@@ -71,12 +70,16 @@ function SkHand({ usersList, handUsers }) {
 
     socket.on("handRaiseInfo", ({ handRaiseData }) => {
       // setHandsRaised(handRaiseSubmissions);
-      console.log("hand raised info received");
-      //setHands(handRaiseData);
-      handleSetHands(handRaiseData);
-      console.log("hands -", hands);
-      console.log({ handRaiseData });
-      createNotifications(handRaiseData[handRaiseData.length - 1]);
+      if (handRaiseData !== []) {
+        console.log("hand raised info received");
+        //setHands(handRaiseData);
+        handleSetHands(handRaiseData);
+        console.log("hands -", hands);
+        console.log({ handRaiseData });
+        createNotifications(handRaiseData[handRaiseData.length - 1]);
+      } else {
+        handleSetHands(handRaiseData);
+      }
     });
   }, []);
 
@@ -99,7 +102,7 @@ function SkHand({ usersList, handUsers }) {
           <ul key={i}>
             <li className={styles.handRaise}>
               {h.name} {h.topic}
-              <button onClick={() => removeHand(i)}>✖</button>
+              <button onClick={() => removeHand(i, h.id)}>✖</button>
             </li>
           </ul>
         ))}
