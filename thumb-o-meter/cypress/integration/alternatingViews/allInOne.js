@@ -1,3 +1,4 @@
+//needs cleaning and waits removed
 function orderOfTest() {
   //opening screen
   describe("Getting to opening screen", () => {
