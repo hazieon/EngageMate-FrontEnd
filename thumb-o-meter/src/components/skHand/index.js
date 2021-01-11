@@ -28,7 +28,7 @@ function SkHand({ usersList, handUsers }) {
       body: `${handData.topic}`,
       icon: "/raisehand.png",
       timeout: 4000,
-      onClick: function() {
+      onClick: function () {
         window.focus();
         this.close();
       },
@@ -74,16 +74,13 @@ function SkHand({ usersList, handUsers }) {
 
     socket.on("handRaiseInfo", ({ handRaiseData }) => {
       // setHandsRaised(handRaiseSubmissions);
-      console.log(handRaiseData);
-      console.log(handRaiseData.length);
-      if (handRaiseData === [] || handRaiseData === undefined) {
-        handleSetHands(handRaiseData);
-      } else {
-        console.log("hand raised info received");
-        //setHands(handRaiseData);
-        handleSetHands(handRaiseData);
-        console.log("hands -", hands);
-        console.log({ handRaiseData });
+      console.log("hand raised info received");
+      //setHands(handRaiseData);
+      handleSetHands(handRaiseData);
+      console.log("hands -", hands);
+      console.log({ handRaiseData });
+
+      if (handRaiseData.length !== 0) {
         createNotifications(handRaiseData[handRaiseData.length - 1]);
       }
     });
