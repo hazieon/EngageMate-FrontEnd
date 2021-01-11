@@ -4,8 +4,9 @@ import useSocketContext from "../../context/socketContext";
 import useRoleContext from "../../context/roleContext";
 import { useAuth0 } from "@auth0/auth0-react";
 import Hand from "../hand";
-import { motion } from "framer-motion";
-import { animationOne, animationTwo } from "../../animations";
+import { createStandaloneToast } from "@chakra-ui/react";
+import Push from "push.js";
+
 
 function SkHand({ usersList, handUsers }) {
   //when hand is raised, server adds them to a list of raised hands - name, pic
@@ -21,43 +22,84 @@ function SkHand({ usersList, handUsers }) {
   const loggedUser = result[2];
   const name = loggedUser?.given_name;
 
-  function removeHand(index) {
-    // immutably remove individual hand raise
-    setHands([...hands.slice(0, index), ...hands.slice(index + 1)]);
-    //send a message to back end sockets to remove that user
+  function createNotifications(handData) {
+    console.log({ handData });
+
+    Push.create(`${handData.name} has raised their hand!`, {
+      body: `${handData.topic}`,
+      icon: "/raisehand.png",
+      timeout: 4000,
+      onClick: function () {
+        window.focus();
+        this.close();
+      },
+    });
+
+
+    notificationToast(handData);
   }
 
-  // function playSound() {
-  //   console.log("sound played");
-  // }
+  function notificationToast(handData) {
+    const toast = createStandaloneToast();
+    toast({
+      title: `${handData.name}`,
+      description: `${handData.topic}`,
+      status: "success",
+      duration: 4000,
+      isClosable: true,
+      position: "top",
+    });
+  }
+
+  function removeHand(index, id) {
+    //   // immutably remove individual hand raise
+    console.log(id);
+    console.log(socket.id);
+    setHands([...hands.slice(0, index), ...hands.slice(index + 1)]);
+    //send a message to back end sockets to remove that user
+    socket.emit("speakerLowerHand", {
+      id,
+    });
+  }
+
 
   useEffect(() => {
-    // let intervalId = setInterval(() => {
-    //   hands.length > 0 && playSound();
-
-    //   //clearInterval(intervalId);
-    // }, 5000);
-
     socket.emit("raisehandroom", {
       name: name,
       room: "raisehand",
     });
 
-    socket.on("handRaiseInfo", ({ handRaiseData }) => {
+    const handler = ({ handRaiseData }) => {
       // setHandsRaised(handRaiseSubmissions);
-      setHands(handRaiseData);
-      console.log(hands);
-    });
-  }, [hands]);
+      console.log("hand raised info received");
+      //setHands(handRaiseData);
+      handleSetHands(handRaiseData);
+      console.log("hands -", hands);
+      console.log({ handRaiseData });
+
+      if (handRaiseData.length !== 0) {
+        createNotifications(handRaiseData[handRaiseData.length - 1]);
+      }
+    };
+
+    socket.on("handRaiseInfo", handler);
+
+    return () => {
+      socket.emit("leaveRaiseHand");
+      console.log("user left room");
+      socket.off("handRaiseInfo", handler);
+    };
+  }, []);
+
+  function handleSetHands(data) {
+    setHands(data);
+  }
+
   return (
-    <motion.div
+    <div
       className={styles.container}
       style={{ backgroundColor: "#2C276B" }}
-      initial="out"
-      animate="in"
-      exit="out"
-      variants={animationOne}
-      transistion={{ duration: 3 }}
+      
     >
       <div className={styles.notifySpot}>
         <p className={hands.length > 0 ? styles.notify : styles.noNotify}>
@@ -72,12 +114,12 @@ function SkHand({ usersList, handUsers }) {
           <ul key={i}>
             <li className={styles.handRaise}>
               {h.name} {h.topic}
-              <button onClick={() => removeHand(i)}>✖</button>
+              <button onClick={() => removeHand(i, h.id)}>✖</button>
             </li>
           </ul>
         ))}
       </section>
-    </motion.div>
+    </div>
   );
 }
 
