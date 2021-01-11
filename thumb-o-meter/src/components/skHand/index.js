@@ -70,7 +70,8 @@ function SkHand({ usersList, handUsers }) {
 
     socket.on("handRaiseInfo", ({ handRaiseData }) => {
       // setHandsRaised(handRaiseSubmissions);
-      if (handRaiseData !== []) {
+      console.log(handRaiseData);
+      if (handRaiseData.handData !== undefined) {
         console.log("hand raised info received");
         //setHands(handRaiseData);
         handleSetHands(handRaiseData);

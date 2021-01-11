@@ -20,7 +20,7 @@ function PtHand() {
   const picture = loggedUser?.picture;
 
   useEffect(() => {
-    socket.on("particiapntLowerHand", ({ id }) => {
+    socket.on("participantLowerHand", ({ id }) => {
       if (id === socket.id) {
         setIsRaised(!isRaised);
         console.log("hand lowered by coach");
