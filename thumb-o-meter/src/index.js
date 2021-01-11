@@ -34,7 +34,7 @@ ReactDOM.render(
             <ChakraProvider>
               <React.StrictMode>
                 <App />
-                <CSSReset />,
+                <CSSReset />
               </React.StrictMode>
             </ChakraProvider>
           </SocketProvider>
@@ -42,7 +42,6 @@ ReactDOM.render(
       </Auth0Provider>
     </ColorModeProvider>
   </ThemeProvider>,
-
   document.getElementById("root")
 );
 
