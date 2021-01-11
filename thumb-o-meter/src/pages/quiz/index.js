@@ -7,9 +7,8 @@ import useRoleContext from "../../context/roleContext";
 import SkPoll from "../../components/skPoll";
 import { Flex, Box, Center, useColorModeValue } from "@chakra-ui/react";
 import styles from "./index.module.css";
-import { Box, forwardRef } from "@chakra-ui/react";
+import { forwardRef } from "@chakra-ui/react";
 import { motion, isValidMotionProp } from "framer-motion";
-
 
 const MotionBox = motion.custom(
   forwardRef((props, ref) => {
@@ -28,10 +27,19 @@ const Quiz = () => {
   console.log(role);
   return (
     <Flex>
-    <NavBar />
-      <CustomButton link="/" icon={<ArrowBackIcon />} text={"Back"} />
-      <Box h="100vh" d="flex" alignItems="center" justifyContent="center">
-        <MotionBox
+      <Box className={styles.container} bg={bg} color={color}>
+        <NavBar />
+        <Box h="100vh" d="flex" alignItems="center" justifyContent="center">
+          <main>
+            <CustomButton link="/" icon={<ArrowBackIcon />} text={"Back"} />
+            <Center>
+              {role === "coach" && <SkPoll />}
+              {role === "bootcamper" && <PtPoll />}
+            </Center>
+          </main>
+        </Box>
+      </Box>
+      {/* <MotionBox
           as="aside"
           animate={{
             scale: [1, 2, 2, 1, 1],
@@ -51,20 +59,8 @@ const Quiz = () => {
           width="12"
           height="12"
           display="flex"
-        />
-      </Box>
-      <Box className={styles.container} bg={bg} color={color}>
-        <main>
-       
-          <Center>
-            {role === "coach" && <SkPoll />}
-            {role === "bootcamper" && <PtPoll />}
-          </Center>
-        </main>
-      </Box>
+        /> */}
     </Flex>
-    <div>
-    </div>
   );
 };
 
