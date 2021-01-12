@@ -32,9 +32,17 @@
   top: 0;
 }
 
+.quiz:hover {
+  opacity: 0;
+  transition: opacity 5s;
+}
+
 .hand:hover {
-  position: absolute;
-  top: -5px;
+  position: relative;
+  top: -100px;
+}
+.deck:hover {
+  position: relative;
 }
 
 @media only screen and (min-width: 500px) {
