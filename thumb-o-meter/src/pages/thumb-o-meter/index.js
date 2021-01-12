@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import NavBar from "../../components/navBar";
 import styles from "./index.module.css";
-import PtView from "../../components/ptView";
-import SkView from "../../components/skView";
+import PtView from "../../components/ptThumb";
+import SkView from "../../components/skThumb";
 
 import { createStandaloneToast, LightMode } from "@chakra-ui/react";
 import useRoleContext from "../../context/roleContext";

@@ -26,12 +26,14 @@ function SkPoll() {
           id={`option ${i + 1}`}
           onChange={handleOptions}
         ></Input>
-        <Button id={`option ${i + 1}`} onClick={handleClick}>
+        <input type="radio" name="correctButton" value={`${i + 1}`} />
+        {/* <Button id={`option ${i + 1}`} onClick={handleClick}>
           {" "}
-        </Button>
+        </Button> */}
       </div>
     );
   }
+
   function handleClick() {
     setCorrect(!correct);
     // on click change the button icon to a emoji tick and need to send the correct answer in the handle submit object
@@ -41,6 +43,7 @@ function SkPoll() {
   function handleOptions(e) {
     setOptionData({ ...optionData, [e.target.id]: e.target.value });
   }
+
   function remove() {
     arr.pop();
     setValue(value - 1);
@@ -53,7 +56,13 @@ function SkPoll() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    const obj = { question, ...optionData, uuid: uuidv4() };
+    const correct = e.target.elements.correctButton.value;
+    const obj = {
+      question,
+      ...optionData,
+      correctAnswer: correct,
+      uuid: uuidv4(),
+    };
     console.log(obj);
   }
 

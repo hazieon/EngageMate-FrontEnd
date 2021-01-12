@@ -7,6 +7,10 @@ function PtPoll({ data }) {
   return (
     <div className={style.container} style={{ backgroundColor: myColor }}>
       <h1>{data ? data.question : "Waiting for question"}</h1>
+      <h1>{data ? data.option1 : "Waiting for options"}</h1>
+      <h1>{data ? data.option2 : "Waiting for options"}</h1>
+      <h1>{data ? data.option3 : "Waiting for options"}</h1>
+      <h1>{data ? data.option4 : "Waiting for options"}</h1>
     </div>
   );
 }
