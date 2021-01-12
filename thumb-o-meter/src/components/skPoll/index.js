@@ -23,10 +23,15 @@ function SkPoll() {
       setResultsObj(() => obj);
     });
 
+    socket.on("pollStart", ({ data }) => {
+      console.log("data from server at poll start", data);
+    });
+
     return () => {
       socket.off("resultsUpdate");
+      socket.off("pollStart");
     };
-  }, []);
+  }, [pollStarted]);
 
   const arr = [];
   for (let i = 0; i < value; i++) {
@@ -38,7 +43,7 @@ function SkPoll() {
           placeholder={`set option ${i + 1}`}
           // still trying to figure how to save the value of the input fields to something?
           width="300px"
-          id={`option ${i + 1}`}
+          id={i + 1}
           onChange={handleOptions}
         ></Input>
         <input
@@ -52,7 +57,10 @@ function SkPoll() {
   }
 
   function handleOptions(e) {
-    setOptionData([...optionData, { [e.target.id]: e.target.value }]);
+    setOptionData({
+      ...optionData,
+      [e.target.id]: e.target.value,
+    });
   }
 
   function remove() {
@@ -63,10 +71,14 @@ function SkPoll() {
 
   function handleSubmit(e) {
     e.preventDefault();
+
     const correct = e.target.elements.correctButton.value;
     const obj = {
       question,
-      options: [...optionData],
+      options: Object.keys(optionData).map((key) => [
+        Number(key),
+        optionData[key],
+      ]),
       correctAnswer: correct,
       uuid: uuidv4(),
     };
@@ -88,12 +100,17 @@ function SkPoll() {
   function startPoll(data) {
     socket.emit("pollStart", { data });
     setPollStarted(true);
+    setResultsObj(data);
     console.log("Poll started - Data sent to server", { data });
   }
 
   function stopPoll() {
-    socket.emit("sessionStop");
     setPollStarted(false);
+    setQuestion((question) => "");
+    setOptionData((optionData) => {});
+    setResultsObj((resultsObj) => {});
+    setCustom((custom) => false);
+    socket.emit("sessionStop");
     console.log("Speaker has ended poll");
   }
 
@@ -141,7 +158,9 @@ function SkPoll() {
           </form>
         </div>
       )}
-      {pollStarted && <SkPollResults data={resultsObj} stopPoll={stopPoll} />}
+      {pollStarted && (
+        <SkPollResults data={resultsObj} stopPoll={stopPoll} socket={socket} />
+      )}
     </div>
   );
 }
