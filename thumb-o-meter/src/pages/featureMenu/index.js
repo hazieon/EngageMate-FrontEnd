@@ -26,7 +26,7 @@ const FeaturedMenu = () => {
   return (
     <Box bg={bg} color={color}>
       <Header bg={bg} color={color} />
-      <Title text="Nice to see you again" user={user} />
+      <Title text="Nice to see you again," user={user} />
       <Menu />
       <Footer bg={bg} color={color} />
     </Box>
