@@ -34,7 +34,7 @@ ReactDOM.render(
             <ChakraProvider>
               <React.StrictMode>
                 <App />
-                <CSSReset />,
+                <CSSReset />
               </React.StrictMode>
             </ChakraProvider>
           </SocketProvider>
