@@ -2,7 +2,7 @@
 
 function openingScreen() {
   describe("Getting to opening screen", () => {
-    it("should show callback cats log in page of app", () => {
+    it("should show EngageMate log in page of app", () => {
       cy.visit("http://localhost:3000");
       cy.wait(1500);
     });
