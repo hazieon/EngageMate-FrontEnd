@@ -11,7 +11,7 @@ import {
   Collapse,
   useDisclosure,
 } from "@chakra-ui/react";
-import CustomButton from "../../components/button";
+import CustomButton from "../button";
 import { ArrowBackIcon } from "@chakra-ui/icons";
 import { MdUpdate, MdStop, MdPeople } from "react-icons/md";
 import Thumb from "../thumb";
@@ -36,11 +36,6 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
     if (e.target.value === "custom") {
       setCustom(true);
     }
-    //else {
-    //   let customQ = prompt("whats your question?");
-    //   setQuestion(customQ);
-    //   console.log({ question });
-    // }
   }
 
   function handleTimer(e) {
