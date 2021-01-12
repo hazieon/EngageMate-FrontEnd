@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import LogoutButton from "../logout/index";
 import { Box, Flex, Text, useColorModeValue } from "@chakra-ui/react";
 import ThemeToggler from "../theme";
@@ -36,14 +36,18 @@ const Header = () => {
             ? coachMenuItems.map((item) => {
                 return (
                   <MenuItems key={item.value}>
-                    <Link to={item.link}>{item.value}</Link>
+                    <NavLink activeClassName={styles.active} to={item.link}>
+                      {item.value}
+                    </NavLink>
                   </MenuItems>
                 );
               })
             : menuItems.map((item) => {
                 return (
                   <MenuItems key={item.value}>
-                    <Link to={item.link}>{item.value}</Link>
+                    <NavLink activeClassName={styles.active} to={item.link}>
+                      {item.value}
+                    </NavLink>
                   </MenuItems>
                 );
               })}

@@ -7,6 +7,7 @@ import SessionTable from "../../components/sessionTable";
 import BackToHome from "../back-home";
 import { createStandaloneToast } from "@chakra-ui/react";
 import useRoleContext from "../../context/roleContext";
+import Excel from "../../components/excel/excel";
 import { config } from "../../config";
 import {
   Accordion,
@@ -137,6 +138,18 @@ const Admin = () => {
                   updatePage={updatePage}
                   setUpdatePage={setUpdatePage}
                 />
+              </AccordionPanel>
+            </AccordionItem>
+
+            <AccordionItem>
+              <AccordionButton>
+                <Box flex="1" textAlign="left">
+                  Add Multiple Users
+                </Box>
+                <AccordionIcon />
+              </AccordionButton>
+              <AccordionPanel pb={4}>
+                <Excel />
               </AccordionPanel>
             </AccordionItem>
 
