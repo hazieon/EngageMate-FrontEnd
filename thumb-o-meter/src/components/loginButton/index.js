@@ -11,7 +11,7 @@ const LoginButton = () => {
       <Box className={styles.container}>
         <VStack>
           <Box className={styles.box}>
-            <Heading>Callback Cats</Heading>
+            <Heading>Engagemate</Heading>
           </Box>
           <Center className={styles.loginButton}>
             <Button variant="ghost" onClick={() => loginWithRedirect()}>
