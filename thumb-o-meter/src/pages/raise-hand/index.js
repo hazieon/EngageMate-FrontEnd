@@ -22,9 +22,9 @@ const RaiseHand = () => {
           <Center>
             <h1 className={styles.heading}>Raise Hand</h1>
           </Center>
-          <Center className={styles.backButton}>
+          {/* <Center className={styles.backButton}>
             <CustomButton link="/" icon={<ArrowBackIcon />} text={"Back"} />
-          </Center>
+          </Center> */}
           <Center>
             {role === "coach" && <SkHand />}
             {role === "bootcamper" && <PtHand />}

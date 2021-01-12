@@ -2,21 +2,18 @@ import React, { useState, useEffect } from "react";
 import styles from "./index.module.css";
 import useSocketContext from "../../context/socketContext";
 import useRoleContext from "../../context/roleContext";
-import { useAuth0 } from "@auth0/auth0-react";
 import Hand from "../hand";
-import { createStandaloneToast } from "@chakra-ui/react";
+import { createStandaloneToast, HStack } from "@chakra-ui/react";
 import Push from "push.js";
+import CustomButton from "../button";
+import { ArrowBackIcon, CloseIcon } from "@chakra-ui/icons";
 
-function SkHand({ usersList, handUsers }) {
+function SkHand() {
   //when hand is raised, server adds them to a list of raised hands - name, pic
-  const { user } = useAuth0();
-  const [users, setUsers] = useState();
-  const [hands, setHands] = useState([]);
-  const [myColor, setMyColor] = useState("#2C276B");
+  const [hands, setHands] = useState([{ name: "", topic: "No Hands Raised" }]);
   //const [handsRaised, setHandsRaised] = useState([]);
   const context = useSocketContext();
   const result = useRoleContext();
-  const role = result[0];
   const socket = context[0];
   const loggedUser = result[2];
   const name = loggedUser?.given_name;
@@ -112,14 +109,35 @@ function SkHand({ usersList, handUsers }) {
       {/* renders a box section which contains the ordered list of users with raised hands */}
       <section className={styles.handsList}>
         {hands.map((h, i) => (
-          <ul key={i}>
-            <li className={styles.handRaise}>
-              {h.name ? h.name : "Guest"}: {h.topic}
-              <button onClick={() => removeHand(i, h.id)}>✖</button>
-            </li>
-          </ul>
+          <div>
+            <ul key={i}>
+              <li className={styles.handRaise}>
+                {h.name ? h.name : "Guest"}: {h.topic}
+                <button
+                  className={styles.myBtn}
+                  onClick={() => removeHand(i, h.id)}
+                >
+                  <CloseIcon
+                    //style={{ color: "white", width: "1rem", height: "1rem" }}
+                    className={styles.myBtn}
+                  />
+                </button>
+              </li>
+            </ul>
+          </div>
         ))}
       </section>
+      <HStack className={styles.box}>
+        {hands.map((h, i) => (
+          <img src={h.picture} alt={name} className={styles.picture} />
+        ))}
+      </HStack>
+      <CustomButton
+        className={styles.backButton}
+        link="/"
+        icon={<ArrowBackIcon />}
+        text={"Back"}
+      />
     </div>
   );
 }
