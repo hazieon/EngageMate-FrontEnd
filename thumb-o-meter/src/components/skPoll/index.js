@@ -3,14 +3,16 @@ import style from "./index.module.css";
 import { Input, Select, Stack, HStack, Button } from "@chakra-ui/react";
 import { v4 as uuidv4 } from "uuid";
 import useSocketContext from "../../context/socketContext";
+import SkPollResults from "../skPollResults";
 
 function SkPoll() {
   const [question, setQuestion] = useState("Set Custom Question");
   const [custom, setCustom] = useState(false);
   const [myColor] = useState("#2C276B");
   const [value, setValue] = useState(0);
-  const [optionData, setOptionData] = useState({});
+  const [optionData, setOptionData] = useState([]);
   const [resultsObj, setResultsObj] = useState({});
+  const [pollStarted, setPollStarted] = useState(false);
 
   const context = useSocketContext();
   const socket = context[0];
@@ -39,13 +41,18 @@ function SkPoll() {
           id={`option ${i + 1}`}
           onChange={handleOptions}
         ></Input>
-        <input type="radio" name="correctButton" value={`${i + 1}`} />
+        <input
+          type="radio"
+          name="correctButton"
+          value={`${i + 1}`}
+          className={style.radio}
+        />
       </div>
     );
   }
 
   function handleOptions(e) {
-    setOptionData({ ...optionData, [e.target.id]: e.target.value });
+    setOptionData([...optionData, { [e.target.id]: e.target.value }]);
   }
 
   function remove() {
@@ -59,7 +66,7 @@ function SkPoll() {
     const correct = e.target.elements.correctButton.value;
     const obj = {
       question,
-      ...optionData,
+      options: [...optionData],
       correctAnswer: correct,
       uuid: uuidv4(),
     };
@@ -80,55 +87,61 @@ function SkPoll() {
 
   function startPoll(data) {
     socket.emit("pollStart", { data });
-    console.log("Poll started - Data sent to server");
+    setPollStarted(true);
+    console.log("Poll started - Data sent to server", { data });
   }
 
   function stopPoll() {
     socket.emit("sessionStop");
+    setPollStarted(false);
     console.log("Speaker has ended poll");
   }
 
   return (
-    <div className={style.container} style={{ backgroundColor: myColor }}>
-      {/* <h1>The Question Here</h1> */}
-      <form onSubmit={handleSubmit}>
-        <Select
-          placeholder="Select a question"
-          onChange={handleSession}
-          className={style.select}
-        >
-          <option value="Which one is the odd one out?">
-            Which one is the odd one out?
-          </option>
-          <option value="custom">Set a custom question</option>
-        </Select>
-        <Input
-          focusBorderColor="lime"
-          className={style.borderColor}
-          style={
-            custom
-              ? {
-                  display: "block",
-                  textAlign: "center",
-                  borderColor: "grey",
-                }
-              : { display: "none" }
-          }
-          placeholder="set custom question..."
-          type="text"
-          onChange={(e) => setQuestion(e.target.value)}
-        />
-        <Stack className="optionsInput">{arr}</Stack>
-        <HStack>
-          {value < 4 ? (
-            <Button onClick={() => setValue(value + 1)}>:pencil2:</Button>
-          ) : (
-            ""
-          )}
-          <Button onClick={remove}>:wastebasket:</Button>
-          <Button type="submit">Submit</Button>
-        </HStack>
-      </form>
+    <div>
+      {!pollStarted && (
+        <div className={style.container} style={{ backgroundColor: myColor }}>
+          <form onSubmit={handleSubmit}>
+            <Select
+              placeholder="Select a question"
+              onChange={handleSession}
+              className={style.select}
+            >
+              <option value="Which one is the odd one out?">
+                Which one is the odd one out?
+              </option>
+              <option value="custom">Set a custom question</option>
+            </Select>
+            <Input
+              focusBorderColor="lime"
+              className={style.borderColor}
+              style={
+                custom
+                  ? {
+                      display: "block",
+                      textAlign: "center",
+                      borderColor: "grey",
+                    }
+                  : { display: "none" }
+              }
+              placeholder="set custom question..."
+              type="text"
+              onChange={(e) => setQuestion(e.target.value)}
+            />
+            <Stack className="optionsInput">{arr}</Stack>
+            <HStack>
+              {value < 4 ? (
+                <Button onClick={() => setValue(value + 1)}>:pencil2:</Button>
+              ) : (
+                ""
+              )}
+              <Button onClick={remove}>:wastebasket:</Button>
+              <Button type="submit">Submit</Button>
+            </HStack>
+          </form>
+        </div>
+      )}
+      {pollStarted && <SkPollResults data={resultsObj} stopPoll={stopPoll} />}
     </div>
   );
 }
