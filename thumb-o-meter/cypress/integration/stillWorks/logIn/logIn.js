@@ -6,7 +6,7 @@ function logIn(email, password) {
       cy.wait(1000);
       cy.get("h2")
         .should("have.class", "chakra-heading css-zey6tx")
-        .contains("Engagemate");
+        .contains("EngageMate");
       cy.get("button")
         .should("have.class", "chakra-button css-q6vfdv")
         .contains("Log In");
