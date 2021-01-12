@@ -10,6 +10,7 @@ import Push from "push.js";
 function PtHand() {
   const [myColor, setMyColor] = useState("#2C276B");
   const [isRaised, setIsRaised] = useState(false);
+  const [disabled, setDisabled] = useState(false);
   const [topic, setTopic] = useState("");
   const context = useSocketContext();
   const socket = context[0];
@@ -54,7 +55,9 @@ function PtHand() {
     setTopic(value);
     console.log(topic);
   }
-
+  function handleClick() {
+    setTopic("");
+  }
   return (
     <div className={style.container} style={{ backgroundColor: myColor }}>
       <Subheading
@@ -65,8 +68,9 @@ function PtHand() {
         setIsRaised={setIsRaised}
         raiseHand={raiseHand}
         lowerHand={lowerHand}
+        handleClick={handleClick}
       />
-      <Input onChange={(e) => handleChange(e.target.value)} />
+      <Input value={topic} onChange={(e) => handleChange(e.target.value)} />
     </div>
   );
 }

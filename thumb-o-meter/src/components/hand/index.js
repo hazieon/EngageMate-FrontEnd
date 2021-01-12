@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./hand.module.css";
 
-function Hand({ isRaised, setIsRaised, raiseHand, lowerHand }) {
+function Hand({ isRaised, setIsRaised, raiseHand, lowerHand, handleClick }) {
   return (
     <div
       onClick={() => {
@@ -9,6 +9,7 @@ function Hand({ isRaised, setIsRaised, raiseHand, lowerHand }) {
           lowerHand();
         } else {
           raiseHand();
+          handleClick();
         }
         setIsRaised(!isRaised);
       }}

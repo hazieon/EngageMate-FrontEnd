@@ -17,6 +17,7 @@ const { url } = config;
 
 const Thumbometer = () => {
   // const [speakerView, setSpeakerView] = useState();
+
   const [data, setData] = useState({});
   const [time, setTime] = useState(0);
   const [count, setCount] = useState(0);

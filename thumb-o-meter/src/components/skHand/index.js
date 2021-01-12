@@ -7,7 +7,6 @@ import Hand from "../hand";
 import { createStandaloneToast } from "@chakra-ui/react";
 import Push from "push.js";
 
-
 function SkHand({ usersList, handUsers }) {
   //when hand is raised, server adds them to a list of raised hands - name, pic
   const { user } = useAuth0();
@@ -29,12 +28,11 @@ function SkHand({ usersList, handUsers }) {
       body: `${handData.topic}`,
       icon: "/raisehand.png",
       timeout: 4000,
-      onClick: function () {
+      onClick: function() {
         window.focus();
         this.close();
       },
     });
-
 
     notificationToast(handData);
   }
@@ -62,7 +60,6 @@ function SkHand({ usersList, handUsers }) {
     });
   }
 
-
   useEffect(() => {
     socket.emit("raisehandroom", {
       name: name,
@@ -82,12 +79,20 @@ function SkHand({ usersList, handUsers }) {
       }
     };
 
+    const lowerHandler = ({ handRaiseData }) => {
+      // setHandsRaised(handRaiseSubmissions);
+      console.log("hand raised info received");
+      //setHands(handRaiseData);
+      handleSetHands(handRaiseData);
+    };
     socket.on("handRaiseInfo", handler);
+    socket.on("lowerHandRaiseInfo", lowerHandler);
 
     return () => {
       socket.emit("leaveRaiseHand");
       console.log("user left room");
       socket.off("handRaiseInfo", handler);
+      socket.off("lowerHandRaiseInfo", lowerHandler);
     };
   }, []);
 
@@ -96,11 +101,7 @@ function SkHand({ usersList, handUsers }) {
   }
 
   return (
-    <div
-      className={styles.container}
-      style={{ backgroundColor: "#2C276B" }}
-      
-    >
+    <div className={styles.container} style={{ backgroundColor: "#2C276B" }}>
       <div className={styles.notifySpot}>
         <p className={hands.length > 0 ? styles.notify : styles.noNotify}>
           {hands.length}
@@ -113,7 +114,7 @@ function SkHand({ usersList, handUsers }) {
         {hands.map((h, i) => (
           <ul key={i}>
             <li className={styles.handRaise}>
-              {h.name} {h.topic}
+              {h.name ? h.name : "Guest"}: {h.topic}
               <button onClick={() => removeHand(i, h.id)}>✖</button>
             </li>
           </ul>

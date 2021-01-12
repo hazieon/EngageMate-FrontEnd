@@ -75,7 +75,7 @@ const Authorised = () => {
             {role === "bootcamper" && <PThumbometer />} */}
             <Thumbometer />
           </Route>
-          <Route path="/">
+          <Route exact path="/">
             {role === "unauthorised" ? (
               <Unauthorised />
             ) : (
