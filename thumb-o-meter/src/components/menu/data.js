@@ -14,6 +14,7 @@ const features = [
     heading: "Thumb-o-meter",
     subheading: "Hows it going?",
     myClass: "myIcon thumb",
+    id: "theThumb",
   },
   {
     alt: "raisehand",
@@ -22,6 +23,7 @@ const features = [
     icon: { FaHandPaper },
     heading: "Raise a Hand",
     myClass: "hand",
+    id: "theHand",
   },
 
   {
@@ -31,6 +33,7 @@ const features = [
     icon: { FaQuestionCircle },
     heading: "Live Quiz",
     myClass: "myIcon quiz",
+    id: "theQuiz",
   },
 ];
 
@@ -43,6 +46,7 @@ const coachFeatures = [
     heading: "Thumb-o-meter",
     subheading: "Hows it going?",
     myClass: "myIcon thumb",
+    id: "theThumb",
   },
   {
     alt: "raisehand",
@@ -51,6 +55,7 @@ const coachFeatures = [
     icon: { FaHandPaper },
     heading: "Raise a Hand",
     myClass: "myIcon hand",
+    id: "theHand",
   },
 
   {
@@ -60,6 +65,7 @@ const coachFeatures = [
     icon: { FaQuestionCircle },
     heading: "Live Quiz",
     myClass: "myIcon quiz",
+    id: "theQuiz",
   },
   {
     alt: "djDeck",
@@ -68,6 +74,7 @@ const coachFeatures = [
     icon: { FaMusic },
     heading: "DJ Deck",
     myClass: "myIcon deck",
+    id: "theDeck",
   },
 ];
 

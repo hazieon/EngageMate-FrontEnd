@@ -23,6 +23,7 @@ const Menu = () => {
                       icon={item.icon}
                       heading={item.heading}
                       myClass={item.myClass}
+                      id={item.id}
                     />
                   </section>
                 );
@@ -37,6 +38,7 @@ const Menu = () => {
                       icon={item.icon}
                       heading={item.heading}
                       myClass={item.myClass}
+                      id={item.id}
                     />
                   </section>
                 );
