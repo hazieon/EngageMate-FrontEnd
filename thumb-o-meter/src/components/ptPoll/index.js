@@ -11,7 +11,7 @@ import {
 
 function PtPoll({ data }) {
   const [myColor, setMyColor] = useState("#2C276B");
-  const [session, setSession] = useState(false);
+  const [session, setSession] = useState(true);
   const [results, setResults] = useState(true);
 
   //hardcoded example resultsData, needs to take in from real data
@@ -21,6 +21,9 @@ function PtPoll({ data }) {
     option3: 40,
     option4: 10,
   };
+
+  //results update
+  //session stop
 
   function sessionResults() {
     //sets the results state to be the results data as sent in
