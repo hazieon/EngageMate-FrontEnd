@@ -1,5 +1,4 @@
 .container {
-  max-width: 1150px;
   height: 100%;
   margin: 0 auto;
   padding: 25px;
@@ -13,7 +12,6 @@
 
 /* Players flex container */
 .players {
-  max-width: 1200px;
   margin: 0px auto;
   display: flex;
   flex-flow: row wrap;

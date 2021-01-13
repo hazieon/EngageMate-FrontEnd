@@ -4,7 +4,7 @@ import styles from "./index.module.css";
 import PtView from "../../components/ptView";
 import SkView from "../../components/skView";
 
-import { createStandaloneToast, LightMode } from "@chakra-ui/react";
+import { createStandaloneToast, LightMode, Text } from "@chakra-ui/react";
 import useRoleContext from "../../context/roleContext";
 
 import { Flex, Box, Center, useColorModeValue } from "@chakra-ui/react";
@@ -22,7 +22,7 @@ const Thumbometer = () => {
   const [time, setTime] = useState(0);
   const [count, setCount] = useState(0);
   const bg = useColorModeValue("white", "#110042");
-  const color = useColorModeValue("white", "white");
+  const color = useColorModeValue("#110042", "white");
   const context = useSocketContext();
   const socket = context[0];
   console.log(socket);
@@ -149,7 +149,9 @@ const Thumbometer = () => {
       <Box className={styles.container} bg={bg} color={color} w="100%">
         <NavBar />
         <Center>
-          <h1 className={styles.heading}>Thumb-O-Meter</h1>
+          <Text color={color} className={styles.heading}>
+            Thumbometer
+          </Text>
         </Center>
 
         <Center>

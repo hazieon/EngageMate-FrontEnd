@@ -3,9 +3,8 @@ import styles from "./index.module.css";
 import useSocketContext from "../../context/socketContext";
 import useRoleContext from "../../context/roleContext";
 import Hand from "../hand";
-import { createStandaloneToast, HStack } from "@chakra-ui/react";
+import { createStandaloneToast, HStack, Button } from "@chakra-ui/react";
 import Push from "push.js";
-import CustomButton from "../button";
 import { ArrowBackIcon, CloseIcon } from "@chakra-ui/icons";
 
 function SkHand() {
@@ -132,12 +131,16 @@ function SkHand() {
           <img src={h.picture} alt={name} className={styles.picture} />
         ))}
       </HStack>
-      <CustomButton
-        className={styles.backButton}
-        link="/"
-        icon={<ArrowBackIcon />}
-        text={"Back"}
-      />
+      <Button
+        colorScheme="white"
+        _hover={{
+          background: "white",
+          color: "#2C276B",
+        }}
+        variant="outline"
+      >
+        <ArrowBackIcon /> Back
+      </Button>
     </div>
   );
 }

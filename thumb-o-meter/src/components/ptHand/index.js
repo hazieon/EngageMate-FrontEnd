@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Hand from "../hand";
 import Subheading from "../../components/subheading";
-import { Input } from "@chakra-ui/react";
+import { Input, Button } from "@chakra-ui/react";
 import style from "./ptHand.module.css";
 import useSocketContext from "../../context/socketContext";
 import useRoleContext from "../../context/roleContext";
-import Push from "push.js";
-
+import { ArrowBackIcon } from "@chakra-ui/icons";
 function PtHand() {
   const [myColor, setMyColor] = useState("#2C276B");
   const [isRaised, setIsRaised] = useState(false);
@@ -71,6 +70,16 @@ function PtHand() {
         handleClick={handleClick}
       />
       <Input value={topic} onChange={(e) => handleChange(e.target.value)} />
+      <br />
+      <Button
+        _hover={{
+          background: "white",
+          color: "#2C276B",
+        }}
+        variant="outline"
+      >
+        <ArrowBackIcon /> Back
+      </Button>
     </div>
   );
 }
