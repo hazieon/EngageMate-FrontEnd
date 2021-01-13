@@ -4,7 +4,7 @@ import checkingForThumbOMeterFeature from "./featureMenu/checkingThumb/checkThum
 
 import checkingForHandFeature from "./featureMenu/checkingHand/checkHand";
 import checkingForQuizFeature from "./featureMenu/checkingQuiz/checkQuiz";
-import speakerThumbSession from "./speakerThumb/speakerThumb";
+import speakerThumbSession from "./speaker/speakerThumb/speakerThumb";
 import backButton from "./backButton/backButton";
 import logOut from "./logOut/logOut";
 
