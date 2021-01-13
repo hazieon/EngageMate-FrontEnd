@@ -4,7 +4,8 @@ import { Button, Progress, Stack, LightMode } from "@chakra-ui/react";
 
 function SkPollResults({ data, stopPoll, socket }) {
   function calculateProgressBar(option) {
-    return 50;
+    const totalVotes = data.options.reduce((acc, curr) => acc + curr[2], 0);
+    return (option[2] / totalVotes) * 100;
   }
 
   useEffect(() => {
@@ -32,7 +33,7 @@ function SkPollResults({ data, stopPoll, socket }) {
                 </p>
                 <Progress
                   colorScheme="pink"
-                  value={calculateProgressBar(option)}
+                  value={calculateProgressBar(option) || 0}
                 />
               </div>
             );

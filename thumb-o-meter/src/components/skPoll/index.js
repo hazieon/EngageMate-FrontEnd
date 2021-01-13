@@ -20,7 +20,7 @@ function SkPoll() {
   useEffect(() => {
     socket.on("resultsUpdate", (obj) => {
       console.log("Results update received");
-      setResultsObj(() => obj);
+      updateResultsObj(obj);
     });
 
     socket.on("pollStart", ({ data }) => {
@@ -31,7 +31,12 @@ function SkPoll() {
       socket.off("resultsUpdate");
       socket.off("pollStart");
     };
-  }, [pollStarted]);
+  }, []);
+
+  function updateResultsObj(obj) {
+    console.log("Results update received", obj);
+    setResultsObj(obj.data);
+  }
 
   const arr = [];
   for (let i = 0; i < value; i++) {
