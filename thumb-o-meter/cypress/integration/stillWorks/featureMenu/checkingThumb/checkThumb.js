@@ -8,7 +8,7 @@ function checkingForThumbOMeterFeature() {
         .eq(0)
         .find("p")
         .should("have.id", "theThumb")
-        .contains("Thumb-o-meter");
+        .contains("Thumbometer");
     });
   });
 
