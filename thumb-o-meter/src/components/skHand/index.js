@@ -12,8 +12,9 @@ function SkHand() {
   const [hands, setHands] = useState([{ name: "", topic: "No Hands Raised" }]);
   //const [handsRaised, setHandsRaised] = useState([]);
   const context = useSocketContext();
-  const result = useRoleContext();
   const socket = context[0];
+  const result = useRoleContext();
+
   const loggedUser = result[2];
   const name = loggedUser?.given_name;
 

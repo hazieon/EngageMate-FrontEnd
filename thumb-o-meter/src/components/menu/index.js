@@ -2,6 +2,7 @@ import React from "react";
 import FeatureIcon from "../featureIcons";
 import styles from "./menu.module.css";
 import useRoleContext from "../../context/roleContext";
+import HandNotify from "../notify";
 import { features, coachFeatures } from "./data";
 
 const Menu = () => {
@@ -24,6 +25,7 @@ const Menu = () => {
                       myClass={item.myClass}
                       id={item.id}
                     />
+                    <HandNotify />
                   </section>
                 );
               })
