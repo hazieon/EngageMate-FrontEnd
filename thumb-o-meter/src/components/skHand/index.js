@@ -88,8 +88,8 @@ function SkHand() {
     return () => {
       socket.emit("leaveRaiseHand");
       console.log("user left room");
-      socket.off("handRaiseInfo", handler);
-      socket.off("lowerHandRaiseInfo", lowerHandler);
+      socket.off("handRaiseInfo");
+      socket.off("lowerHandRaiseInfo");
     };
   }, []);
 

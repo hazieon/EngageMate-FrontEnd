@@ -10,12 +10,15 @@
   margin: 1.5rem 1.5rem;
 }
 
+.button {
+  padding: 20px;
+  margin: 10px;
+  width: 50px;
+}
+
 .buttons {
   display: flex;
-  width: 90%;
-  justify-content: space-between;
   align-items: center;
-  margin-top: 20px;
 }
 
 .select {
@@ -62,13 +65,18 @@
     width: 500px;
   }
 
-  .buttons {
-    width: 60%;
+  .button {
+    padding: 20px;
+    margin: 10px;
   }
 }
 
 @media only screen and (min-width: 1280px) {
   .container {
     width: 700px;
+  }
+  .button {
+    padding: 20px;
+    margin: 10px;
   }
 }

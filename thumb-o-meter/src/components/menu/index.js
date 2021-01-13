@@ -5,6 +5,7 @@ import useRoleContext from "../../context/roleContext";
 import useSocketContext from "../../context/socketContext";
 import HandNotify from "../notify";
 import { features, coachFeatures } from "./data";
+import { Box } from "@chakra-ui/react";
 
 const Menu = () => {
   const result = useRoleContext();
@@ -35,6 +36,7 @@ const Menu = () => {
                       heading={item.heading}
                       myClass={item.myClass}
                       id={item.id}
+                      notify={<HandNotify />}
                     />
                   </section>
                 );
@@ -54,7 +56,10 @@ const Menu = () => {
                   </section>
                 );
               })}
-          <HandNotify />
+          <Box className={styles.notify}>
+            {" "}
+            <HandNotify />
+          </Box>
         </div>
       </div>
     </>

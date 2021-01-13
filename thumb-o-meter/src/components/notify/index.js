@@ -18,10 +18,10 @@ const HandNotify = () => {
     socket.on("handRaiseInfo", handler);
     socket.on("lowerHandRaiseInfo", lowerHandler);
 
-    // return () => {
-    //   socket.off("handRaiseInfo", handler);
-    //   socket.off("lowerHandRaiseInfo", lowerHandler);
-    // };
+    return () => {
+      socket.off("handRaiseInfo");
+      socket.off("lowerHandRaiseInfo");
+    };
   }, []);
 
   function handleSetHands(data) {
