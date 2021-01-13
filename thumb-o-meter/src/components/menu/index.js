@@ -1,13 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import FeatureIcon from "../featureIcons";
 import styles from "./menu.module.css";
 import useRoleContext from "../../context/roleContext";
+import useSocketContext from "../../context/socketContext";
 import HandNotify from "../notify";
 import { features, coachFeatures } from "./data";
 
 const Menu = () => {
   const result = useRoleContext();
   const role = result[0];
+  const context = useSocketContext();
+  const socket = context[0];
+  const loggedUser = result[2];
+  const name = loggedUser?.given_name;
+  useEffect(() => {
+    socket.emit("mainmenuroom", {
+      name: name,
+      room: "mainmenu",
+    });
+  }, []);
   return (
     <>
       <div className={styles.container}>
@@ -25,7 +36,6 @@ const Menu = () => {
                       myClass={item.myClass}
                       id={item.id}
                     />
-                    <HandNotify />
                   </section>
                 );
               })
@@ -44,6 +54,7 @@ const Menu = () => {
                   </section>
                 );
               })}
+          <HandNotify />
         </div>
       </div>
     </>
