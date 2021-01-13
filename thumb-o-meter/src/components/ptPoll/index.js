@@ -89,7 +89,7 @@ function PtPoll() {
       // setResultsData((resultsData) => data);
       // console.log({ resultsData });
 
-      dispatch({ type: "setResults", data: data, view: "results" });
+      dispatch({ type: "setResults", data: data });
     });
 
     return () => {
@@ -105,7 +105,7 @@ function PtPoll() {
     if (choice !== "") {
       socket.emit("vote", { data: choice });
       // setResults((results) => true);
-
+      dispatch({ type: "setResults", view: "results" });
       dispatch({ type: "choice", data: choice });
       console.log("vote submitted", choice);
     }
