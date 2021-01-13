@@ -1,15 +1,13 @@
 import React from "react";
 import NavBar from "../../components/navBar";
 import PtHand from "../../components/ptHand";
-
+import Title from "../../components/heading";
 import useRoleContext from "../../context/roleContext";
 import SkHand from "../../components/skHand";
-import { Flex, Box, Center, useColorModeValue, Text } from "@chakra-ui/react";
+import { Flex, Box, Center, Text } from "@chakra-ui/react";
 import styles from "./index.module.css";
 
-const RaiseHand = () => {
-  const bg = useColorModeValue("white", "#110042");
-  const color = useColorModeValue("#110042", "white");
+const RaiseHand = ({ bg, color }) => {
   const result = useRoleContext();
   const role = result[0];
   console.log(role);
@@ -19,7 +17,10 @@ const RaiseHand = () => {
         <main>
           <NavBar />
           <Center>
-            <Text className={styles.heading}>Raise Hand</Text>
+            <Text className={"player animate__animated animate__heartBeat"}>
+              {" "}
+              <Title text="Raise Hand" />
+            </Text>
           </Center>
           {/* <Center className={styles.backButton}>
             <CustomButton link="/" icon={<ArrowBackIcon />} text={"Back"} />

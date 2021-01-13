@@ -92,7 +92,10 @@ function PtPoll() {
   //percentage results of each optiong
 
   return (
-    <div className={style.container} style={{ backgroundColor: myColor }}>
+    <div
+      className={style.container}
+      style={{ backgroundColor: myColor, color: "white" }}
+    >
       {session ? (
         <div>
           {questionData.options.map((o, i) => {
@@ -135,7 +138,13 @@ function PtPoll() {
         <h2 className={style.resultsNone}>Results pending</h2>
       )}
 
-      <Button onClick={() => submitVote()}>Submit ➡</Button>
+      <Button
+        style={{ color: "white" }}
+        colorScheme=""
+        onClick={() => submitVote()}
+      >
+        Submit ➡
+      </Button>
     </div>
   );
 }
