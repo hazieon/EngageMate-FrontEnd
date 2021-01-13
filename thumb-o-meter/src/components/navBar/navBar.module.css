@@ -35,6 +35,10 @@
   border-bottom: 1px solid white;
   transition: border-bottom 2s ease-in-out;
 }
+.raise {
+  margin-top: 16px;
+  margin-left: 5px;
+}
 
 .light_active {
   border-bottom: 1px solid #110042;

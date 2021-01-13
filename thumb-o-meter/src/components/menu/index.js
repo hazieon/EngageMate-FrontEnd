@@ -7,7 +7,7 @@ import HandNotify from "../notify";
 import { features, coachFeatures } from "./data";
 import { Box } from "@chakra-ui/react";
 
-const Menu = () => {
+const Menu = ({ bg, color }) => {
   const result = useRoleContext();
   const role = result[0];
   const context = useSocketContext();
@@ -56,10 +56,12 @@ const Menu = () => {
                   </section>
                 );
               })}
-          <Box className={styles.notify}>
-            {" "}
-            <HandNotify />
-          </Box>
+          {role === "coach" && (
+            <Box className={styles.notify}>
+              {" "}
+              <HandNotify />
+            </Box>
+          )}
         </div>
       </div>
     </>

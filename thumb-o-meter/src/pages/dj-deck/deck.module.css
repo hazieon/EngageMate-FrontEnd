@@ -9,7 +9,9 @@
   margin-top: 100px auto;
   font-size: 2.5em;
 }
-
+.heading {
+  margin: 10px;
+}
 /* Players flex container */
 .players {
   margin: 0px auto;

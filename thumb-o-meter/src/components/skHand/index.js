@@ -6,7 +6,7 @@ import Hand from "../hand";
 import { createStandaloneToast, HStack, Button } from "@chakra-ui/react";
 import Push from "push.js";
 import { ArrowBackIcon, CloseIcon } from "@chakra-ui/icons";
-
+import { Link } from "react-router-dom";
 function SkHand() {
   //when hand is raised, server adds them to a list of raised hands - name, pic
   const [hands, setHands] = useState([{ name: "", topic: "No Hands Raised" }]);
@@ -135,16 +135,18 @@ function SkHand() {
           <img src={h.picture} alt={name} className={styles.picture} />
         ))}
       </HStack>
-      <Button
-        colorScheme="white"
-        _hover={{
-          background: "white",
-          color: "#2C276B",
-        }}
-        variant="outline"
-      >
-        <ArrowBackIcon /> Back
-      </Button>
+      <Link to="/">
+        {" "}
+        <Button
+          _hover={{
+            background: "white",
+            color: "#2C276B",
+          }}
+          variant="outline"
+        >
+          <ArrowBackIcon /> Back
+        </Button>
+      </Link>
     </div>
   );
 }

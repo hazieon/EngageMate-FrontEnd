@@ -3,7 +3,7 @@ import { HStack, Button, Input, Center } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import styles from "./footer.module.css";
 import useRoleContext from "../../context/roleContext";
-const Footer = () => {
+const Footer = ({ bg, color }) => {
   const [joke, setJoke] = useState("");
   const [value, setValue] = useState("");
   const [advice, setAdvice] = useState([[]]);

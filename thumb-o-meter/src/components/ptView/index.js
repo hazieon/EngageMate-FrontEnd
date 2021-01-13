@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import style from "./index.module.css";
 import Thumb from "../thumb";
-
+import { Link } from "react-router-dom";
 import { ArrowBackIcon } from "@chakra-ui/icons";
 import {
   Slider,
@@ -79,15 +79,18 @@ function PtView({ data, submit, time, count }) {
         <p className={style.count}>{count}</p>
       </p>
 
-      <Button
-        _hover={{
-          background: "white",
-          color: "#2C276B",
-        }}
-        variant="outline"
-      >
-        <ArrowBackIcon /> Back
-      </Button>
+      <Link to="/">
+        {" "}
+        <Button
+          _hover={{
+            background: "white",
+            color: "#2C276B",
+          }}
+          variant="outline"
+        >
+          <ArrowBackIcon /> Back
+        </Button>
+      </Link>
     </div>
   );
 }

@@ -4,7 +4,7 @@ import FeaturedMenu from "../../pages/featureMenu";
 import Unauthorised from "../unauthorised";
 import useRoleContext from "../../context/roleContext";
 import { config } from "../../config";
-
+import { useColorModeValue } from "@chakra-ui/react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Admin from "../../pages/admin";
 import Quiz from "../../pages/quiz";
@@ -18,6 +18,8 @@ import RaiseHand from "../../pages/raise-hand";
 
 const envUrl = config.url;
 const Authorised = () => {
+  const bg = useColorModeValue("white", "#110042");
+  const color = useColorModeValue("#110042", "white");
   const data = useRoleContext();
   const role = data[0];
   const setRole = data[1];
@@ -60,19 +62,15 @@ const Authorised = () => {
             <Unauthorised />
           </Route>
           <Route path="/raisehand">
-            {/* {role === "coach" && <SkHand />}
-            {role === "bootcamper" && <PtHand />} */}
-            <RaiseHand />
+            <RaiseHand bg={bg} color={color} />
           </Route>
           <Route path="/quiz">
-            <Quiz />
+            <Quiz bg={bg} color={color} />
           </Route>
           <Route path="/deck">
             <Deck user={user} />
           </Route>
           <Route path="/thumb">
-            {/* {role === "coach" && <SThumbometer />}
-            {role === "bootcamper" && <PThumbometer />} */}
             <Thumbometer />
           </Route>
           <Route exact path="/">
