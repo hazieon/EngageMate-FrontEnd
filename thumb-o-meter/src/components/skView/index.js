@@ -146,7 +146,7 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
       />
       <p className={style.throwaway}>
         <Tooltip
-          label="If selected this will be a throway option"
+          label="If selected this will be a throwaway option"
           fontSize="md"
         >
           <span>
