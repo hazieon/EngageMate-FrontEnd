@@ -3,14 +3,12 @@ import { HStack, Button, Input, Center } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import styles from "./footer.module.css";
 import useRoleContext from "../../context/roleContext";
-
 const Footer = () => {
   const [joke, setJoke] = useState("");
   const [value, setValue] = useState("");
   const [advice, setAdvice] = useState([[]]);
-  const [random, setRandom] = useState(
-    Math.floor(Math.random() * advice.length)
-  );
+
+  const [random, setRandom] = useState(Math.floor(Math.random() * 3));
   const result = useRoleContext();
   const role = result[0];
 
@@ -55,11 +53,14 @@ const Footer = () => {
           <Input
             value={value}
             onChange={handleChange}
-            placeholder="Here is a sample placeholder"
+            placeholder="Place your question here"
             size="sm"
           />
 
-          <Button onClick={() => setRandom(randomNumber)}>
+          <Button
+            style={{ width: "100%" }}
+            onClick={() => setRandom(randomNumber)}
+          >
             <a
               href={`https://google.co.uk#q=${value}`}
               target="_blank"
@@ -73,12 +74,11 @@ const Footer = () => {
     [value, advice.length]
   );
 
-
   let randomNumber = Math.floor(Math.random() * advice.length);
 
   return (
-    <>
-      <HStack justify="center">
+    <Center>
+      <HStack style={{ marginBottom: "30px" }}>
         <ul className={styles.footer}>
           {role === "coach" && (
             <>
@@ -99,13 +99,13 @@ const Footer = () => {
               </li>{" "}
             </>
           )}
-          {role === "bootcamper" && <li>{advice[random]}</li>}
+          {role === "bootcamper" && <li>{advice[randomNumber]}</li>}
         </ul>
       </HStack>
       <Center>
         <p>{joke}</p>
       </Center>
-    </>
+    </Center>
   );
 };
 

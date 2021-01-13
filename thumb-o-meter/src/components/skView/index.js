@@ -75,7 +75,10 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
   }, [data.outcome]);
 
   return (
-    <div className={style.container} style={{ backgroundColor: "#2C276B" }}>
+    <div
+      className={style.container}
+      style={{ backgroundColor: "#2C276B", color: "white" }}
+    >
       {/* <h1>The Question Here</h1> */}
       <Select
         placeholder="Select Question"

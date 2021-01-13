@@ -1,15 +1,14 @@
 .container {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 33px;
-  border: 5px black solid;
   background-color: "red";
-  width: 300px;
-  padding: 20px;
+  width: 425px;
+  padding: 3rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-  margin-top: 20px;
+  margin: 1.5rem 1.5rem;
 }
 .heading {
   font-size: 1.5rem;
