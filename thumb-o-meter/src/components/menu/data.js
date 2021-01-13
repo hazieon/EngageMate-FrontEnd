@@ -22,7 +22,7 @@ const features = [
     link: "/raisehand",
     icon: { FaHandPaper },
     heading: "Raise a Hand",
-    myClass: "hand",
+    myClass: " myIcon hand",
     id: "theHand",
   },
 

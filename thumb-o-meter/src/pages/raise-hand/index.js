@@ -1,16 +1,15 @@
 import React from "react";
 import NavBar from "../../components/navBar";
 import PtHand from "../../components/ptHand";
-import CustomButton from "../../components/button";
-import { ArrowBackIcon } from "@chakra-ui/icons";
+
 import useRoleContext from "../../context/roleContext";
 import SkHand from "../../components/skHand";
-import { Flex, Box, Center, useColorModeValue } from "@chakra-ui/react";
+import { Flex, Box, Center, useColorModeValue, Text } from "@chakra-ui/react";
 import styles from "./index.module.css";
 
 const RaiseHand = () => {
   const bg = useColorModeValue("white", "#110042");
-  const color = useColorModeValue("white", "white");
+  const color = useColorModeValue("#110042", "white");
   const result = useRoleContext();
   const role = result[0];
   console.log(role);
@@ -20,11 +19,11 @@ const RaiseHand = () => {
         <main>
           <NavBar />
           <Center>
-            <h1 className={styles.heading}>Raise Hand</h1>
+            <Text className={styles.heading}>Raise Hand</Text>
           </Center>
-          <Center className={styles.backButton}>
+          {/* <Center className={styles.backButton}>
             <CustomButton link="/" icon={<ArrowBackIcon />} text={"Back"} />
-          </Center>
+          </Center> */}
           <Center>
             {role === "coach" && <SkHand />}
             {role === "bootcamper" && <PtHand />}

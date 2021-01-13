@@ -4,7 +4,7 @@ import NavBar from "../../components/navBar";
 import Spotify from "../../components/spotify";
 import CustomButton from "../../components/button";
 import { ArrowBackIcon } from "@chakra-ui/icons";
-import { Box, useColorModeValue } from "@chakra-ui/react";
+import { Box, useColorModeValue, Button, Center } from "@chakra-ui/react";
 
 import style from "./deck.module.css";
 
@@ -18,19 +18,30 @@ const immutable = new Audio("immutable.mp3");
 const waving = new Audio("waving.mp3");
 const Deck = () => {
   const bg = useColorModeValue("white", "#110042");
-  const color = useColorModeValue("white", "white");
+  const color = useColorModeValue("#110042", "white");
   return (
     <Box bg={bg} color={color}>
       <NavBar />
-      <div>
-        <CustomButton link="/" icon={<ArrowBackIcon />} text={"Back"} />
-      </div>
+
       <div className={style.container}>
+        <Center>
+          <Button
+            colorScheme={color}
+            _hover={{
+              background: "white",
+              color: "#2C276B",
+            }}
+            variant="outline"
+          >
+            <ArrowBackIcon /> Back
+          </Button>
+        </Center>
         <div className={style.players}>
           <section
             style={{
               display: "flex",
               flexDirection: "column",
+              color: "white",
             }}
           >
             <div className={"player animate__animated animate__heartBeat"}>

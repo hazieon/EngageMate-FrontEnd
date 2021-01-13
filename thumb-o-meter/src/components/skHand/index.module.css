@@ -1,15 +1,14 @@
 .container {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 33px;
-  border: 5px black solid;
   background-color: "red";
-  width: 450px;
-  padding: 20px;
+  width: 425px;
+  padding: 3rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-  margin-top: 20px;
+  margin: 1.5rem 1.5rem;
 }
 .heading {
   font-size: 1.5rem;
@@ -23,25 +22,39 @@
 }
 
 .backButton {
-  margin: 1em;
+  margin-top: 2em;
 }
 .handsList {
   border: 2px solid slateblue;
   border-radius: 30px;
   padding: 2.5rem;
+  width: 95%;
+}
+ul {
+  list-style-type: none;
+  font-size: 0.9em;
 }
 
 .handRaise:hover {
   color: skyblue;
 }
-.notify {
-  font-family: "trebuchet ms";
-  position: absolute;
+
+.picture {
   background-color: greenyellow;
   border-radius: 80px;
-  padding: 1.1em;
-  left: 55vw;
-  top: 50vh;
+
+  width: 40px;
+  height: 40px;
+}
+.notify {
+  font-family: "trebuchet ms";
+  position: relative;
+  top: 6rem;
+  left: 5rem;
+  background-color: greenyellow;
+  border-radius: 80px;
+  padding: 0.5rem;
+
   color: black;
   text-align: center;
   font-weight: bold;
@@ -50,6 +63,43 @@
 }
 .noNotify {
   display: none;
+}
+.myBtn {
+  color: white;
+  margin-left: 0.3rem;
+  width: 0.5rem;
+  height: 0.5rem;
+  font-size: 1rem;
+}
+.box {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  margin: 1rem 0 1rem 2rem;
+}
+@media only screen and (min-width: 768px) {
+  .container {
+    width: 450px;
+  }
+
+  .buttons {
+    width: 60%;
+  }
+
+  ul {
+    list-style-type: none;
+    font-size: 1.2em;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  .container {
+    width: 700px;
+  }
+  ul {
+    list-style-type: none;
+    font-size: 1.5em;
+  }
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -66,7 +116,3 @@
     background-color: rgb(131, 223, 70);
   }
 }
-/* 
-ul {
-  list-style-image: url("raisehand.png");
-} */

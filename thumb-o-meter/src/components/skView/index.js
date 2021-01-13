@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import style from "./index.module.css";
-import { motion } from "framer-motion";
-import { animationOne, animationTwo } from "../../animations";
+import { Link } from "react-router-dom";
 import {
   Button,
   Icon,
@@ -20,7 +19,7 @@ import Timer from "../timer/index";
 function SkView({ data, startSession, endSession, count, time, setTime }) {
   const [question, setQuestion] = useState("Set Custom Question");
   const [timer, setTimer] = useState("Custom");
-  const [myColor, setMyColor] = useState("#2C276B");
+  const [myColor, setMyColor] = useState("#7f56f2");
   const [custom, setCustom] = useState(false);
   const [customTime, setCustomTime] = useState(false);
   const [throwaway, setThrowaway] = useState(false);
@@ -65,25 +64,20 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
 
   useEffect(() => {
     if (data.outcome === 0) {
-      setMyColor("#2C276B");
+      setMyColor("#7f56f2");
     } else if (data.outcome <= 33) {
       setMyColor("red");
     } else if (data.outcome > 33 && data.outcome <= 66) {
-      setMyColor("orange");
+      setMyColor("#f58142");
     } else if (data.outcome > 66 && data.outcome <= 100) {
       setMyColor("green");
     }
   }, [data.outcome]);
 
   return (
-    <motion.div
+    <div
       className={style.container}
-      style={{ backgroundColor: "#2C276B" }}
-      initial="out"
-      animate="in"
-      exit="out"
-      variants={animationOne}
-      transistion={{ duration: 3 }}
+      style={{ backgroundColor: "#2C276B", color: "white" }}
     >
       {/* <h1>The Question Here</h1> */}
       <Select
@@ -174,16 +168,12 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
           isDisabled={count > 0 ? true : false}
           onChange={() => setThrowaway(!throwaway)}
           colorScheme="green"
+          // style={{ backgroundColor: myColor }}
         />
       </p>
-      <Collapse
-        in={isOpen}
-        animateOpacity
-        className={style.valueInformation}
-        style={{ backgroundColor: myColor }}
-      >
+      <Collapse in={isOpen} animateOpacity className={style.valueInformation}>
         {" "}
-        <Thumb value={data.outcome} />
+        <Thumb value={data.outcome} myColor={myColor} />
         <p>
           Value: {data.outcome || "0"}%{" "}
           <span>
@@ -194,13 +184,19 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
         <Timer count={count} time={time} />
         <p className={style.count}>{count}</p>
       </Collapse>{" "}
-      <CustomButton
-        className={style.backButton}
-        link="/"
-        icon={<ArrowBackIcon />}
-        text={"Back"}
-      />
-    </motion.div>
+      <Link to="/">
+        {" "}
+        <Button
+          _hover={{
+            background: "white",
+            color: "#2C276B",
+          }}
+          variant="outline"
+        >
+          <ArrowBackIcon /> Back
+        </Button>
+      </Link>
+    </div>
   );
 }
 

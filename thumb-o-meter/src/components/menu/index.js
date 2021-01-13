@@ -3,7 +3,6 @@ import FeatureIcon from "../featureIcons";
 import styles from "./menu.module.css";
 import useRoleContext from "../../context/roleContext";
 import { features, coachFeatures } from "./data";
-import { animate } from "../../animations";
 
 const Menu = () => {
   const result = useRoleContext();

@@ -2,11 +2,11 @@
 
 function logIn(email, password) {
   describe("Log in app page", () => {
-    it("Get heading by class name and confirm has 'Callback Cats' as the text, get button by class name and confirm has 'Log In' and then clicks the 'Log In' button", () => {
+    it("Get heading by class name and confirm has 'EngageMate' as the text, get button by class name and confirm has 'Log In' and then clicks the 'Log In' button", () => {
       cy.wait(1000);
       cy.get("h2")
         .should("have.class", "chakra-heading css-zey6tx")
-        .contains("Callback Cats");
+        .contains("EngageMate");
       cy.get("button")
         .should("have.class", "chakra-button css-q6vfdv")
         .contains("Log In");
