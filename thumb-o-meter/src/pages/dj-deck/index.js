@@ -2,9 +2,9 @@ import React from "react";
 import Player from "../../components/player";
 import NavBar from "../../components/navBar";
 import Spotify from "../../components/spotify";
-import CustomButton from "../../components/button";
+import Title from "../../components/heading";
 import { ArrowBackIcon } from "@chakra-ui/icons";
-import { Box, useColorModeValue, Button, Center } from "@chakra-ui/react";
+import { Box, useColorModeValue, Button, Center, Text } from "@chakra-ui/react";
 
 import style from "./deck.module.css";
 
@@ -24,6 +24,15 @@ const Deck = () => {
       <NavBar />
 
       <div className={style.container}>
+        <Center className={style.heading}>
+          {" "}
+          <Text className={"player animate__animated animate__heartBeat"}>
+            <Title
+              className={"player animate__animated animate__heartBeat"}
+              text="DJ Deck"
+            />
+          </Text>
+        </Center>
         <Center>
           <Button
             colorScheme={color}
@@ -44,7 +53,7 @@ const Deck = () => {
               color: "white",
             }}
           >
-            <div className={"player animate__animated animate__heartBeat"}>
+            <div className={style.player}>
               <p>Breakout Room 1 </p>
               <Player file={breakout1} />
             </div>
