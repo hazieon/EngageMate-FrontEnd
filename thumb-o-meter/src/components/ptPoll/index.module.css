@@ -10,3 +10,14 @@
   border-radius: 33px;
   margin-bottom: 30px;
 }
+
+.results {
+  color: green;
+  padding: 1vh;
+  margin: 1vh;
+  border-radius: 10px;
+}
+
+.resultsNone {
+  display: none;
+}
