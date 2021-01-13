@@ -3,7 +3,7 @@ import NavBar from "../../components/navBar";
 import styles from "./index.module.css";
 import PtView from "../../components/ptView";
 import SkView from "../../components/skView";
-
+import Footer from "../../components/footer";
 import { createStandaloneToast, LightMode, Text } from "@chakra-ui/react";
 import useRoleContext from "../../context/roleContext";
 
@@ -180,6 +180,7 @@ const Thumbometer = () => {
             )}
           </LightMode>
         </Center>
+        <Footer />
       </Box>
     </Flex>
   );

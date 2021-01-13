@@ -97,7 +97,10 @@ function SkHand() {
   }
 
   return (
-    <div className={styles.container} style={{ backgroundColor: "#2C276B" }}>
+    <div
+      className={styles.container}
+      style={{ backgroundColor: "#2C276B", color: "white" }}
+    >
       <div className={styles.notifySpot}>
         <p className={hands.length > 0 ? styles.notify : styles.noNotify}>
           {hands.length}
