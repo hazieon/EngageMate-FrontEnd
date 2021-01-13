@@ -78,6 +78,7 @@ function SkPoll() {
       options: Object.keys(optionData).map((key) => [
         Number(key),
         optionData[key],
+        0,
       ]),
       correctAnswer: correct,
       uuid: uuidv4(),
