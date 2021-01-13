@@ -78,10 +78,10 @@ function PtPoll() {
     console.log("choice not set");
   }
 
-  function calculateResults(options, oNum) {
+  function calculateResults(oNum) {
     //calculate results value from total votes & votes per option
-    const totalVotes = options.reduce((acc, cur) => {
-      return acc + cur[3];
+    const totalVotes = resultsData.options.reduce((acc, cur) => {
+      return acc + cur[2];
     }, 0);
     //oNum out of totalVotes, return as %
     console.log((oNum / totalVotes) * 100);
@@ -122,7 +122,7 @@ function PtPoll() {
                     className={style.results}
                     colorScheme={"green"}
                     height="3vh"
-                    value={() => calculateResults(resultsData.options, o[0])}
+                    value={calculateResults(o[2])}
                   />
                 </div>
               );
