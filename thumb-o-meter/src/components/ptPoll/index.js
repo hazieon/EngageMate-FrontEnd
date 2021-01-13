@@ -72,7 +72,7 @@ function PtPoll() {
     //changes view again to view results (set another state)
     if (choice !== "") {
       socket.emit("vote", { data: choice });
-      setResults(true);
+      setResults((results) => true);
       return console.log("vote submitted", choice);
     }
     console.log("choice not set");
