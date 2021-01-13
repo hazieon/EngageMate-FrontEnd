@@ -15,12 +15,22 @@ const MenuItems = ({ children }) => (
 const Header = () => {
   const [show, setShow] = useState(false);
   const toggleMenu = () => setShow(!show);
-  const bg = useColorModeValue("#7f56f2", "#110042");
+  const bg = useColorModeValue("white", "#110042");
   const color = useColorModeValue("#110042", "white");
   const result = useRoleContext();
   const role = result[0];
   return (
-    <Flex className={styles.container} as="nav" bg={bg} color={color}>
+    <Flex
+      className={styles.container}
+      as="nav"
+      bg={bg}
+      color={color}
+      style={{
+        borderBottom: "2px solid #7f56f2",
+        position: "sticky",
+        top: "0",
+      }}
+    >
       {/* <Icon as={FaCat} /> */}
       <ThemeToggler />
       <Box className={styles.icon} onClick={toggleMenu}>

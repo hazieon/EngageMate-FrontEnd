@@ -1,21 +1,21 @@
 import React, { useState, useEffect } from "react";
 import style from "./index.module.css";
 import Thumb from "../thumb";
-import CustomButton from "../../components/button";
+
 import { ArrowBackIcon } from "@chakra-ui/icons";
 import {
   Slider,
   SliderTrack,
   SliderFilledTrack,
   SliderThumb,
-  Box,
+  Button,
 } from "@chakra-ui/react";
 import { Icon } from "@chakra-ui/react";
 import { MdPeople } from "react-icons/md";
 import Timer from "../timer/index";
 
 function PtView({ data, submit, time, count }) {
-  const [myColor, setMyColor] = useState("#2C276B");
+  const [myColor, setMyColor] = useState("#7f56f2");
   // display the question
   // rotatable thumb
   // slider
@@ -36,7 +36,7 @@ function PtView({ data, submit, time, count }) {
   // });
   useEffect(() => {
     if (data.outcome === 0) {
-      setMyColor("#2C276B");
+      setMyColor("#7f56f2");
     } else if (data.outcome <= 33) {
       setMyColor("red");
     } else if (data.outcome > 33 && data.outcome <= 66) {
@@ -47,11 +47,14 @@ function PtView({ data, submit, time, count }) {
   }, [data.outcome]);
 
   return (
-    <div className={style.container} style={{ backgroundColor: myColor }}>
+    <div
+      className={style.container}
+      style={{ backgroundColor: "#2C276B", color: "white" }}
+    >
       <h1>{data.question || "Waiting session start"}</h1>
       <p className={style.valueInformation}>
         {" "}
-        <Thumb value={value} />
+        <Thumb value={value} myColor={myColor} />
         <br />
         <Slider
           aria-label="slider-ex-1"
@@ -76,12 +79,15 @@ function PtView({ data, submit, time, count }) {
         <p className={style.count}>{count}</p>
       </p>
 
-      <CustomButton
-        className={style.backButton}
-        link="/"
-        icon={<ArrowBackIcon />}
-        text={"Back"}
-      />
+      <Button
+        _hover={{
+          background: "white",
+          color: "#2C276B",
+        }}
+        variant="outline"
+      >
+        <ArrowBackIcon /> Back
+      </Button>
     </div>
   );
 }
