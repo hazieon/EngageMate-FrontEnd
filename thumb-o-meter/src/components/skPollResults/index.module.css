@@ -1,0 +1,13 @@
+.resultsDiv {
+  background-color: #2c276b;
+  border-radius: 20px;
+  padding: 30px 70px;
+}
+
+.resultsDiv h1 {
+  font-size: 2rem;
+}
+
+.resultsDiv > * {
+  margin-bottom: 20px;
+}
