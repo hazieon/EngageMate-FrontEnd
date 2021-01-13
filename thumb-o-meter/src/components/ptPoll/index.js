@@ -95,6 +95,7 @@ function PtPoll() {
     <div className={style.container} style={{ backgroundColor: myColor }}>
       {session ? (
         <div>
+          <h1>{questionData.question}</h1>
           {questionData.options.map((o, i) => {
             return (
               <ul>
@@ -113,7 +114,7 @@ function PtPoll() {
         <div>
           <h1>Poll Results :</h1>
 
-          {resultsData ? (
+          {resultsData.options ? (
             resultsData.options.map((o, i) => {
               return (
                 <div>
