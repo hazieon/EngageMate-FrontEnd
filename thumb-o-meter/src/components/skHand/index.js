@@ -12,8 +12,9 @@ function SkHand() {
   const [hands, setHands] = useState([{ name: "", topic: "No Hands Raised" }]);
   //const [handsRaised, setHandsRaised] = useState([]);
   const context = useSocketContext();
-  const result = useRoleContext();
   const socket = context[0];
+  const result = useRoleContext();
+
   const loggedUser = result[2];
   const name = loggedUser?.given_name;
 
@@ -87,8 +88,8 @@ function SkHand() {
     return () => {
       socket.emit("leaveRaiseHand");
       console.log("user left room");
-      socket.off("handRaiseInfo", handler);
-      socket.off("lowerHandRaiseInfo", lowerHandler);
+      socket.off("handRaiseInfo");
+      socket.off("lowerHandRaiseInfo");
     };
   }, []);
 

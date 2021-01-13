@@ -34,5 +34,6 @@ export function messageToast(message) {
     position: "top",
     isClosable: true,
   });
+  //if message === thumb session starting play different sound
   alert.play();
 }
