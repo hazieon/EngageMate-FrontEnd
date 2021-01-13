@@ -13,12 +13,42 @@ import useSocketContext from "../../context/socketContext";
 import SkPollResults from "../skPollResults";
 
 const initialState = {
-  session: true,
+  session: false,
   results: false,
   questionData: {},
   resultsData: {},
   choice: "",
   view: "waiting",
+};
+
+const sessionState = {
+  session: true,
+  results: false,
+  questionData: {
+    question: "how?",
+    options: [
+      [1, "cat", 0],
+      [2, "dog", 0],
+    ],
+  },
+  resultsData: {},
+  choice: "",
+  view: "session",
+};
+
+const resultsState = {
+  session: false,
+  results: true,
+  questionData: {},
+  resultsData: {
+    question: "how?",
+    options: [
+      [1, "cat", 20],
+      [2, "dog", 80],
+    ],
+  },
+  choice: "dog",
+  view: "results",
 };
 
 function reducer(state, action) {
