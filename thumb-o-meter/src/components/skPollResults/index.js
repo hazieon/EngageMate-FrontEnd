@@ -1,18 +1,24 @@
 import React, { useEffect } from "react";
 import style from "./index.module.css";
 import { Button, Progress, Stack, LightMode } from "@chakra-ui/react";
+import useRoleContext from "../../context/roleContext";
 
 function SkPollResults({ data, stopPoll, socket }) {
+  const result = useRoleContext();
+  const role = result[0];
+  const loggedUser = result[2];
+  console.log(role);
+
   function calculateProgressBar(option) {
     const totalVotes = data.options.reduce((acc, curr) => acc + curr[2], 0);
     return (option[2] / totalVotes) * 100;
   }
 
-  useEffect(() => {
-    return () => {
-      socket.emit("sessionStop");
-    };
-  }, []);
+  // useEffect(() => {
+  //   // return () => {
+  //   //   socket.emit("sessionStop");
+  //   // };
+  // }, []);
 
   return (
     <div className={style.resultsDiv}>
@@ -40,9 +46,11 @@ function SkPollResults({ data, stopPoll, socket }) {
           })}
         </Stack>
 
-        <Button colorScheme="red" onClick={stopPoll}>
-          Stop Session
-        </Button>
+        {role !== "bootcamper" && (
+          <Button colorScheme="red" onClick={stopPoll}>
+            Stop Session
+          </Button>
+        )}
       </LightMode>
     </div>
   );
