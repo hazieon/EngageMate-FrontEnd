@@ -19,30 +19,17 @@ function checkingForThumbOMeterFeature() {
     });
   });
 
-  // describe("Checking contents Thumb-O-Meter page", () => {
-  //   it("Get the heading by class name and confirm has 'Thumbometer' as text", () => {
-  //     cy.wait(1500);
-  //     // cy.get("div")
-  //     //   .should("have.class", "css-k008qs")
-  //     //   .eq(0)
-  //     //   .get("div")
-  //     //   .should("have.class", "thumb-o-meter_container__Lu33A css-ue0kqe")
-  //     //   .eq(0);
-  //     cy.get("div")
-  //       .should("have.class", "css-gmuwf")
-  //       .eq(0)
-  //       .find("p")
-  //       .should(
-  //         "have.class",
-  //         "chakra-text thumb-o-meter_heading__2W637 css-zm3qx2"
-  //       )
-  //       .contains("Thumbometer");
-  //   });
-  // });
+  describe("Checking contents Thumbometer page", () => {
+    it("Get the heading by class name and confirm has 'Thumbometer' as text", () => {
+      cy.wait(1500);
+      cy.get("h2")
+        .should(
+          "have.class",
+          "chakra-heading heading_container__2B5Og css-zey6tx"
+        )
+        .contains("Thumbometer");
+    });
+  });
 }
 
 export default checkingForThumbOMeterFeature;
-
-// cy.get("div")
-//   .should("have.class", "gmuwbf")
-//   .eq(0)

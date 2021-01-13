@@ -70,7 +70,7 @@ function speakerThumbSession() {
       cy.get("div").should("have.class", "skView_container__8oHCA");
       cy.get("div").should("have.class", "skView_buttons__1X2Y_");
       cy.get("button")
-        .should("have.class", "chakra-button css-ywjnlx")
+        .should("have.class", "chakra-button skView_button__1AOqf css-ywjnlx")
         .contains("Start Timer")
         .click();
       cy.wait(1500);
@@ -86,7 +86,7 @@ function speakerThumbSession() {
       cy.get("div").should("have.class", "skView_buttons__1X2Y_");
 
       cy.get("button")
-        .should("have.class", "chakra-button css-mdlog5")
+        .should("have.class", "chakra-button skView_button__1AOqf css-mdlog5")
         .contains("Stop Timer")
         .click();
     });
