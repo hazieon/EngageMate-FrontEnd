@@ -1,4 +1,14 @@
 .subheading {
-  font-size: 2rem;
-  padding: 1rem;
+  font-size: 0.57rem;
+}
+@media only screen and (min-width: 495px) {
+  .subheading {
+    font-size: 0.75rem;
+  }
+}
+
+@media only screen and (min-width: 694px) {
+  .subheading {
+    font-size: 1rem;
+  }
 }
