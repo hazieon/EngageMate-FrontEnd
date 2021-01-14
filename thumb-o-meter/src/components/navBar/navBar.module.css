@@ -47,6 +47,11 @@
   margin-left: 5px;
 }
 
+.handIcon {
+  width: 30px;
+  height: auto;
+}
+
 .light_active {
   border-bottom: 1px solid #110042;
   transition: border-bottom 2s ease-in-out;
