@@ -11,9 +11,17 @@ import {
   theme,
   ColorModeProvider,
   CSSReset,
+  extendTheme,
 } from "@chakra-ui/react";
 import { Auth0Provider } from "@auth0/auth0-react";
-import { BrowserRouter as Router } from "react-router-dom";
+
+import { Fonts } from "./globalStyle";
+const fontTheme = extendTheme({
+  fonts: {
+    heading: "Boogaloo",
+    body: "Boogaloo",
+  },
+});
 const domain = process.env.REACT_APP_AUTH0_DOMAIN;
 const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
 
@@ -31,8 +39,9 @@ ReactDOM.render(
       >
         <RoleProvider>
           <SocketProvider>
-            <ChakraProvider>
+            <ChakraProvider theme={fontTheme}>
               <React.StrictMode>
+                <Fonts />
                 <App />
                 <CSSReset />
               </React.StrictMode>
