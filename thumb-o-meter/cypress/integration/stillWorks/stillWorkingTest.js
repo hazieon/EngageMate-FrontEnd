@@ -13,19 +13,28 @@ import lightMode from "./lightMode/lightMode";
 import logOut from "./logOut/logOut";
 
 //
-//
+// function viewport() {
+//   describe("change page size", () => {
+//     it("change screen size", () => {
+//       cy.wait(1000);
+//       cy.viewport("macbook-15");
+//     });
+//   });
+// }
+//viewport();
 openingScreen();
 logIn("speakerview@gmail.com", "(callbackCats)");
+//
 darkMode();
-lightMode();
-darkMode();
+//lightMode();
+//darkMode();
 checkingForThumbOMeterFeature();
 speakerThumbSession();
 logOut();
 logIn("participantview@gmail.com", "(callbackCats)");
 darkMode();
-lightMode();
-darkMode();
+//lightMode();
+//darkMode();
 checkingForThumbOMeterFeature();
 participantThumbSession();
 logOut();
@@ -33,10 +42,10 @@ logIn("speakerview@gmail.com", "(callbackCats)");
 darkMode();
 checkingForThumbOMeterFeature();
 speakerStopThumbSession();
-//backButton();
-//checkingForHandFeature();
 // backButton();
-//checkingForQuizFeature();
+// checkingForHandFeature();
+// backButton();
+// checkingForQuizFeature();
 // backButton();
 // checkingForDjDeckFeature();
 // backButton();
