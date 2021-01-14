@@ -1,13 +1,6 @@
 import React, { useState, useEffect, useReducer } from "react";
 import style from "./index.module.css";
-import {
-  Select,
-  Button,
-  Radio,
-  SliderTrack,
-  SliderFilledTrack,
-  Progress,
-} from "@chakra-ui/react";
+import { Button } from "@chakra-ui/react";
 
 import useSocketContext from "../../context/socketContext";
 import SkPollResults from "../skPollResults";
@@ -15,41 +8,11 @@ import SkPollResults from "../skPollResults";
 const initialState = {
   session: false,
   results: false,
-  questionData: {},
-  resultsData: {},
+  questionData: { question: "", options: [[], []] },
   choice: "",
   view: "waiting",
 };
-
-const sessionState = {
-  session: true,
-  results: false,
-  questionData: {
-    question: "how?",
-    options: [
-      [1, "cat", 0],
-      [2, "dog", 0],
-    ],
-  },
-  resultsData: {},
-  choice: "",
-  view: "session",
-};
-
-const resultsState = {
-  session: false,
-  results: true,
-  questionData: {},
-  resultsData: {
-    question: "how?",
-    options: [
-      [1, "cat", 20],
-      [2, "dog", 80],
-    ],
-  },
-  choice: "dog",
-  view: "results",
-};
+// ...state.questionData, options: action.options
 
 function reducer(state, action) {
   switch (action.type) {
@@ -61,12 +24,12 @@ function reducer(state, action) {
         view: action.view,
       };
     case "choice":
-      return { ...state, choice: action.data };
+      return { ...state, choice: action.choice };
     case "setResults":
       return {
         ...state,
         results: true,
-        resultsData: action.data,
+        questionData: action.data,
         view: action.view,
       };
     case "stopSession":
@@ -81,19 +44,13 @@ function reducer(state, action) {
 function PtPoll() {
   const [myColor, setMyColor] = useState("#2C276B");
   const [state, dispatch] = useReducer(reducer, initialState);
-  // const [session, setSession] = useState(false);
-  // const [results, setResults] = useState(false);
-  // const [questionData, setQuestionData] = useState({});
-  // const [resultsData, setResultsData] = useState({});
-  const [choice, setChoice] = useState("");
-
+  // const [choice, setChoice] = useState("");
   const data = useSocketContext();
   const socket = data[0];
 
   useEffect(() => {
     //socket listener - socket context
     //if question and option data is set, set session activity to 'true'
-    //session 'true' conditionally renders
     socket.on("pollStart", ({ data }) => {
       //start a poll session and set question to render
       console.log({ data });
@@ -101,6 +58,7 @@ function PtPoll() {
       // setSession((session) => true);
 
       dispatch({ type: "setSession", data: data, view: "session" });
+      console.log({ state }, "set session");
     });
 
     socket.on("sessionStop", () => {
@@ -109,6 +67,7 @@ function PtPoll() {
       // setSession((session) => false);
       // setQuestionData({});
       dispatch({ type: "stopSession", view: "waiting" });
+      console.log({ state }, "session stop");
     });
 
     socket.on("resultsUpdate", ({ data }) => {
@@ -120,6 +79,7 @@ function PtPoll() {
       // console.log({ resultsData });
 
       dispatch({ type: "setResults", data: data });
+      console.log({ state }, "results update");
     });
 
     return () => {
@@ -132,14 +92,17 @@ function PtPoll() {
   function submitVote() {
     //submits the vote, if choice is set
     //changes view again to view results (set another state)
-    if (choice !== "") {
-      socket.emit("vote", { data: choice });
+    if (state.choice !== "") {
+      socket.emit("vote", { data: state.choice });
+
       // setResults((results) => true);
       dispatch({ type: "setResults", view: "results" });
-      dispatch({ type: "choice", data: choice });
-      console.log("vote submitted", choice);
+      dispatch({ type: "choice", data: state.choice });
+      console.log("vote submitted", state.choice);
+      console.log({ state });
+    } else {
+      console.log("choice not set");
     }
-    console.log("choice not set");
   }
 
   // function calculateResults(options, oNum) {
@@ -165,16 +128,23 @@ function PtPoll() {
             return (
               <ul>
                 <li>
-                  {o[1]} <button onClick={() => setChoice(o[0])}>☑</button>
+                  {o[1]}
+                  <button
+                    onClick={() =>
+                      dispatch({ type: "choice", choice: String(o[0]) })
+                    }
+                  >
+                    ☑
+                  </button>
                 </li>
               </ul>
             );
           })}
-          <p>{choice}</p>
+          <p>{state.choice}</p>
           <Button onClick={() => submitVote()}>Submit ➡</Button>
         </div>
       )}
-      {state.view === "results" && <SkPollResults data={state.resultsData} />}
+      {state.view === "results" && <SkPollResults data={state.questionData} />}
     </div>
   );
 }
