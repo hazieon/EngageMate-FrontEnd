@@ -3,6 +3,7 @@ import Player from "../../components/player";
 import NavBar from "../../components/navBar";
 import Spotify from "../../components/spotify";
 import Title from "../../components/heading";
+import { Link } from "react-router-dom";
 import { ArrowBackIcon } from "@chakra-ui/icons";
 import { Box, Button, Center, Text } from "@chakra-ui/react";
 
@@ -32,16 +33,18 @@ const Deck = ({ bg, color }) => {
           </Text>
         </Center>
         <Center>
-          <Button
-            colorScheme={color}
-            _hover={{
-              background: "white",
-              color: "#2C276B",
-            }}
-            variant="outline"
-          >
-            <ArrowBackIcon /> Back
-          </Button>
+          <Link to="/">
+            <Button
+              colorScheme={color}
+              _hover={{
+                background: "white",
+                color: "#2C276B",
+              }}
+              variant="outline"
+            >
+              <ArrowBackIcon /> Back
+            </Button>
+          </Link>
         </Center>
         <div className={style.players}>
           <section

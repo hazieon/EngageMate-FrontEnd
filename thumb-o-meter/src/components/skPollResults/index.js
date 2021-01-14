@@ -1,17 +1,33 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import style from "./index.module.css";
 import { Button, Progress, Stack, LightMode } from "@chakra-ui/react";
+import useRoleContext from "../../context/roleContext";
+import useSocketContext from "../../context/socketContext";
 
-function SkPollResults({ data, stopPoll, socket }) {
+function SkPollResults({ stopPoll }) {
+  const result = useRoleContext();
+  const role = result[0];
+  const loggedUser = result[2];
+  const socketdata = useSocketContext();
+  const socket = socketdata[0];
+  const [data, setData] = useState();
+  console.log({ role });
+  console.log({ data });
+
   function calculateProgressBar(option) {
     const totalVotes = data.options.reduce((acc, curr) => acc + curr[2], 0);
-    return (option[2] / totalVotes) * 100;
+    const resultvalue = (option[2] / totalVotes) * 100;
+    console.log(resultvalue);
+    return resultvalue;
   }
 
   useEffect(() => {
-    return () => {
-      socket.emit("sessionStop");
-    };
+    socket.on("resultsUpdate", ({ data }) => {
+      console.log({ data }, "skPollResults sockets");
+      setData(data);
+      //question, uuid, correct answer, options
+      console.log({ data }, "resultsUpdate");
+    });
   }, []);
 
   return (
@@ -19,8 +35,11 @@ function SkPollResults({ data, stopPoll, socket }) {
       <LightMode>
         <h1>Live Poll Results</h1>
         {/* Display set question, options & progress bar for each*/}
+        <p>
+          {data ? data.options.reduce((acc, curr) => acc + curr[2], 0) : ""} 👥
+        </p>
         <h2>
-          <strong>Question:</strong> {data.question}
+          <strong>Question:</strong> {data ? data.question : "question"}
         </h2>
         <Stack spacing={5}>
           {/* render options and progress bars here
@@ -32,7 +51,10 @@ function SkPollResults({ data, stopPoll, socket }) {
                   <strong>Option {option[0]}</strong>: {option[1]}
                 </p>
                 <Progress
-                  colorScheme="pink"
+                  colorScheme={
+                    Number(data.correctAnswer) === option[0] ? "green" : "red"
+                  }
+                  style={{ borderRadius: "30px" }}
                   value={calculateProgressBar(option) || 0}
                 />
               </div>
@@ -40,9 +62,11 @@ function SkPollResults({ data, stopPoll, socket }) {
           })}
         </Stack>
 
-        <Button colorScheme="red" onClick={stopPoll}>
-          Stop Session
-        </Button>
+        {role !== "bootcamper" && (
+          <Button colorScheme="red" onClick={stopPoll}>
+            Stop Session
+          </Button>
+        )}
       </LightMode>
     </div>
   );
