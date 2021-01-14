@@ -24,7 +24,7 @@ const Menu = ({ bg, color }) => {
     <>
       <div className={styles.container}>
         <div className={styles.players}>
-          {role === "coach"
+          {role !== "bootcamper"
             ? coachFeatures.map((item) => {
                 return (
                   <section key={item.heading}>
