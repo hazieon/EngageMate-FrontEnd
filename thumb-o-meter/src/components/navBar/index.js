@@ -3,7 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 import useSocketContext from "../../context/socketContext";
 import LogoutButton from "../logout/index";
 import { Box, Flex, Text, useColorModeValue, Button } from "@chakra-ui/react";
-import ThemeToggler from "../theme";
+import ThemeToggler from "../themeToggler";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import useRoleContext from "../../context/roleContext";
 import { menuItems, coachMenuItems } from "./data";
