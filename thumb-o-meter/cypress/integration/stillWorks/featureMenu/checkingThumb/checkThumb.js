@@ -3,7 +3,7 @@
 function checkingForThumbOMeterFeature() {
   describe("Checking feature menu of app for Thumb-o-meter", () => {
     it("Get the thumb-o-meter feature by going through the elements and class names", () => {
-      cy.wait(1500);
+      cy.wait(1000);
       cy.get("section")
         .eq(0)
         .find("p")
@@ -14,18 +14,18 @@ function checkingForThumbOMeterFeature() {
 
   describe("Click the Thumb-O-Meter link on the feature menu", () => {
     it("Get the Thumb-O-Meter link and click the link", () => {
-      cy.wait(1500);
+      // cy.wait(1500);
       cy.get("section").eq(0).find("a").click();
     });
   });
 
   describe("Checking contents Thumbometer page", () => {
     it("Get the heading by class name and confirm has 'Thumbometer' as text", () => {
-      cy.wait(1500);
+      cy.wait(1000);
       cy.get("h2")
         .should(
           "have.class",
-          "chakra-heading heading_container__2B5Og css-zey6tx"
+          "chakra-heading heading_container__2B5Og css-11ssa62"
         )
         .contains("Thumbometer");
     });

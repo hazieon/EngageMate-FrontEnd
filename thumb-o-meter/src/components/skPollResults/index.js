@@ -4,13 +4,13 @@ import { Button, Progress, Stack, LightMode } from "@chakra-ui/react";
 import useRoleContext from "../../context/roleContext";
 import useSocketContext from "../../context/socketContext";
 
-function SkPollResults({ stopPoll }) {
+function SkPollResults({ question, stopPoll }) {
   const result = useRoleContext();
   const role = result[0];
   const loggedUser = result[2];
   const socketdata = useSocketContext();
   const socket = socketdata[0];
-  const [data, setData] = useState();
+  const [data, setData] = useState(question);
   console.log({ role });
   console.log({ data });
 
@@ -28,6 +28,15 @@ function SkPollResults({ stopPoll }) {
       //question, uuid, correct answer, options
       console.log({ data }, "resultsUpdate");
     });
+
+    return () => {
+      if (role === "coach") {
+        socket.emit("sessionStop");
+        console.log("sessionStopped");
+      }
+
+      socket.off("resultsUpdate");
+    };
   }, []);
 
   return (
@@ -35,7 +44,7 @@ function SkPollResults({ stopPoll }) {
       <LightMode>
         <h1>Live Poll Results</h1>
         {/* Display set question, options & progress bar for each*/}
-        <p>
+        <p className={style.totalUsers}>
           {data ? data.options.reduce((acc, curr) => acc + curr[2], 0) : ""} 👥
         </p>
         <h2>
@@ -50,13 +59,19 @@ function SkPollResults({ stopPoll }) {
                 <p>
                   <strong>Option {option[0]}</strong>: {option[1]}
                 </p>
-                <Progress
-                  colorScheme={
-                    Number(data.correctAnswer) === option[0] ? "green" : "red"
-                  }
-                  style={{ borderRadius: "30px" }}
-                  value={calculateProgressBar(option) || 0}
-                />
+                <div className={style.progressDiv}>
+                  <Progress
+                    colorScheme={
+                      Number(data.correctAnswer) === option[0] ? "green" : "red"
+                    }
+                    style={{
+                      borderRadius: "30px",
+                      width: "90%",
+                    }}
+                    value={calculateProgressBar(option) || 0}
+                  />
+                  <span>{option[2] || 0}</span>
+                </div>
               </div>
             );
           })}

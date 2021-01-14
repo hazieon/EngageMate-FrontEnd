@@ -2,7 +2,7 @@ function participantThumbSession() {
   //get pt slider
   describe("Checks for slider", () => {
     it("Checks for a slider", () => {
-      cy.wait(1500);
+      // cy.wait(1500);
       cy.get("div")
         .should("have.class", "css-gmuwbf")
         .get("div")
@@ -19,7 +19,7 @@ function participantThumbSession() {
   describe("Moves slider", () => {
     it("Moves slider", () => {
       //move slider
-      cy.wait(1500);
+      // cy.wait(1500);
       cy.get("div")
         .should("have.class", "css-gmuwbf")
         .get("div")
@@ -27,7 +27,7 @@ function participantThumbSession() {
         .get("div")
         .should("have.class", "chakra-slider css-1e3e5yf")
         .eq(0)
-        .wait(1000)
+        // .wait(1000)
         .click(350, 550)
         .click(400, 550)
         .click(450, 550)
