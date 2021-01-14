@@ -1,7 +1,8 @@
 .resultsDiv {
   background-color: #2c276b;
   border-radius: 20px;
-  padding: 30px 70px;
+  min-width: 450px;
+  padding: 30px;
 }
 
 .resultsDiv h1 {
@@ -10,4 +11,15 @@
 
 .resultsDiv > * {
   margin-bottom: 20px;
+}
+
+.totalUsers {
+  text-align: center;
+}
+
+.progressDiv {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

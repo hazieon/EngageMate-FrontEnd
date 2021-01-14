@@ -47,17 +47,22 @@ function SkPoll() {
         <Input
           type="text"
           placeholder={`set option ${i + 1}`}
-          // still trying to figure how to save the value of the input fields to something?
           width="300px"
           id={i + 1}
           onChange={handleOptions}
+          maxLength="30"
         ></Input>
-        <input
-          type="radio"
-          name="correctButton"
-          value={`${i + 1}`}
-          className={style.radio}
-        />
+        <label for={`choice${i + 1}`}>
+          <input
+            id={`choice${i + 1}`}
+            name="choice"
+            type="radio"
+            name="correctButton"
+            value={`${i + 1}`}
+            className={style.radio}
+          />
+          <span></span>
+        </label>
       </div>
     );
   }
@@ -186,7 +191,11 @@ function SkPoll() {
         </div>
       )}
       {pollStarted && (
-        <SkPollResults data={resultsObj} stopPoll={stopPoll} socket={socket} />
+        <SkPollResults
+          question={resultsObj}
+          stopPoll={stopPoll}
+          socket={socket}
+        />
       )}{" "}
       <br />
       <Link to="/">
