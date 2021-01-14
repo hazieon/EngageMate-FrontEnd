@@ -16,7 +16,9 @@ function SkPollResults({ stopPoll }) {
 
   function calculateProgressBar(option) {
     const totalVotes = data.options.reduce((acc, curr) => acc + curr[2], 0);
-    return (option[2] / totalVotes) * 100;
+    const resultvalue = (option[2] / totalVotes) * 100;
+    console.log(resultvalue);
+    return resultvalue;
   }
 
   useEffect(() => {

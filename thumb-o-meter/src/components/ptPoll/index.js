@@ -70,17 +70,17 @@ function PtPoll() {
       console.log({ state }, "session stop");
     });
 
-    socket.on("resultsUpdate", ({ data }) => {
-      //submit results, set states and trigger conditionally rendered results display
-      console.log("results update received");
-      console.log({ data });
-      // setResults((results) => true);
-      // setResultsData((resultsData) => data);
-      // console.log({ resultsData });
+    // socket.on("resultsUpdate", ({ data }) => {
+    //   //submit results, set states and trigger conditionally rendered results display
+    //   console.log("results update received");
+    //   console.log({ data });
+    //   // setResults((results) => true);
+    //   // setResultsData((resultsData) => data);
+    //   // console.log({ resultsData });
 
-      dispatch({ type: "setResults", data: data });
-      console.log({ state }, "results update");
-    });
+    //   dispatch({ type: "setResults", data: data });
+    //   console.log({ state }, "results update");
+    // });
 
     return () => {
       //cleanup
