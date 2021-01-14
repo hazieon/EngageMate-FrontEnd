@@ -39,7 +39,7 @@ ReactDOM.render(
       >
         <RoleProvider>
           <SocketProvider>
-            <ChakraProvider theme={fontTheme}>
+            <ChakraProvider theme={theme}>
               <React.StrictMode>
                 <Fonts />
                 <App />
