@@ -49,6 +49,9 @@ function PtPoll() {
   const socket = data[0];
 
   useEffect(() => {
+    //send a request to server asking for latest information
+    //make a live quiz ROOM that sends info to user upon join
+
     //socket listener - socket context
     //if question and option data is set, set session activity to 'true'
     socket.on("pollStart", ({ data }) => {
@@ -119,7 +122,6 @@ function PtPoll() {
   //percentage results of each optiong
 
   return (
-
     <div className={style.container} style={{ backgroundColor: myColor }}>
       {state.view === "waiting" && <h1>Waiting for question.</h1>}
       {state.view === "session" && (
@@ -147,7 +149,6 @@ function PtPoll() {
       )}
 
       {state.view === "results" && <SkPollResults data={state.questionData} />}
-
     </div>
   );
 }
