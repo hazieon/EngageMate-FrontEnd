@@ -18,8 +18,8 @@ import { Auth0Provider } from "@auth0/auth0-react";
 import { Fonts } from "./globalStyle";
 const fontTheme = extendTheme({
   fonts: {
-    heading: "Boogaloo",
-    body: "Boogaloo",
+    heading: "Montserrat",
+    body: "Montserrat",
   },
 });
 const domain = process.env.REACT_APP_AUTH0_DOMAIN;
@@ -39,7 +39,7 @@ ReactDOM.render(
       >
         <RoleProvider>
           <SocketProvider>
-            <ChakraProvider theme={theme}>
+            <ChakraProvider theme={fontTheme}>
               <React.StrictMode>
                 <Fonts />
                 <App />

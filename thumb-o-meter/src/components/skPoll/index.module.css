@@ -20,6 +20,7 @@
   border-radius: 15px;
 }
 
+
 label > input[type="radio"] {
   opacity: 0;
 }

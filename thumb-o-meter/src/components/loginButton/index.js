@@ -10,9 +10,7 @@ const LoginButton = () => {
     <Flex>
       <Box className={styles.container}>
         <VStack>
-          <Box className={styles.box}>
-            <Heading>EngageMate</Heading>
-          </Box>
+          <Box className={styles.box}></Box>
           <Center className={styles.loginButton}>
             <Button variant="ghost" onClick={() => loginWithRedirect()}>
               Log In

@@ -3,3 +3,10 @@
   color: white;
   height: 100vh;
 }
+
+.img {
+  height: 600px;
+  width: auto;
+  position: absolute;
+  top: 10px;
+}

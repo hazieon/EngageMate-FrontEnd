@@ -68,7 +68,7 @@ const Authorised = () => {
             <Quiz bg={bg} color={color} />
           </Route>
           <Route path="/deck">
-            <Deck user={user} />
+            <Deck bg={bg} color={color} />
           </Route>
           <Route path="/thumb">
             <Thumbometer />

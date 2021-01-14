@@ -6,6 +6,8 @@ import useSocketContext from "../../context/socketContext";
 import SkPollResults from "../skPollResults";
 import { ArrowBackIcon, EditIcon, DeleteIcon } from "@chakra-ui/icons";
 import { Link } from "react-router-dom";
+import StartSession from "../massAlert/startSession";
+
 function SkPoll() {
   const [question, setQuestion] = useState("Set Custom Question");
   const [custom, setCustom] = useState(false);
@@ -131,6 +133,10 @@ function SkPoll() {
       className={style.container}
       style={{ backgroundColor: `${myColor}`, color: "white" }}
     >
+      <StartSession
+        className={style.button}
+        message="Live Poll session starting. Head to the Live Quiz page to join!"
+      />
       {!pollStarted && (
         <div>
           <form onSubmit={handleSubmit}>
@@ -179,7 +185,6 @@ function SkPoll() {
                   colorScheme=""
                   onClick={remove}
                 >
-                  {" "}
                   <DeleteIcon />
                 </Button>
                 <Button style={{ color: "white" }} colorScheme="" type="submit">
@@ -191,15 +196,16 @@ function SkPoll() {
         </div>
       )}
       {pollStarted && (
+
         <SkPollResults
           question={resultsObj}
           stopPoll={stopPoll}
           socket={socket}
         />
       )}{" "}
+
       <br />
       <Link to="/">
-        {" "}
         <Button
           _hover={{
             background: "white",

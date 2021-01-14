@@ -46,9 +46,11 @@ function PtPoll() {
   const socket = data[0];
 
   useEffect(() => {
+
     socket.on("pollStart", handlePollStart);
 
     socket.on("sessionStop", handleSessionStop);
+
 
     return () => {
       //cleanup
