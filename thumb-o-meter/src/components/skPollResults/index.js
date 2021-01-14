@@ -35,6 +35,9 @@ function SkPollResults({ stopPoll }) {
       <LightMode>
         <h1>Live Poll Results</h1>
         {/* Display set question, options & progress bar for each*/}
+        <p>
+          {data ? data.options.reduce((acc, curr) => acc + curr[2], 0) : ""} 👥
+        </p>
         <h2>
           <strong>Question:</strong> {data ? data.question : "question"}
         </h2>
@@ -48,7 +51,10 @@ function SkPollResults({ stopPoll }) {
                   <strong>Option {option[0]}</strong>: {option[1]}
                 </p>
                 <Progress
-                  colorScheme="pink"
+                  colorScheme={
+                    Number(data.correctAnswer) === option[0] ? "green" : "red"
+                  }
+                  style={{ borderRadius: "30px" }}
                   value={calculateProgressBar(option) || 0}
                 />
               </div>
