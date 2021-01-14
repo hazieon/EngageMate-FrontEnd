@@ -5,7 +5,7 @@ import Spotify from "../../components/spotify";
 import Title from "../../components/heading";
 import { Link } from "react-router-dom";
 import { ArrowBackIcon } from "@chakra-ui/icons";
-import { Box, useColorModeValue, Button, Center, Text } from "@chakra-ui/react";
+import { Box, Button, Center, Text } from "@chakra-ui/react";
 
 import style from "./deck.module.css";
 
