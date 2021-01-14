@@ -8,11 +8,13 @@
   margin-bottom: 1rem;
   color: white;
   padding: 1.5rem;
+  box-shadow: 10px 10px 10px 5px rgba(0, 0, 0, 0.25),
+    10px 10px 10px 5px rgba(0, 0, 0, 0.25);
 }
 
 .textBox {
   font-weight: bold;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   font-size: 0.8rem;
   text-align: center;
 }
