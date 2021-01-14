@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import style from "./index.module.css";
-import { Input, Select, Stack, HStack, Button } from "@chakra-ui/react";
+import { Input, Select, Stack, HStack, Button, Center } from "@chakra-ui/react";
 import { v4 as uuidv4 } from "uuid";
 import useSocketContext from "../../context/socketContext";
 import SkPollResults from "../skPollResults";
-
+import { ArrowBackIcon, EditIcon, DeleteIcon } from "@chakra-ui/icons";
+import { Link } from "react-router-dom";
 function SkPoll() {
   const [question, setQuestion] = useState("Set Custom Question");
   const [custom, setCustom] = useState(false);
@@ -121,9 +122,12 @@ function SkPoll() {
   }
 
   return (
-    <div>
+    <div
+      className={style.container}
+      style={{ backgroundColor: `${myColor}`, color: "white" }}
+    >
       {!pollStarted && (
-        <div className={style.container} style={{ backgroundColor: myColor }}>
+        <div>
           <form onSubmit={handleSubmit}>
             <Select
               placeholder="Select a question"
@@ -152,21 +156,51 @@ function SkPoll() {
               onChange={(e) => setQuestion(e.target.value)}
             />
             <Stack className="optionsInput">{arr}</Stack>
-            <HStack>
-              {value < 4 ? (
-                <Button onClick={() => setValue(value + 1)}>:pencil2:</Button>
-              ) : (
-                ""
-              )}
-              <Button onClick={remove}>:wastebasket:</Button>
-              <Button type="submit">Submit</Button>
-            </HStack>
+            <Center>
+              <HStack>
+                {value < 4 ? (
+                  <Button
+                    style={{ color: "white" }}
+                    colorScheme={myColor}
+                    onClick={() => setValue(value + 1)}
+                  >
+                    <EditIcon />
+                  </Button>
+                ) : (
+                  ""
+                )}
+                <Button
+                  style={{ color: "white" }}
+                  colorScheme=""
+                  onClick={remove}
+                >
+                  {" "}
+                  <DeleteIcon />
+                </Button>
+                <Button style={{ color: "white" }} colorScheme="" type="submit">
+                  Submit
+                </Button>
+              </HStack>
+            </Center>
           </form>
         </div>
       )}
       {pollStarted && (
         <SkPollResults data={resultsObj} stopPoll={stopPoll} socket={socket} />
-      )}
+      )}{" "}
+      <br />
+      <Link to="/">
+        {" "}
+        <Button
+          _hover={{
+            background: "white",
+            color: `${myColor}`,
+          }}
+          variant="outline"
+        >
+          <ArrowBackIcon /> Back
+        </Button>
+      </Link>
     </div>
   );
 }

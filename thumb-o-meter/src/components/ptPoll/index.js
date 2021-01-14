@@ -119,6 +119,7 @@ function PtPoll() {
   //percentage results of each optiong
 
   return (
+
     <div className={style.container} style={{ backgroundColor: myColor }}>
       {state.view === "waiting" && <h1>Waiting for question.</h1>}
       {state.view === "session" && (
@@ -144,42 +145,11 @@ function PtPoll() {
           <Button onClick={() => submitVote()}>Submit ➡</Button>
         </div>
       )}
+
       {state.view === "results" && <SkPollResults data={state.questionData} />}
+
     </div>
   );
 }
 
 export default PtPoll;
-
-// <Progress
-// className={resultsData.option1 ? style.results : style.resultsNone}
-// colorScheme={"green"}
-// height="5vh"
-// value={resultsData.options}
-// />
-
-// {resultsData && results ? (
-//   <div>
-//     <h1>Poll Results :</h1>
-
-//     {resultsData ? (
-//       resultsData.options.map((o, i) => {
-//         return (
-//           <div>
-//             <p>{o[1]}</p>
-//             <Progress
-//               className={style.results}
-//               colorScheme={"green"}
-//               height="3vh"
-//               value={() => calculateResults(resultsData.options, o[0])}
-//             />
-//           </div>
-//         );
-//       })
-//     ) : (
-//       <h1>Results pending</h1>
-//     )}
-//   </div>
-// ) : (
-//   <h2 className={style.resultsNone}>Results pending</h2>
-// )}

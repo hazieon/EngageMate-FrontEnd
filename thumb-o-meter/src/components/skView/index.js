@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import style from "./index.module.css";
 import { Link } from "react-router-dom";
+import StartSession from "../massAlert/startSession";
+import { VscDebugStart } from "react-icons/vsc";
 import {
   Button,
   Icon,
@@ -9,6 +11,7 @@ import {
   Switch,
   Collapse,
   useDisclosure,
+  Tooltip,
 } from "@chakra-ui/react";
 import CustomButton from "../../components/button";
 import { ArrowBackIcon } from "@chakra-ui/icons";
@@ -141,9 +144,31 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
         type="Number"
         onChange={(e) => setTimer(e.target.value)}
       />
+      <p className={style.throwaway}>
+        <Tooltip
+          label="If selected this will be a throwaway option"
+          fontSize="md"
+        >
+          <span>
+            <Switch
+              isDisabled={count > 0 ? true : false}
+              onChange={() => setThrowaway(!throwaway)}
+              colorScheme="green"
+              // style={{ backgroundColor: myColor }}
+            />
+          </span>
+        </Tooltip>
+
+        <StartSession
+          className={style.button}
+          message="Thumb session starting"
+          icon={<VscDebugStart />}
+        />
+      </p>
       <div className={style.buttons}>
         <Button
-          rightIcon={<MdUpdate />}
+          leftIcon={<MdUpdate />}
+          className={style.button}
           colorScheme="green"
           onClick={() => {
             startSession({ question, timer, throwaway });
@@ -151,7 +176,6 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
         >
           Start Timer
         </Button>
-
         <Button
           className={style.button}
           leftIcon={<MdStop />}
@@ -162,15 +186,6 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
           Stop Timer
         </Button>
       </div>
-      <p className={style.throwaway}>
-        Throwaway:
-        <Switch
-          isDisabled={count > 0 ? true : false}
-          onChange={() => setThrowaway(!throwaway)}
-          colorScheme="green"
-          // style={{ backgroundColor: myColor }}
-        />
-      </p>
       <Collapse in={isOpen} animateOpacity className={style.valueInformation}>
         {" "}
         <Thumb value={data.outcome} myColor={myColor} />

@@ -4,6 +4,7 @@ import styles from "./index.module.css";
 import PtView from "../../components/ptView";
 import SkView from "../../components/skView";
 import Footer from "../../components/footer";
+import Title from "../../components/heading";
 import { createStandaloneToast, LightMode, Text } from "@chakra-ui/react";
 import useRoleContext from "../../context/roleContext";
 
@@ -149,8 +150,9 @@ const Thumbometer = () => {
       <Box className={styles.container} bg={bg} color={color} w="100%">
         <NavBar />
         <Center>
-          <Text color={color} className={styles.heading}>
-            Thumbometer
+          <Text className={"player animate__animated animate__heartBeat"}>
+            {" "}
+            <Title text="Thumbometer" />
           </Text>
         </Center>
 
@@ -180,7 +182,6 @@ const Thumbometer = () => {
             )}
           </LightMode>
         </Center>
-        <Footer />
       </Box>
     </Flex>
   );

@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
+import useSocketContext from "../../context/socketContext";
 import LogoutButton from "../logout/index";
-import { Box, Flex, Text, useColorModeValue } from "@chakra-ui/react";
-import ThemeToggler from "../theme";
+import { Box, Flex, Text, useColorModeValue, Button } from "@chakra-ui/react";
+import ThemeToggler from "../themeToggler";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import useRoleContext from "../../context/roleContext";
 import { menuItems, coachMenuItems } from "./data";
@@ -17,8 +18,22 @@ const Header = () => {
   const toggleMenu = () => setShow(!show);
   const bg = useColorModeValue("white", "#110042");
   const color = useColorModeValue("#110042", "white");
+  const context = useSocketContext();
+  const socket = context[0];
   const result = useRoleContext();
+
+  const loggedUser = result[2];
+  const name = loggedUser?.given_name;
+  const picture = loggedUser?.picture;
+
   const role = result[0];
+  function raiseHand() {
+    socket.emit("handRaised", {
+      name: name,
+      topic: "I have a question",
+      picture: picture,
+    });
+  }
   return (
     <Flex
       className={styles.container}
@@ -61,7 +76,15 @@ const Header = () => {
                   </MenuItems>
                 );
               })}
-
+          {role === "bootcamper" && (
+            <Text
+              className={styles.raise}
+              onClick={raiseHand}
+              activeClassName={styles.active}
+            >
+              Raise Hand
+            </Text>
+          )}
           <LogoutButton bg={bg} color={color} />
         </Flex>
       </Box>

@@ -5,6 +5,11 @@
   display: inline-block;
 }
 
+.menu:hover {
+  opacity: 40%;
+  border-radius: 10%;
+}
+
 .container {
   text-align: center;
   display: flex;
@@ -15,6 +20,7 @@
   padding: 1rem;
   z-index: 10;
 }
+
 .navigation {
   display: flex;
   justify-content: center;
@@ -34,6 +40,11 @@
 .active {
   border-bottom: 1px solid white;
   transition: border-bottom 2s ease-in-out;
+}
+
+.raise {
+  margin-top: 16px;
+  margin-left: 5px;
 }
 
 .light_active {

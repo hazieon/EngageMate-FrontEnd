@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Hand from "../hand";
 import Subheading from "../../components/subheading";
 import { Input, Button } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 import style from "./ptHand.module.css";
 import useSocketContext from "../../context/socketContext";
 import useRoleContext from "../../context/roleContext";
@@ -71,15 +72,19 @@ function PtHand() {
       />
       <Input value={topic} onChange={(e) => handleChange(e.target.value)} />
       <br />
-      <Button
-        _hover={{
-          background: "white",
-          color: "#2C276B",
-        }}
-        variant="outline"
-      >
-        <ArrowBackIcon /> Back
-      </Button>
+
+      <Link to="/">
+        {" "}
+        <Button
+          _hover={{
+            background: "white",
+            color: "#2C276B",
+          }}
+          variant="outline"
+        >
+          <ArrowBackIcon /> Back
+        </Button>
+      </Link>
     </div>
   );
 }
