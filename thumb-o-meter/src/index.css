@@ -10,13 +10,18 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+h1 {
+  font-style: italic;
+}
+
 /* code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 } */
 
 * {
-  /* font-family: "Montserrat", sans-serif; */
+  font-family: "Montserrat", sans-serif;
+  font-style: bold;
   /* font-family: "Exo 2", sans-serif; */
   /* font-family: "Righteous", cursive; */
 }

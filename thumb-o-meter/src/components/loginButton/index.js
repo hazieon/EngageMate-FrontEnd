@@ -7,18 +7,13 @@ const LoginButton = () => {
   const { loginWithRedirect } = useAuth0();
 
   return (
-    <Flex>
-      <Box className={styles.container}>
-        <VStack>
-          <Box className={styles.box}></Box>
-          <Center className={styles.loginButton}>
-            <Button variant="ghost" onClick={() => loginWithRedirect()}>
-              Log In
-            </Button>
-          </Center>
-        </VStack>{" "}
-      </Box>
-    </Flex>
+    <button
+      className={styles.loginButton}
+      variant="ghost"
+      onClick={() => loginWithRedirect()}
+    >
+      Log In
+    </button>
   );
 };
 
