@@ -1,81 +1,60 @@
-# Getting Started with Create React App
+CallbackCats - EngageMate
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Remote teaching delivery? Headache no more!
 
-## Available Scripts
+https://engagemate.netlify.app/
 
-In the project directory, you can run:
+The issue:
+Problem with remote teaching delivery is that it can be really challenging to encourage engagement and participation, as you don’t get the same live feedback and reception that would in real life, making it difficult to gauge audience understanding.
 
-### `npm start`
+Component tree:
+https://app.diagrams.net/#G1DSGVzkPr5P02HP182xF4wKlhERirBVkc
+https://app.diagrams.net/#G1wHdObeptwj1x5e1RuMnxqvQrslN7qjOd
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Are you EngagedMate?
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+BEFORE YOU BEGIN
+You have to make sure that you are in the database of users, there are two different types of user (speaker and participant) giving access to different views, features and tools depending upon your authorisation (more about this later). If you don't have these logging into the app will be a problem.
 
-### `npm test`
+### Now we can begin
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The feature menu is your paracetamol displaying tools that we have designed to help with the headache. The Thumbometer feature can help with gauging how everyone is feeling, are you going at the right speed? The right level? Etc. The Raise A Hand feature can help with being able to ask and answer questions when they arise. Live Poll/Quiz feature can help with making sure that you are digesting what is being said
 
-### `npm run build`
+### Thumbometer
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Speaker instructions
+Open the thumbometer feature (either through the nav bar or by clicking on the thumb icon). To give a question you can use the drop down to select one of the preset question options provided or if you select custom an input field is then given and you may type your own. Similar to how you can give a timer you can select one of the preset options from the timer drop down or pick custom and an input field is given and you may type your own (numbers in seconds). Then you can pick start and wait for the results. You will see the results displayed by the rotation of the thumb that has now appeared on the scene. Down is low, Up is high. The results are also available as a percentage below as well showing how many participants have already submitted their response. This is handy as if all the participants have already submitted their result and there is time left you can end it with the stop timer button.The time amount is displayed with a progression bar and when it gets down to 5 seconds it turns red, also displayed in digits below. That session data is then submitted to the database for a later date.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Participant instructions
+Open the thumbometer feature (either through the nav bar or by clicking on the thumb icon).
+When the speaker has submitted a question it appears in a heading. The participant can then use the slider below the thumb to register their response to the question. Left is low, right is high as the participant moves the slider the thumb rotates round. Thumb down - low, thumb up - high. The percentage amount of their response is also displayed. The time amount is displayed with a progression bar and when it gets down to 5 seconds it turns red, also displayed in digits below.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Raise A Hand
+Speaker instructions
+When a hand is raised a notification is sent to the speaker, the list of hands raised is viewable by opening the raise a hand feature (either through the nav bar or by clicking on the hand icon). The hands are shown in a list along with the name of who submitted it. As well as knowing the name and the order can also know the rough idea of what the question entails (useful as the speaker can see if multiple hands have the same sort of question).
 
-### `npm run eject`
+Participant instructions
+If had a question to ask open the raise a hand feature (either through the nav bar or by clicking on the hand icon). Click the icon of a closed hand this will send a notification to the speaker that a hand has been raised with the name attached to it. An added feature is that could also use the input field to put a topic. Not the whole question but just a few words showing the general idea of what want to ask. The raised hand can be put back down by clicking the hand icon again which has now changed to an open hand (or the speaker could reset the hand from their view).
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Live Quiz
+Speaker instructions
+If wanted to test your audience could give them an on the spot question, open the live quiz feature (either through the nav bar or by clicking on the face icon). To give a question you can use the drop down to select one of the preset question options provided or if you select custom an input field is then given and you may type your own. After creating answer options for the question with the pencil icon (maximum of 4), select the correct answer with the buttons next to each answer(this will not be visible to the participants) and submit that question.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Results shown...
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Participant instructions
+When a live quiz poll has been started by the speaker, open the live quiz feature (either through the nav bar or by clicking on the face icon). The question is displayed with the answer options available. Participant selects their answer and this is submitted back to the speaker.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Results shown...
 
-## Learn More
+Running the DJ Deck
+Admin Access Only
+In order for the Spotify playlist to run, you will need to create an app at https://developer.spotify.com/dashboard/applications once you have created a client id and client secret place these inside of the environment variables. By default the playlist url is defined, by default to the School of Code playlist. To change this just replace the url inside of the spotify component.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+The sound sample files need to be placed in the sound folder within the public folder. To access them, create a new Audio file and place the file name into a variable.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-
-### `Running the DJ Deck
-
-In order for the Spotify playlist to run, you will need to create
-
-Users will need to have a Spotify account in order to play the full songs in the playlist. In a situation where a Spotify account is not found, the songs will play a 30 second sample\
-
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Example
+Do you want a laugh?
+Here is an example of how our app works. This video is actually us presenting EngageMate when it was in its infancy. When we were more like Callback Kittens.
+(link to demo day video)
+The video shows as well as how the app works, the planning and also what technologies were used in creating it, where they were implemented and how.

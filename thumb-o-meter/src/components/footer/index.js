@@ -77,35 +77,37 @@ const Footer = ({ bg, color }) => {
   let randomNumber = Math.floor(Math.random() * advice.length);
 
   return (
-    <Center>
-      <HStack style={{ marginBottom: "30px" }}>
-        <ul className={styles.footer}>
-          {role === "coach" && (
-            <>
-              <li>
-                {" "}
-                <Center>
-                  {" "}
-                  <Button>
-                    <Link to="/admin">Admin</Link>
-                  </Button>{" "}
-                </Center>
-              </li>
-              <li>
-                {" "}
-                <Button mb={4} onClick={handleJoke}>
-                  Get Joke
-                </Button>
-              </li>{" "}
-            </>
-          )}
-          {role === "bootcamper" && <li>{advice[randomNumber]}</li>}
-        </ul>
-      </HStack>
+    <>
       <Center>
-        <p>{joke}</p>
+        <HStack style={{ marginBottom: "30px" }}>
+          <ul className={styles.footer}>
+            {role === "coach" && (
+              <>
+                <li>
+                  {" "}
+                  <Center>
+                    {" "}
+                    <Button>
+                      <Link to="/admin">Admin</Link>
+                    </Button>{" "}
+                  </Center>
+                </li>
+                <li>
+                  {" "}
+                  <Button mb={4} onClick={handleJoke}>
+                    Get Joke
+                  </Button>
+                </li>{" "}
+              </>
+            )}
+            {role === "bootcamper" && <li>{advice[randomNumber]}</li>}
+          </ul>
+        </HStack>
       </Center>
-    </Center>
+      <Center>
+        <p style={{ marginBottom: "10px" }}>{joke}</p>
+      </Center>
+    </>
   );
 };
 

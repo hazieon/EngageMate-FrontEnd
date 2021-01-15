@@ -94,7 +94,7 @@ const Header = () => {
                   </MenuItems>
                 );
               })}
-          {role === "bootcamper" && (
+          {/* {role === "bootcamper" && (
             <Box
               className={styles.raise}
               onClick={isRaised ? { lowerHand } : { raiseHand }}
@@ -116,7 +116,7 @@ const Header = () => {
                 )}
               </div>
             </Box>
-          )}
+          )} */}
           <LogoutButton bg={bg} color={color} />
         </Flex>
       </Box>

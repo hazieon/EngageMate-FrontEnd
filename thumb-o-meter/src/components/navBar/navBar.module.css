@@ -34,7 +34,6 @@
 
 .box {
   flex-basis: 100%;
-  border: 2px solid "#7f56f2";
 }
 
 .active {

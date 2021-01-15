@@ -19,6 +19,7 @@ function StartSession({ message, icon }) {
 
   return (
     <Button
+      className={styles.myBtn}
       onClick={handleSubmit}
       leftIcon={icon}
       colorScheme="teal"

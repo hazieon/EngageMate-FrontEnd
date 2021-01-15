@@ -46,11 +46,9 @@ function PtPoll() {
   const socket = data[0];
 
   useEffect(() => {
-
     socket.on("pollStart", handlePollStart);
 
     socket.on("sessionStop", handleSessionStop);
-
 
     return () => {
       //cleanup
@@ -91,7 +89,10 @@ function PtPoll() {
   }
 
   return (
-    <div className={style.container} style={{ backgroundColor: myColor }}>
+    <div
+      className={style.container}
+      style={{ backgroundColor: myColor, color: "white" }}
+    >
       {state.view === "waiting" && <h1>Waiting for question.</h1>}
       {state.view === "session" && (
         <div className={style.sessionBox}>
