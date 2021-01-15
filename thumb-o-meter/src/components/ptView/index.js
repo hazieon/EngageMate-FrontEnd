@@ -51,7 +51,7 @@ function PtView({ data, submit, time, count }) {
       className={style.container}
       style={{ backgroundColor: "#2C276B", color: "white" }}
     >
-      <h1>{data.question || "Waiting session start"}</h1>
+      <h1>{data.question || "Awaiting Session Start"}</h1>
       <p className={style.valueInformation}>
         {" "}
         <Thumb value={value} myColor={myColor} />
