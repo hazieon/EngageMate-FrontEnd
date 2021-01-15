@@ -68,7 +68,10 @@ function Spotify() {
             // };
 
             // setPlaylist(newPlaylist);
-            //playlist.uri &&
+            // playlist.uri &&
+            //   setUrl(
+            //     `https://open.spotify.com/embed/playlist/${newPlaylist.uri}`
+            //   );
             setUrl(
               `https://open.spotify.com/embed/playlist/37i9dQZF1DWUPafHP1BJw1`
             );
