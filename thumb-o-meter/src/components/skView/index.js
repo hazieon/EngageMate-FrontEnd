@@ -173,6 +173,7 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
           onClick={() => {
             startSession({ question, timer, throwaway });
           }}
+          isDisabled={timer === "Custom" ? true : false}
         >
           Start Timer
         </Button>
