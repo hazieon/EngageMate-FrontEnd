@@ -16,7 +16,7 @@ function SkHand() {
   const result = useRoleContext();
 
   const loggedUser = result[2];
-  const name = loggedUser?.given_name;
+  const name = loggedUser?.given_name || "Ben";
 
   function createNotifications(handData) {
     console.log({ handData });

@@ -17,6 +17,8 @@ const changes = new Audio("get-your-changes-in.mp3");
 const hackathon = new Audio("hackathon-fridays.mp3");
 const immutable = new Audio("immutable.mp3");
 const waving = new Audio("waving.mp3");
+const chris = new Audio("chris.m4a");
+const engaged = new Audio("engaged.m4a");
 const Deck = ({ bg, color }) => {
   return (
     <Box bg={bg} color={color}>
@@ -54,11 +56,19 @@ const Deck = ({ bg, color }) => {
               color: "white",
             }}
           >
+            {" "}
+            <div className={style.player}>
+              <p>Engaged 1 </p>
+              <Player file={engaged} />
+            </div>
+            <div className={style.player}>
+              <p>Engaged 2 </p>
+              <Player file={chris} />
+            </div>
             <div className={style.player}>
               <p>Breakout Room 1 </p>
               <Player file={breakout1} />
             </div>
-
             <div className={style.player}>
               <p>Breakout Room 2 </p>
               <Player file={breakout2} />

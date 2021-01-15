@@ -51,6 +51,7 @@
 
 .throwaway {
   margin: 10px 0 10px 0;
+  font-size: 0.8rem;
 }
 
 .throwaway > * {

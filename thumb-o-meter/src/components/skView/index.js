@@ -82,6 +82,27 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
       className={style.container}
       style={{ backgroundColor: "#2C276B", color: "white" }}
     >
+      <p className={style.throwaway}>
+        Throwaway
+        <Tooltip
+          label="If selected this will be a throwaway option"
+          fontSize="md"
+        >
+          <span>
+            <Switch
+              isDisabled={count > 0 ? true : false}
+              onChange={() => setThrowaway(!throwaway)}
+              colorScheme="green"
+              // style={{ backgroundColor: myColor }}
+            />
+          </span>
+        </Tooltip>
+        <StartSession
+          className={style.button}
+          message="Thumb session starting"
+          icon={<VscDebugStart />}
+        />
+      </p>
       {/* <h1>The Question Here</h1> */}
       <Select
         placeholder="Select Question"
@@ -144,27 +165,6 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
         type="Number"
         onChange={(e) => setTimer(e.target.value)}
       />
-      <p className={style.throwaway}>
-        <Tooltip
-          label="If selected this will be a throwaway option"
-          fontSize="md"
-        >
-          <span>
-            <Switch
-              isDisabled={count > 0 ? true : false}
-              onChange={() => setThrowaway(!throwaway)}
-              colorScheme="green"
-              // style={{ backgroundColor: myColor }}
-            />
-          </span>
-        </Tooltip>
-
-        <StartSession
-          className={style.button}
-          message="Thumb session starting"
-          icon={<VscDebugStart />}
-        />
-      </p>
       <div className={style.buttons}>
         <Button
           leftIcon={<MdUpdate />}
@@ -173,6 +173,7 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
           onClick={() => {
             startSession({ question, timer, throwaway });
           }}
+          isDisabled={timer === "Custom" ? true : false}
         >
           Start Timer
         </Button>
