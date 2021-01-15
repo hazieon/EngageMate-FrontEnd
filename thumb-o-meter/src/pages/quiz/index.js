@@ -14,23 +14,21 @@ const Quiz = ({ bg, color }) => {
   return (
     <Flex>
       <Box className={styles.container} bg={bg} color={color}>
-        <main>
-          <NavBar />
-          <Center>
-            <Text className={"player animate__animated animate__heartBeat"}>
-              {" "}
-              <Title text="Live Quiz" />
-            </Text>
-          </Center>
-          <Box h="100vh" d="flex" justifyContent="center">
-            <main>
-              <Center>
-                {role === "coach" && <SkPoll />}
-                {role === "bootcamper" && <PtPoll />}
-              </Center>
-            </main>
-          </Box>
-        </main>
+        <NavBar />
+        <Center>
+          <Text className={"player animate__animated animate__heartBeat"}>
+            {" "}
+            <Title text="Live Quiz" />
+          </Text>
+        </Center>
+        <Box h="100vh" d="flex" justifyContent="center">
+          <main>
+            <Center>
+              {role === "coach" && <SkPoll />}
+              {role === "bootcamper" && <PtPoll />}
+            </Center>
+          </main>
+        </Box>
       </Box>
     </Flex>
   );
