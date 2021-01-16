@@ -1,45 +1,24 @@
 //speaker setting a seesion on thumbometer page
 
 function speakerThumbSession() {
-  describe("Start the session", () => {
-    it("Find the button to start the thumbometer session and click it", () => {
-      cy.get("div")
-        .should("have.class", "skView_container__8oHCA")
-        .get("p")
-        .should("have.class", "skView_throwaway__WZMsh")
-        .get("button")
-        .should(
-          "have.class",
-          "chakra-button massAlert_myBtn__1qKvU css-12rzcna"
-        )
-        .contains("Start Session")
-        .click();
-      cy.wait(2000);
-    });
-  });
-
   //get question dropdown
   describe("Check for question dropdown", () => {
     it("get question drop down", () => {
       // cy.wait(1500);
+      cy.get("div").should("have.class", "skView_container__8oHCA");
       cy.get("div")
-        .should("have.class", "skView_container__8oHCA")
-        .get("div")
         .should("have.class", "chakra-select__wrapper css-42b2qy")
-        .eq(0)
-        .get("select")
+        .eq(0);
+      cy.get("select")
         .should("have.class", "chakra-select skView_select__39swe css-ts6fv")
-        .eq(0)
-        .get("option")
-        .eq(0)
-        .contains("Select Question");
+        .eq(0);
+      cy.get("option").eq(0).contains("Select Question");
       //set custom question
+      cy.get("div").should("have.class", "skView_container__8oHCA");
       cy.get("div")
-        .should("have.class", "skView_container__8oHCA")
-        .get("div")
         .should("have.class", "chakra-select__wrapper css-42b2qy")
-        .eq(0)
-        .get("select")
+        .eq(0);
+      cy.get("select")
         .should("have.class", "chakra-select skView_select__39swe css-ts6fv")
         .eq(0)
         .select("Set a custom question.")
@@ -48,7 +27,7 @@ function speakerThumbSession() {
         .should("have.class", "chakra-input css-1kzfnz9")
         .eq(0)
         .type("Testing?");
-      // // cy.wait(1500);
+      // cy.wait(1500);
     });
   });
 
@@ -92,26 +71,26 @@ function speakerThumbSession() {
       cy.get("div").should("have.class", "skView_buttons__1X2Y_");
       cy.get("button")
         .should("have.class", "chakra-button skView_button__1AOqf css-ywjnlx")
-        .contains("Start Timer");
-      //     // .click();
-      //     cy.wait(1000);
-      //   });
-      // });
-      // //get stop timer button
-      // // describe("Check for stop timer button", () => {
-      // //   it("get stop timer button", () => {
-      // //     cy.wait(1500);
-      // //     cy.get("div").should("have.class", "skView_container__8oHCA");
-      // //     cy.get("div").should("have.class", "css-gmuwbf");
-      // //     cy.get("div").should("have.class", "skView_container__8oHCA");
-      // //     cy.get("div").should("have.class", "skView_buttons__1X2Y_");
-
-      // //     cy.get("button")
-      // //       .should("have.class", "chakra-button skView_button__1AOqf css-mdlog5")
-      // //       .contains("Stop Timer")
-      // //       .click();
+        .contains("Start Timer")
+        .click();
+      cy.wait(1000);
     });
   });
+  //get stop timer button
+  // describe("Check for stop timer button", () => {
+  //   it("get stop timer button", () => {
+  //     cy.wait(1500);
+  //     cy.get("div").should("have.class", "skView_container__8oHCA");
+  //     cy.get("div").should("have.class", "css-gmuwbf");
+  //     cy.get("div").should("have.class", "skView_container__8oHCA");
+  //     cy.get("div").should("have.class", "skView_buttons__1X2Y_");
+
+  //     cy.get("button")
+  //       .should("have.class", "chakra-button skView_button__1AOqf css-mdlog5")
+  //       .contains("Stop Timer")
+  //       .click();
+  //   });
+  // });
 }
 
 export default speakerThumbSession;
