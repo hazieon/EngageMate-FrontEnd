@@ -3,6 +3,7 @@ import NavBar from "../../components/navBar";
 import styles from "./index.module.css";
 import PtView from "../../components/ptView";
 import SkView from "../../components/skView";
+import ReducerSkView from "../../components/skView/skViewReduce";
 import Footer from "../../components/footer";
 import Title from "../../components/heading";
 import { createStandaloneToast, LightMode, Text } from "@chakra-ui/react";
@@ -150,9 +151,12 @@ const Thumbometer = () => {
       <Box className={styles.container} bg={bg} color={color} w="100%">
         <NavBar />
         <Center>
-          <Text className={"player animate__animated animate__heartBeat"}>
+          <Text
+            className={"player animate__animated animate__heartBeat"}
+            style={{ textShadow: "0px 3px 3px#7f56f2" }}
+          >
             {" "}
-            <Title text="Thumbometer" />
+            <Title text="Thumbometer" heading="heading" />
           </Text>
         </Center>
 

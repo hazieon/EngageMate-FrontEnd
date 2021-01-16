@@ -9,7 +9,18 @@
   opacity: 40%;
   border-radius: 10%;
 }
+img {
+  width: 40px;
+  height: auto;
+}
+.logo {
+  margin-left: 2.8rem;
+}
 
+.logoText {
+  font-size: 1.5rem;
+  text-shadow: 0px 3px 3px#7f56f2;
+}
 .container {
   text-align: center;
   display: flex;

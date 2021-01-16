@@ -97,6 +97,8 @@ function SkHand() {
     setHands(data);
   }
 
+  console.log(hands);
+
   return (
     <div
       className={styles.container}
@@ -111,28 +113,33 @@ function SkHand() {
 
       {/* renders a box section which contains the ordered list of users with raised hands */}
       <section className={styles.handsList}>
-        {hands.map((h, i) => (
-          <div>
-            <ul key={i}>
-              <li className={styles.handRaise}>
-                {h.name ? h.name : "Guest"}: {h.topic}
-                <button
-                  className={styles.myBtn}
-                  onClick={() => removeHand(i, h.id)}
-                >
-                  <CloseIcon
-                    //style={{ color: "white", width: "1rem", height: "1rem" }}
+        {hands === [] ? (
+          <p>no hands raised</p>
+        ) : (
+          hands.map((h, i) => (
+            <div>
+              <ul key={i}>
+                <li key={i} className={styles.handRaise}>
+                  {h.name ? h.name : "Guest"}: {h.topic}
+                  <button
+                    key={i}
                     className={styles.myBtn}
-                  />
-                </button>
-              </li>
-            </ul>
-          </div>
-        ))}
+                    onClick={() => removeHand(i, h.id)}
+                  >
+                    <CloseIcon
+                      //style={{ color: "white", width: "1rem", height: "1rem" }}
+                      className={styles.myBtn}
+                    />
+                  </button>
+                </li>
+              </ul>
+            </div>
+          ))
+        )}
       </section>
       <HStack className={styles.box}>
         {hands.map((h, i) => (
-          <img src={h.picture} alt={name} className={styles.picture} />
+          <img src={h.picture} key={i} alt={name} className={styles.picture} />
         ))}
       </HStack>
       <Link to="/">

@@ -16,7 +16,10 @@ const Quiz = ({ bg, color }) => {
       <Box className={styles.container} bg={bg} color={color}>
         <NavBar />
         <Center>
-          <Text className={"player animate__animated animate__heartBeat"}>
+          <Text
+            className={"player animate__animated animate__heartBeat"}
+            style={{ textShadow: "0px 3px 3px#7f56f2" }}
+          >
             {" "}
             <Title text="Live Quiz" />
           </Text>

@@ -1,12 +1,10 @@
 export const menuItems = [
-  { link: "/", value: "Home" },
   { link: "/thumb", value: "Thumbometer" },
   { link: "/raisehand", value: "Raise Hand" },
   { link: "/quiz", value: "Live Quiz" },
 ];
 
 export const coachMenuItems = [
-  { link: "/", value: "Home" },
   { link: "/thumb", value: "Thumbometer" },
   { link: "/raisehand", value: "Raise Hand" },
   { link: "/quiz", value: "Live Quiz" },

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useReducer } from "react";
 import style from "./index.module.css";
 import { Link } from "react-router-dom";
 import StartSession from "../massAlert/startSession";
@@ -18,24 +18,89 @@ import { MdUpdate, MdStop, MdPeople } from "react-icons/md";
 import Thumb from "../thumb";
 import Timer from "../timer/index";
 
-function SkView({ data, startSession, endSession, count, time, setTime }) {
-  const [question, setQuestion] = useState("Set Custom Question");
-  const [timer, setTimer] = useState("Custom");
-  const [myColor, setMyColor] = useState("#7f56f2");
-  const [custom, setCustom] = useState(false);
-  const [customTime, setCustomTime] = useState(false);
-  const [throwaway, setThrowaway] = useState(false);
+const initialState = {
+  question: "Set Custom Question",
+  timer: "Custom",
+  myColor: "#7f56f2",
+  custom: false,
+  customTime: false,
+  throwaway: false,
+};
+
+function reducer(state, action) {
+  switch (action.type) {
+    case "custom":
+      return {
+        ...state,
+        custom: true,
+      };
+    case "customTime":
+      return {
+        ...state,
+        customTime: true,
+      };
+    case "myColor":
+      return {
+        ...state,
+        myColor: action.value,
+      };
+    case "field":
+      return {
+        ...state,
+        [action.field]: action.value,
+      };
+
+    case "throwaway":
+      return {
+        ...state,
+        throwaway: !state.throwaway,
+      };
+
+    case "error":
+      return {
+        ...state,
+        isLoading: false,
+        error: "incorrect username or password",
+        username: "",
+        password: "",
+      };
+    default:
+      throw new Error();
+  }
+}
+
+function ReducerSkView({
+  data,
+  startSession,
+  endSession,
+  count,
+  time,
+  setTime,
+}) {
+  //   const [question, setQuestion] = useState("Set Custom Question");
+  //   const [timer, setTimer] = useState("Custom");
+  //   const [myColor, setMyColor] = useState("#7f56f2");
+  //   const [custom, setCustom] = useState(false);
+  //   const [customTime, setCustomTime] = useState(false);
+  //   const [throwaway, setThrowaway] = useState(false);
   const { isOpen, onToggle } = useDisclosure();
+
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  const { question, timer, myColor, custom, customTime, throwaway } = state;
   console.log({ question });
   function handleSession(e) {
     if (e.target.value !== "custom") {
-      setCustom(false);
+      dispatch({
+        type: "field",
+        field: "question",
+        value: e.target.value,
+      });
 
-      setQuestion(e.target.value);
       console.log({ question });
     }
     if (e.target.value === "custom") {
-      setCustom(true);
+      dispatch({ type: "custom" });
     }
     //else {
     //   let customQ = prompt("whats your question?");
@@ -45,15 +110,15 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
   }
 
   function handleTimer(e) {
-    if (e.target.value !== "custom") {
-      setCustomTime(false);
-      setTimer(Number(e.target.value));
-      setTime(Number(e.target.value));
-      console.log({ timer });
+    if (e.target.value !== "customTime") {
+      dispatch({
+        type: "field",
+        field: "timer",
+        value: e.target.value,
+      });
     }
     if (e.target.value === "custom") {
-      setCustomTime(true);
-      console.log(customTime);
+      dispatch({ type: "customTime" });
     }
     // } else {
     //   let customT = prompt("How many seconds should be allowed?");
@@ -63,16 +128,27 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
     // }
     onToggle();
   }
-
   useEffect(() => {
     if (data.outcome === 0) {
-      setMyColor("#7f56f2");
+      dispatch({
+        type: "myColor",
+        value: "#7f56f2",
+      });
     } else if (data.outcome <= 33) {
-      setMyColor("red");
+      dispatch({
+        type: "myColor",
+        value: "red",
+      });
     } else if (data.outcome > 33 && data.outcome <= 66) {
-      setMyColor("#f58142");
+      dispatch({
+        type: "myColor",
+        value: "#f58142",
+      });
     } else if (data.outcome > 66 && data.outcome <= 100) {
-      setMyColor("green");
+      dispatch({
+        type: "myColor",
+        value: "green",
+      });
     }
   }, [data.outcome]);
 
@@ -90,7 +166,7 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
           <span>
             <Switch
               isDisabled={count > 0 ? true : false}
-              onChange={() => setThrowaway(!throwaway)}
+              onChange={() => dispatch({ type: "throwaway" })}
               colorScheme="green"
               // style={{ backgroundColor: myColor }}
             />
@@ -133,7 +209,13 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
         }
         placeholder="set custom question..."
         type="text"
-        onChange={(e) => setQuestion(e.target.value)}
+        onChange={(e) =>
+          dispatch({
+            type: "field",
+            field: "question",
+            value: e.target.value,
+          })
+        }
       />
       <Select
         placeholder="Timer Amount"
@@ -162,7 +244,13 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
         }
         placeholder="set custom time..."
         type="Number"
-        onChange={(e) => setTimer(e.target.value)}
+        onChange={(e) =>
+          dispatch({
+            type: "field",
+            field: "timer",
+            value: e.target.value,
+          })
+        }
       />
       <div className={style.buttons}>
         <Button
@@ -215,4 +303,4 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
   );
 }
 
-export default SkView;
+export default ReducerSkView;

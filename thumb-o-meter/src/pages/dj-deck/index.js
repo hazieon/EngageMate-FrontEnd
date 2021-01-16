@@ -27,7 +27,10 @@ const Deck = ({ bg, color }) => {
       <div className={style.container}>
         <Center className={style.heading}>
           {" "}
-          <Text className={"player animate__animated animate__heartBeat"}>
+          <Text
+            className={"player animate__animated animate__heartBeat"}
+            style={{ textShadow: "0px 3px 3px#7f56f2" }}
+          >
             <Title
               className={"player animate__animated animate__heartBeat"}
               text="DJ Deck"

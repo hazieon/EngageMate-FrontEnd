@@ -91,7 +91,7 @@ function Spotify() {
             src={url}
             // https://open.spotify.com/embed/playlist/spotify:playlist:37i9dQZF1DX76Wlfdnj7AP
             width="300"
-            height="540"
+            height="700"
             frameBorder="0"
             allowtransparency="true"
             allow="encrypted-media"
