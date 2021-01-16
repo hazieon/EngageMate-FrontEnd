@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import useSocketContext from "../../context/socketContext";
 import LogoutButton from "../logout/index";
-import { Box, Flex, Text, useColorModeValue } from "@chakra-ui/react";
+import { HStack, Box, Flex, Text, useColorModeValue } from "@chakra-ui/react";
 import ThemeToggler from "../themeToggler";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import useRoleContext from "../../context/roleContext";
@@ -65,7 +65,19 @@ const Header = () => {
       }}
     >
       {/* <Icon as={FaCat} /> */}
-      <ThemeToggler />
+      <HStack>
+        <ThemeToggler />
+        <Link to="/">
+          {" "}
+          <div>
+            <HStack className={styles.logo}>
+              <img src="circleLogo.png" alt="" />{" "}
+              <p className={styles.logoText}>EngageMate</p>
+            </HStack>
+          </div>{" "}
+        </Link>
+      </HStack>
+
       <Box className={styles.icon} onClick={toggleMenu}>
         {show ? <CloseIcon /> : <HamburgerIcon />}
       </Box>
