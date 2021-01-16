@@ -34,14 +34,14 @@ export function filterData(tableData, searchObj) {
       return (
         dateString.includes(`Week ${searchObj.week}`) &&
         dateString.includes(`Day ${searchObj.day}`) &&
-        session.coach.toLowerCase().includes(searchObj.coach.toLowerCase()) &&
+        session.coach?.toLowerCase().includes(searchObj.coach?.toLowerCase()) &&
         session.throwaway === searchObj.throwaway
       );
     } else {
       return (
         dateString.includes(`Week ${searchObj.week}`) &&
         dateString.includes(`Day ${searchObj.day}`) &&
-        session.coach.toLowerCase().includes(searchObj.coach.toLowerCase())
+        session.coach?.toLowerCase().includes(searchObj.coach?.toLowerCase())
       );
     }
   });

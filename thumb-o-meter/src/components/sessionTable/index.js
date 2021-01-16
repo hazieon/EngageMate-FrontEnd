@@ -56,7 +56,7 @@ function SessionTable({ tableData, deleteSession }) {
                 </Td>
                 <Td>{session.question}</Td>
                 <Td>{session.outcome + "%"}</Td>
-                <Td>{session.coach}</Td>
+                <Td>{session?.coach}</Td>
                 <Td>{session.participants}</Td>
                 <Td>{session.responses}</Td>
                 <Td>{session.throwaway ? " ✅ " : "❌ "}</Td>
