@@ -83,7 +83,7 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
       style={{ backgroundColor: "#2C276B", color: "white" }}
     >
       <p className={style.throwaway}>
-        Throwaway
+        {/* Throwaway
         <Tooltip
           label="If selected this will be a throwaway option"
           fontSize="md"
@@ -96,7 +96,7 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
               // style={{ backgroundColor: myColor }}
             />
           </span>
-        </Tooltip>
+        </Tooltip> */}
         <StartSession
           className={style.button}
           message="Thumb session starting"
@@ -187,19 +187,19 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
           Stop Timer
         </Button>
       </div>
-      <Collapse in={isOpen} animateOpacity className={style.valueInformation}>
-        {" "}
-        <Thumb value={data.outcome} myColor={myColor} />
-        <p>
-          Value: {data.outcome || "0"}%{" "}
-          <span>
-            {data.responses || "0"}/{data.participants || "0"}{" "}
-            {<Icon as={MdPeople} />}
-          </span>
-        </p>
-        <Timer count={count} time={time} />
-        <p className={style.count}>{count}</p>
-      </Collapse>{" "}
+      {/* <Collapse in={isOpen} animateOpacity className={style.valueInformation}>
+        {" "} */}
+      <Thumb value={data.outcome} myColor={myColor} />
+      <p>
+        Value: {data.outcome || "0"}%{" "}
+        <span>
+          {data.responses || "0"}/{data.participants || "0"}{" "}
+          {<Icon as={MdPeople} />}
+        </span>
+      </p>
+      <Timer count={count} time={time} />
+      <p className={style.count}>{count}</p>
+      {/* </Collapse>{" "} */}
       <Link to="/">
         {" "}
         <Button
