@@ -48,14 +48,16 @@ const Admin = () => {
     console.log(sessionTableData);
   }, [updatePage]);
 
-  function deleteUser(id) {
+  function deleteUser(email) {
     if (window.confirm("Are you sure?")) {
-      fetch(`${url}/users/${id}`, {
+      fetch(`${url}/users/${email}`, {
         method: "DELETE",
       })
         .then((response) => response.json())
         .then((data) => {
+          console.log(data);
           if (data.success === true) {
+            console.log(data);
             successToast({
               name: "User Delete Success",
               message: "Successfully deleted user from the database.",
@@ -69,6 +71,7 @@ const Admin = () => {
             });
             console.log("Failure", data.payload);
           }
+          console.log(data);
         });
     }
   }

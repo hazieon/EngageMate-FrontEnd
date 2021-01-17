@@ -110,13 +110,11 @@ function SkHand() {
         </p>
       </div>
       <Hand />
-
-      {/* renders a box section which contains the ordered list of users with raised hands */}
-      <section className={styles.handsList}>
-        {hands === [] ? (
-          <p>no hands raised</p>
-        ) : (
-          hands.map((h, i) => (
+      {hands.length < 1 ? (
+        <h1 style={{ fontSize: "2rem" }}>No Hands Raised</h1>
+      ) : (
+        <section className={styles.handsList}>
+          {hands.map((h, i) => (
             <div>
               <ul key={i}>
                 <li key={i} className={styles.handRaise}>
@@ -134,9 +132,9 @@ function SkHand() {
                 </li>
               </ul>
             </div>
-          ))
-        )}
-      </section>
+          ))}
+        </section>
+      )}
       <HStack className={styles.box}>
         {hands.map((h, i) => (
           <img src={h.picture} key={i} alt={name} className={styles.picture} />

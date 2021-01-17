@@ -33,7 +33,7 @@ const UserTable = ({ tableData, deleteUser }) => {
               <Td>
                 <Icon
                   as={IoTrashBinOutline}
-                  onClick={() => deleteUser(user.bootcamperid)}
+                  onClick={() => deleteUser(user.email)}
                 />
               </Td>
               <Td>{user.firstname}</Td>

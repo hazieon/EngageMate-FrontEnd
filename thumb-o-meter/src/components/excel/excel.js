@@ -5,7 +5,6 @@ import { config } from "../../config";
 import { Input, Button } from "@chakra-ui/react";
 
 const Excel = () => {
-  console.log(window.XLSX);
   const [selectedFile, setSelectedFile] = useState();
   const [json, setJson] = useState();
   const { url } = config;
