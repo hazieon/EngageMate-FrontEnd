@@ -20,7 +20,7 @@ import Timer from "../timer/index";
 
 function SkView({ data, startSession, endSession, count, time, setTime }) {
   const [question, setQuestion] = useState("Set Custom Question");
-  const [timer, setTimer] = useState("Custom");
+  const [timer, setTimer] = useState("");
   const [myColor, setMyColor] = useState("#7f56f2");
   const [custom, setCustom] = useState(false);
   const [customTime, setCustomTime] = useState(false);
@@ -45,6 +45,8 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
   }
 
   function handleTimer(e) {
+    if (!timer) onToggle();
+
     if (e.target.value !== "custom") {
       setCustomTime(false);
       setTimer(Number(e.target.value));
@@ -53,6 +55,7 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
     }
     if (e.target.value === "custom") {
       setCustomTime(true);
+      setTimer(5);
       console.log(customTime);
     }
     // } else {
@@ -61,7 +64,6 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
     //   setTime(Number(customT));
     //   console.log({ timer });
     // }
-    onToggle();
   }
 
   useEffect(() => {
@@ -172,7 +174,9 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
           onClick={() => {
             startSession({ question, timer, throwaway });
           }}
-          isDisabled={timer === "Custom" ? true : false}
+          isDisabled={
+            timer === "Custom" || timer === "" || count > 0 ? true : false
+          }
         >
           Start Timer
         </Button>
