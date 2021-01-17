@@ -62,6 +62,7 @@ function PtHand() {
     <div className={style.container} style={{ backgroundColor: myColor }}>
       <Subheading
         text={isRaised ? "Click To Lower Hand" : "Click To Raise Hand"}
+        style={{ fontSize: "1.5rem" }}
       />
       <Hand
         isRaised={isRaised}

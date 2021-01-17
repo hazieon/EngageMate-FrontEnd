@@ -26,11 +26,7 @@ const FeaturedMenu = () => {
   return (
     <Box bg={bg} color={color}>
       <Header bg={bg} color={color} />
-      <Title
-        text="Welcome to "
-        logo="EngageMate"
-        user={user.given_name || "Ben"}
-      />
+      <Title text="Welcome to " logo="EngageMate" user={user.given_name} />
       <Menu bg={bg} color={color} />
       <Footer bg={bg} color={color} />
     </Box>
