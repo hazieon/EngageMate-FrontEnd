@@ -8,7 +8,7 @@ import Footer from "../../components/footer";
 import Title from "../../components/heading";
 import { createStandaloneToast, LightMode, Text } from "@chakra-ui/react";
 import useRoleContext from "../../context/roleContext";
-
+import { successToast, burntToast } from "../../components/toastAlerts/index";
 import { Flex, Box, Center, useColorModeValue } from "@chakra-ui/react";
 // import socketIOClient from "socket.io-client";
 import { config } from "../../config";
@@ -54,29 +54,6 @@ const Thumbometer = () => {
     }
   }
 
-  function successToast(successObject) {
-    const toast = createStandaloneToast();
-    toast({
-      title: successObject.name,
-      description: successObject.message,
-      status: "success",
-      duration: 9000,
-      isClosable: true,
-    });
-  }
-
-  function burntToast(error) {
-    const toast = createStandaloneToast();
-    toast({
-      title: error.name,
-      description: error.message,
-      status: "error",
-      duration: 10000,
-      isClosable: true,
-    });
-    console.log(error);
-  }
-
   const result = useRoleContext();
   const role = result[0];
   const loggedUser = result[2];
@@ -85,17 +62,12 @@ const Thumbometer = () => {
   console.log(loggedUser);
 
   useEffect(() => {
-    // socket = socketIOClient(ENDPOINT);
-    // socket.emit("connection");
     //join room request - get name, role from auth
     socket.emit("joinroom", {
       name: name, //take from auth
       role: role,
       room: "thumbometer",
     });
-
-    //listen for thumb update, take in session data
-    //useEffect - pass down session data obj
 
     //start thumb session listener - destructures data and timer, sets state
     socket.on("startThumb", ({ sessionData, timer }) => {
@@ -104,32 +76,40 @@ const Thumbometer = () => {
       console.log("start thumb recieved");
     });
 
+    //listen for thumb update, take in session data
     socket.on("thumbUpdate", ({ sessionData }) => {
       setData(sessionData);
       console.log("thumb updated");
     });
 
+    // listen for counter changes
     socket.on("counter", (counter) => {
       setCount(counter);
       console.log(counter);
     });
 
     //finished listener - sets final data state
-    socket.on("finished", ({ sessionData }) => {
-      setData(sessionData);
-      console.log("finished session");
-      console.log({ sessionData });
-      //call function that posts to session table
-      //success or burnt toast
-      role === "coach" &&
-        name === sessionData.coach &&
-        handleSubmit({ sessionData });
-      //disable slider here - state
-      setCount(0);
-    });
+    socket.on("finished", handleFinishEvent);
 
-    // return () => socket.disconnect();
+    // Clean up
+    return () => {
+      socket.emit("leaveThumb");
+      socket.off("finished", handleFinishEvent);
+    };
   }, []);
+
+  function handleFinishEvent({ sessionData }) {
+    setData(sessionData);
+    console.log("finished session");
+    console.log({ sessionData });
+    //call function that posts to session table
+    //success or burnt toast
+    role === "coach" &&
+      name === sessionData.coach &&
+      handleSubmit({ sessionData });
+    //disable slider here - state
+    setCount(0);
+  }
 
   //hand this function down to speaker view - pass in q and timer
   function startSession({ question, timer, throwaway }) {

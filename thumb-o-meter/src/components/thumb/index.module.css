@@ -8,6 +8,7 @@
   margin: auto;
   display: flex;
   justify-content: center;
+  transition: background-color 0.8s ease-out;
 }
 
 .thumb {
