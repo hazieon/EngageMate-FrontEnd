@@ -7,22 +7,23 @@ const HandNotify = () => {
   const socket = context[0];
 
   useEffect(() => {
-    const handler = ({ handRaiseData }) => {
-      console.log(handRaiseData);
-      handleSetHands(handRaiseData);
-    };
-
-    const lowerHandler = ({ handRaiseData }) => {
-      handleSetHands(handRaiseData);
-    };
     socket.on("handRaiseInfo", handler);
     socket.on("lowerHandRaiseInfo", lowerHandler);
 
     return () => {
-      socket.off("handRaiseInfo");
-      socket.off("lowerHandRaiseInfo");
+      socket.off("handRaiseInfo", handler);
+      socket.off("lowerHandRaiseInfo", lowerHandler);
     };
   }, []);
+
+  const handler = ({ handRaiseData }) => {
+    console.log(handRaiseData);
+    handleSetHands(handRaiseData);
+  };
+
+  const lowerHandler = ({ handRaiseData }) => {
+    handleSetHands(handRaiseData);
+  };
 
   function handleSetHands(data) {
     setHands(data);
