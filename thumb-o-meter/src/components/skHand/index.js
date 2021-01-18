@@ -116,9 +116,9 @@ function SkHand() {
         <section className={styles.handsList}>
           {hands.map((h, i) => (
             <div>
-              <ul key={i}>
+              <ul key={i} style={{ marginBottom: "5px" }}>
                 <li key={i} className={styles.handRaise}>
-                  {h.name ? h.name : "Guest"}: {h.topic}
+                  {h.name ? h.name.toUpperCase() : "Guest"}: {h.topic}
                   <button
                     key={i}
                     className={styles.myBtn}

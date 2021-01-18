@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useReducer } from "react";
 import style from "./index.module.css";
 import { Button } from "@chakra-ui/react";
-
+import { Link } from "react-router-dom";
 import useSocketContext from "../../context/socketContext";
 import SkPollResults from "../skPollResults";
-
+import { ArrowBackIcon } from "@chakra-ui/icons";
 const initialState = {
   session: false,
   results: false,
@@ -114,11 +114,29 @@ function PtPoll() {
             })}
           </ul>
           <p>{state.choice}</p>
-          <Button onClick={() => submitVote()}>Submit ➡</Button>
+          <Button
+            colorScheme={myColor}
+            variant="outline"
+            onClick={() => submitVote()}
+          >
+            Submit ➡
+          </Button>
         </div>
       )}
 
       {state.view === "results" && <SkPollResults data={state.questionData} />}
+      <Link to="/">
+        <Button
+          _hover={{
+            background: "white",
+            color: "#2C276B",
+          }}
+          variant="outline"
+          style={{ marginBottom: "20px" }}
+        >
+          <ArrowBackIcon /> Back
+        </Button>
+      </Link>
     </div>
   );
 }
