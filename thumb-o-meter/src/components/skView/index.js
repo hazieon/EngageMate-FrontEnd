@@ -83,27 +83,29 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
       className={style.container}
       style={{ backgroundColor: "#2C276B", color: "white" }}
     >
-      <p className={style.throwaway}>
-        Throwaway
-        <Tooltip
-          label="If selected this will be a data will be hidden in the database"
-          fontSize="md"
-        >
-          <span>
-            <Switch
-              isDisabled={count > 0 ? true : false}
-              onChange={() => setThrowaway(!throwaway)}
-              colorScheme="green"
-              // style={{ backgroundColor: myColor }}
-            />
-          </span>
-        </Tooltip>
-        <StartSession
-          className={style.button}
-          message="Thumb session starting. Head to the Thumbometer page to join!"
-          icon={<VscDebugStart />}
-        />
-      </p>
+      <div className={style.sessionButtons}>
+        <p className={style.throwaway}>
+          Throwaway
+          <Tooltip
+            label="If selected this data will be filtered out in the database."
+            fontSize="md"
+          >
+            <span>
+              <Switch
+                isDisabled={count > 0 ? true : false}
+                onChange={() => setThrowaway(!throwaway)}
+                colorScheme="green"
+                // style={{ backgroundColor: myColor }}
+              />
+            </span>
+          </Tooltip>
+          <StartSession
+            className={style.button}
+            message="Thumb session starting. Head to the Thumbometer page to join!"
+            icon={<VscDebugStart />}
+          />
+        </p>
+      </div>
       {/* <h1>The Question Here</h1> */}
       <Select
         placeholder="Select Question"
