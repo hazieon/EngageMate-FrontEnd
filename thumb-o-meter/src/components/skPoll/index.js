@@ -7,7 +7,7 @@ import SkPollResults from "../skPollResults";
 import { ArrowBackIcon, EditIcon, DeleteIcon } from "@chakra-ui/icons";
 import { Link } from "react-router-dom";
 import StartSession from "../massAlert/startSession";
-
+import { VscDebugStart } from "react-icons/vsc";
 function SkPoll() {
   const [question, setQuestion] = useState("Set Custom Question");
   const [custom, setCustom] = useState(false);
@@ -135,6 +135,7 @@ function SkPoll() {
       <StartSession
         className={style.button}
         message="Live Poll session starting. Head to the Live Quiz page to join!"
+        icon={<VscDebugStart />}
       />
       {!pollStarted && (
         <div>
@@ -144,9 +145,6 @@ function SkPoll() {
               onChange={handleSession}
               className={style.select}
             >
-              <option value="Which one is the odd one out?">
-                Which one is the odd one out?
-              </option>
               <option value="custom">Set a custom question</option>
             </Select>
             <Input

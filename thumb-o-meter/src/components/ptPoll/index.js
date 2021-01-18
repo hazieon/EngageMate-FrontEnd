@@ -93,27 +93,34 @@ function PtPoll() {
       className={style.container}
       style={{ backgroundColor: myColor, color: "white" }}
     >
-      {state.view === "waiting" && <h1>Waiting for question.</h1>}
+      {state.view === "waiting" && (
+        <p style={{ fontSize: "1.5rem", margin: "1rem" }}>
+          Waiting for question.
+        </p>
+      )}
       {state.view === "session" && (
         <div className={style.sessionBox}>
-          <h1>{state.questionData.question}</h1>
+          <p style={{ fontSize: "1.5rem", marginTop: "1rem" }}>
+            {state.questionData.question}
+          </p>
           <ul className={style.optionsList}>
             {state.questionData.options.map((o, i) => {
               return (
-                <li className={style.option}>
+                <li className={style.option} style={{ marginTop: "20px" }}>
                   {o[1]}
                   <button
+                    style={{ marginLeft: " 10px", fontSize: "0.8rem" }}
                     onClick={() =>
                       dispatch({ type: "choice", choice: String(o[0]) })
                     }
                   >
-                    ☑
+                    select
                   </button>
                 </li>
               );
             })}
           </ul>
-          <p>{state.choice}</p>
+          <p> You have selected Option {state.choice}</p>
           <Button
             colorScheme={myColor}
             variant="outline"

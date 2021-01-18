@@ -24,7 +24,7 @@ const Quiz = ({ bg, color }) => {
             <Title text="Live Quiz" />
           </Text>
         </Center>
-        <Box h="100vh" d="flex" justifyContent="center">
+        <Box>
           <main>
             <Center>
               {role === "coach" && <SkPoll />}

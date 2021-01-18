@@ -1,7 +1,7 @@
 .container {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 33px;
-  width: 450px;
+  width: 350px;
 
   padding: 10px;
   display: flex;
@@ -35,4 +35,31 @@ label > input[type="radio"]:checked + *::before {
 
 .select {
   margin-bottom: 10px;
+}
+@media only screen and (min-width: 768px) {
+  .container {
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 33px;
+    width: 600px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-top: 20px;
+  }
+}
+@media only screen and (min-width: 1280px) {
+  .container {
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 33px;
+    width: 750px;
+
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-top: 20px;
+  }
 }
