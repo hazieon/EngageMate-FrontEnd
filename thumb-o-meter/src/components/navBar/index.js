@@ -2,7 +2,14 @@ import React, { useState, useEffect } from "react";
 import { NavLink, Link } from "react-router-dom";
 import useSocketContext from "../../context/socketContext";
 import LogoutButton from "../logout/index";
-import { HStack, Box, Flex, Text, useColorModeValue } from "@chakra-ui/react";
+import {
+  HStack,
+  Box,
+  Flex,
+  Text,
+  useColorModeValue,
+  Center,
+} from "@chakra-ui/react";
 import ThemeToggler from "../themeToggler";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import useRoleContext from "../../context/roleContext";
@@ -65,7 +72,7 @@ const Header = () => {
       }}
     >
       {/* <Icon as={FaCat} /> */}
-      <HStack>
+      <Center>
         <ThemeToggler />
         <Link to="/">
           {" "}
@@ -76,7 +83,7 @@ const Header = () => {
             </HStack>
           </div>{" "}
         </Link>
-      </HStack>
+      </Center>
 
       <Box className={styles.icon} onClick={toggleMenu}>
         {show ? <CloseIcon /> : <HamburgerIcon />}
