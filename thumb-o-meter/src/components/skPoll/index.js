@@ -134,8 +134,10 @@ function SkPoll() {
     >
       <StartSession
         className={style.button}
+
         message="Live Poll session starting. Head to the Live Quiz page to join!"
         icon={<VscDebugStart />}
+
       />
       {!pollStarted && (
         <div>
