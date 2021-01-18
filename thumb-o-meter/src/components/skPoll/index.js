@@ -135,7 +135,7 @@ function SkPoll() {
     >
       <StartSession
         className={style.button}
-        message="Live Poll session starting. Head to the Live Quiz page to join!"
+        message="Live Quiz session starting. Head to the Live Quiz page to join!"
       />
       {!pollStarted && (
         <div>
@@ -196,14 +196,12 @@ function SkPoll() {
         </div>
       )}
       {pollStarted && (
-
         <SkPollResults
           question={resultsObj}
           stopPoll={stopPoll}
           socket={socket}
         />
       )}{" "}
-
       <br />
       <Link to="/">
         <Button

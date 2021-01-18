@@ -86,7 +86,7 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
       <p className={style.throwaway}>
         Throwaway
         <Tooltip
-          label="If selected this will be a throwaway option"
+          label="If selected this will be a data will be hidden in the database"
           fontSize="md"
         >
           <span>
@@ -100,7 +100,7 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
         </Tooltip>
         <StartSession
           className={style.button}
-          message="Thumb session starting"
+          message="Thumb session starting. Head to the Thumbometerß page to join!"
           icon={<VscDebugStart />}
         />
       </p>
