@@ -18,3 +18,13 @@
 
   transition: transform 0.8s ease-in-out;
 }
+@media only screen and (max-width: 768px) {
+  .container {
+    width: 150px;
+    height: 150px;
+  }
+
+  .thumb {
+    width: 100px;
+  }
+}

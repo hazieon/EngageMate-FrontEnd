@@ -105,7 +105,7 @@ const Footer = ({ bg, color }) => {
         </HStack>
       </Center>
       <Center>
-        <p style={{ marginBottom: "10px" }}>{joke}</p>
+        <p style={{ margin: "10px", textAlign: "center" }}>{joke}</p>
       </Center>
     </>
   );
