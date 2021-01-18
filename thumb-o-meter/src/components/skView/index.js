@@ -100,7 +100,7 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
         </Tooltip>
         <StartSession
           className={style.button}
-          message="Thumb session starting. Head to the Thumbometerß page to join!"
+          message="Thumb session starting. Head to the Thumbometer page to join!"
           icon={<VscDebugStart />}
         />
       </p>
