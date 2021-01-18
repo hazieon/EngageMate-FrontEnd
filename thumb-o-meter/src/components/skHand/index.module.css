@@ -3,7 +3,7 @@
   border-radius: 33px;
   background-color: "red";
   width: 425px;
-  padding: 3rem;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -27,8 +27,9 @@
 .handsList {
   border: 2px solid slateblue;
   border-radius: 30px;
-  padding: 2.5rem;
-  width: 95%;
+  padding: 1rem;
+  width: 100%;
+  font-size: 1rem;
 }
 ul {
   list-style-type: none;

@@ -57,7 +57,6 @@ function SkPoll() {
         <label for={`choice${i + 1}`}>
           <input
             id={`choice${i + 1}`}
-            name="choice"
             type="radio"
             name="correctButton"
             value={`${i + 1}`}
