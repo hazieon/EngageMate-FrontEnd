@@ -27,7 +27,7 @@ function MassAlert() {
     <form onSubmit={handleSubmit}>
       <FormControl id="message">
         <FormLabel>Enter message:</FormLabel>
-        <Input type="text" onChange={handleChange} />
+        <Input type="text" onChange={handleChange} autoComplete="off" />
       </FormControl>
       <Button colorScheme="teal" type="submit">
         Send

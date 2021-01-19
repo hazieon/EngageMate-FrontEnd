@@ -52,6 +52,7 @@ function SkPoll() {
           width="300px"
           id={i + 1}
           onChange={handleOptions}
+          autoComplete="off"
           maxLength="30"
         ></Input>
         <label for={`choice${i + 1}`}>
