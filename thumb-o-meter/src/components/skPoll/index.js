@@ -134,65 +134,57 @@ function SkPoll() {
     >
       <StartSession
         className={style.button}
-
         message="Live Poll session starting. Head to the Live Quiz page to join!"
         icon={<VscDebugStart />}
-
       />
       {!pollStarted && (
-        <div>
-          <form onSubmit={handleSubmit}>
-            <Select
-              placeholder="Select a question"
-              onChange={handleSession}
-              className={style.select}
-            >
-              <option value="custom">Set a custom question</option>
-            </Select>
-            <Input
-              focusBorderColor="lime"
-              className={style.borderColor}
-              style={
-                custom
-                  ? {
-                      display: "block",
-                      textAlign: "center",
-                      borderColor: "grey",
-                    }
-                  : { display: "none" }
-              }
-              placeholder="set custom question..."
-              type="text"
-              onChange={(e) => setQuestion(e.target.value)}
-            />
-            <Stack className="optionsInput">{arr}</Stack>
-            <Center>
-              <HStack>
-                {value < 4 ? (
-                  <Button
-                    style={{ color: "white" }}
-                    colorScheme={myColor}
-                    onClick={() => setValue(value + 1)}
-                  >
-                    <EditIcon />
-                  </Button>
-                ) : (
-                  ""
-                )}
+        <form className={style.select} onSubmit={handleSubmit}>
+          <Select placeholder="Select a question" onChange={handleSession}>
+            <option value="custom">Set a custom question</option>
+          </Select>
+          <Input
+            focusBorderColor="lime"
+            className={style.borderColor}
+            style={
+              custom
+                ? {
+                    display: "block",
+                    textAlign: "center",
+                    borderColor: "grey",
+                  }
+                : { display: "none" }
+            }
+            placeholder="set custom question..."
+            type="text"
+            onChange={(e) => setQuestion(e.target.value)}
+          />
+          <Stack className="optionsInput">{arr}</Stack>
+          <Center>
+            <HStack>
+              {value < 4 ? (
                 <Button
                   style={{ color: "white" }}
-                  colorScheme=""
-                  onClick={remove}
+                  colorScheme={myColor}
+                  onClick={() => setValue(value + 1)}
                 >
-                  <DeleteIcon />
+                  <EditIcon />
                 </Button>
-                <Button style={{ color: "white" }} colorScheme="" type="submit">
-                  Submit
-                </Button>
-              </HStack>
-            </Center>
-          </form>
-        </div>
+              ) : (
+                ""
+              )}
+              <Button
+                style={{ color: "white" }}
+                colorScheme=""
+                onClick={remove}
+              >
+                <DeleteIcon />
+              </Button>
+              <Button style={{ color: "white" }} colorScheme="" type="submit">
+                Submit
+              </Button>
+            </HStack>
+          </Center>
+        </form>
       )}
       {pollStarted && (
         <SkPollResults
