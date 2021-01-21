@@ -10,19 +10,19 @@ function speakerRaiseHandAfterHand() {
     });
   });
 
-  describe("Checking feature menu of app for notification on Raise A Hand", () => {
-    it("Check for notification on raise a hand", () => {
-      cy.wait(1500);
-      cy.get("div")
-        .should("have.class", "menu_container__16sI5")
-        .find("div")
-        .should("have.class", "menu_players__3qFH2")
-        .find("div")
-        .should("have.class", "menu_notify__sAV1M css-0")
-        .find("p")
-        .contains(1);
-    });
-  });
+  // describe("Checking feature menu of app for notification on Raise A Hand", () => {
+  //   it("Check for notification on raise a hand", () => {
+  //     cy.wait(1500);
+  //     cy.get("div")
+  //       .should("have.class", "menu_container__16sI5")
+  //       .find("div")
+  //       .should("have.class", "menu_players__3qFH2")
+  //       .find("div")
+  //       .should("have.class", "menu_notify__sAV1M css-0")
+  //       .find("p")
+  //       .contains(1);
+  //   });
+  // });
 
   describe("Click the raise a hand link on the feature menu", () => {
     it("Get the raise a hand link and click the link", () => {
@@ -52,7 +52,7 @@ function speakerRaiseHandAfterHand() {
         .find("ul")
         .find("li")
         .should("have.class", "skHand_handRaise__1plw0")
-        .contains("Testing?");
+        .contains("Test?");
     });
   });
 
