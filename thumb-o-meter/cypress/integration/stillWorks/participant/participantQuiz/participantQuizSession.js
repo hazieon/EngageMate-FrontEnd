@@ -3,7 +3,7 @@ function participantQuizSession() {
     it("Check for the question heading and has correct text", () => {
       cy.get("div")
         .should("have.class", "ptPoll_sessionBox__1iNpr")
-        .get("h1")
+        .get("p")
         .contains("Testing?");
     });
 
@@ -30,7 +30,7 @@ function participantQuizSession() {
       cy.get("div")
         .should("have.class", "ptPoll_container__fLWer")
         .get("button")
-        .should("have.class", "chakra-button css-1d88tv1")
+        .should("have.class", "chakra-button css-1is8iqt")
         .contains("Submit")
         .click();
     });
@@ -43,13 +43,13 @@ function participantQuizSession() {
         .find("div")
         .should("have.class", "chakra-stack css-1ovnguh")
         .find("div")
-        .eq(0)
         .should("have.class", "skPollResults_progressDiv__1-Yic")
         .find("div")
         .should("have.class", "css-qe4vho")
         .find("div")
         .should("have.class", "css-tez3s")
-        .should("have.css", "background-color", "#38A169");
+        .eq(0)
+        .should("have.css", "background-color", "rgb(56, 161, 105)");
     });
   });
 }

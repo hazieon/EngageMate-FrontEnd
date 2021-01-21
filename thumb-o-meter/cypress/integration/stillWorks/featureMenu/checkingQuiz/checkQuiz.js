@@ -12,12 +12,12 @@ function checkingForQuizFeature() {
     });
   });
 
-  // describe("Click the live quiz link on the feature menu", () => {
-  //   it("Get the live quiz link and click the link", () => {
-  //     cy.wait(1500);
-  //     cy.get("section").eq(2).find("a").click();
-  //   });
-  // });
+  describe("Click the live quiz link on the feature menu", () => {
+    it("Get the live quiz link and click the link", () => {
+      cy.wait(1500);
+      cy.get("section").eq(2).find("a").click();
+    });
+  });
 }
 
 export default checkingForQuizFeature;

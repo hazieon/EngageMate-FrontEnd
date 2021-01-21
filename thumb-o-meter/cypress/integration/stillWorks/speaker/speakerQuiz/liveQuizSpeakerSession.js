@@ -5,12 +5,12 @@ function speakerLiveQuizSession() {
         .should("have.class", "skPoll_container__22UU2")
         .get("form")
         .get("select")
-        .should("have.class", "chakra-select skPoll_select__3PGnh css-18wj7tk")
+        .should("have.class", "chakra-select css-18wj7tk")
         .get("option")
         .eq(0)
         .contains("Select a question");
       cy.get("select")
-        .should("have.class", "chakra-select skPoll_select__3PGnh css-18wj7tk")
+        .should("have.class", "chakra-select css-18wj7tk")
         .select("Set a custom question")
         .should("have.value", "custom");
       cy.get("input")

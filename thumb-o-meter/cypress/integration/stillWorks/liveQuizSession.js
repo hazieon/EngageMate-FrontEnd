@@ -33,7 +33,7 @@ import openingScreen from "./openingScreen/openingScreen";
 import logIn from "./logIn/logIn";
 import darkMode from "./darkMode/darkMode";
 import checkingForQuizFeature from "./featureMenu/checkingQuiz/checkQuiz";
-import speakerLiveQuizSession from "./speaker/speakerPoll/liveQuizSpeakerSession";
+import speakerLiveQuizSession from "./speaker/speakerQuiz/liveQuizSpeakerSession";
 import participantQuizSession from "./participant/participantQuiz/participantQuizSession";
 import logOut from "./logOut/logOut";
 
