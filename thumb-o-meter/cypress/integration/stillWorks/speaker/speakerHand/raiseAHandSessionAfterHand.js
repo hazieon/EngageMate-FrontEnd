@@ -52,7 +52,7 @@ function speakerRaiseHandAfterHand() {
         .find("ul")
         .find("li")
         .should("have.class", "skHand_handRaise__1plw0")
-        .contains("Test?");
+        .contains("Testing?");
     });
   });
 

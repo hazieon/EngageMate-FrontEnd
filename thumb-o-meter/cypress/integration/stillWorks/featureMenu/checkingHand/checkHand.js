@@ -12,12 +12,12 @@ function checkingForHandFeature() {
     });
   });
 
-  // describe("Click the raise a hand link on the feature menu", () => {
-  //   it("Get the raise a hand link and click the link", () => {
-  //     cy.wait(1500);
-  //     cy.get("section").eq(1).find("a").click();
-  //   });
-  // });
+  describe("Click the raise a hand link on the feature menu", () => {
+    it("Get the raise a hand link and click the link", () => {
+      cy.wait(1500);
+      cy.get("section").eq(1).find("a").click();
+    });
+  });
 }
 
 export default checkingForHandFeature;

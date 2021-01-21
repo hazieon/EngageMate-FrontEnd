@@ -23,9 +23,9 @@ import openingScreen from "./openingScreen/openingScreen";
 import logIn from "./logIn/logIn";
 import darkMode from "./darkMode/darkMode";
 import checkingForHandFeature from "./featureMenu/checkingHand/checkHand";
-import participantRaiseHandSession from "./participant/participantHand/raiseahandSession";
-import speakerRaiseHandPreHand from "./speaker/speakerHand/raiseahandSessionPreHand";
-import speakerRaiseHandAfterHand from "./speaker/speakerHand/raiseaHandSessionAfterHand";
+import participantRaiseHandSession from "./participant/participantHand/raiseAHandSession";
+import speakerRaiseHandPreHand from "./speaker/speakerHand/raiseAHandSessionPreHand";
+import speakerRaiseHandAfterHand from "./speaker/speakerHand/raiseAHandSessionAfterHand";
 import logOut from "./logOut/logOut";
 
 openingScreen();
