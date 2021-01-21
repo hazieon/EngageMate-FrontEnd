@@ -25,7 +25,7 @@ function checkingForThumbOMeterFeature() {
       cy.get("h2")
         .should(
           "have.class",
-          "chakra-heading heading_container__2B5Og css-11ssa62"
+          "chakra-heading heading_container__2B5Og css-zey6tx"
         )
         .contains("Thumbometer");
     });
