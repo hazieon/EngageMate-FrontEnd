@@ -84,7 +84,7 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
       style={{ backgroundColor: "#2C276B", color: "white" }}
     >
       <div className={style.sessionButtons}>
-        {/* <p className={style.throwaway}>
+        <p className={style.throwaway}>
           Throwaway
           <Tooltip
             label="If selected this data will be filtered out in the database."
@@ -98,13 +98,13 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
                 // style={{ backgroundColor: myColor }}
               />
             </span>
-          </Tooltip> */}
-        <StartSession
-          className={style.button}
-          message="Thumb session starting. Head to the Thumbometer page to join!"
-          icon={<VscDebugStart />}
-        />
-        {/* </p> */}
+          </Tooltip>
+          <StartSession
+            className={style.button}
+            message="Thumb session starting. Head to the Thumbometer page to join!"
+            icon={<VscDebugStart />}
+          />
+        </p>
       </div>
       {/* <h1>The Question Here</h1> */}
       <Select
@@ -192,18 +192,19 @@ function SkView({ data, startSession, endSession, count, time, setTime }) {
           Stop Timer
         </Button>
       </div>
-      {/* <Collapse in={isOpen} animateOpacity className={style.valueInformation}> */}{" "}
-      <Thumb value={data.outcome} myColor={myColor} />
-      <p>
-        Value: {data.outcome || "0"}%{" "}
-        <span>
-          {data.responses || "0"}/{data.participants || "0"}{" "}
-          {<Icon as={MdPeople} />}
-        </span>
-      </p>
-      <Timer count={count} time={time} />
-      <p className={style.count}>{count}</p>
-      {/* </Collapse>{" "} */}
+      <Collapse in={isOpen} animateOpacity className={style.valueInformation}>
+        {" "}
+        <Thumb value={data.outcome} myColor={myColor} />
+        <p>
+          Value: {data.outcome || "0"}%{" "}
+          <span>
+            {data.responses || "0"}/{data.participants || "0"}{" "}
+            {<Icon as={MdPeople} />}
+          </span>
+        </p>
+        <Timer count={count} time={time} />
+        <p className={style.count}>{count}</p>
+      </Collapse>{" "}
       <Link to="/">
         {" "}
         <Button
