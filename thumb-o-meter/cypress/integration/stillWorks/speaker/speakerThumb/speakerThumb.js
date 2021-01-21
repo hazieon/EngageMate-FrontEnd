@@ -87,10 +87,8 @@ function speakerThumbSession() {
 
   //     cy.get("button")
   //       .should("have.class", "chakra-button skView_button__1AOqf css-mdlog5")
-  //       .contains("Stop Timer")
+  //       .contains("Stop Timer");
   //       .click();
-  //   });
-  // });
 }
 
 export default speakerThumbSession;
