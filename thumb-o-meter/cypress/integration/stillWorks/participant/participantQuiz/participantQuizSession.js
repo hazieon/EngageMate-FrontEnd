@@ -49,6 +49,9 @@ function participantQuizSession() {
         .find("div")
         .should("have.class", "css-tez3s")
         .eq(0)
+        .find("div")
+        .should("have.class", "css-tez3s")
+        .eq(1)
         .should("have.css", "background-color", "rgb(56, 161, 105)");
     });
   });
