@@ -47,3 +47,4 @@ logIn("participantview@gmail.com", "(callbackCats)");
 darkMode();
 checkingForQuizFeature();
 participantQuizSession();
+logOut();
