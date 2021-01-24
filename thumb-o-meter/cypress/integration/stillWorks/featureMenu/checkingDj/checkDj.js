@@ -4,7 +4,7 @@
 function checkingForDjDeck() {
   describe("Checking feature menu of app for DJDeck", () => {
     it("Get the dj deck feature by going through the elements and class names", () => {
-      cy.wait(1500);
+      cy.wait(2000);
       cy.get("section")
         .eq(3)
         .find("p")
@@ -13,31 +13,26 @@ function checkingForDjDeck() {
     });
   });
 
-  // describe("Click the dj deck link on the feature menu", () => {
-  //   it("Get the dj deck link and click the link", () => {
-  //     cy.wait(1500);
-  //     cy.get("section").eq(3).find("a").click();
-  //   });
-  // });
+  describe("Click the dj deck link on the feature menu", () => {
+    it("Get the dj deck link and click the link", () => {
+      cy.wait(1500);
+      cy.get("section").eq(3).find("a").click();
+    });
+  });
 
-  //   //finds DJ Deck link on featuremenu and clicks
-  //   describe("Click the DJ Deck link on the feature menu", () => {
-  //     it("Get the DJ Deck and click the link", () => {
-  //       cy.wait(1500);
-  //       cy.get("main").find("section").eq(3).find("a").click();
-  //     });
-  //   });
-
-  //   // //check contents of page
-  //   // //checks for heading of the page
-  //   // describe("Checking contents DJDeck page", () => {
-  //   //   it("Get the heading by class name and confirm has 'DJ Deck' as text", () => {
-  //   //     cy.wait(1500);
-  //   //     cy.get("h1")
-  //   //       .should("have.class", "")
-  //   //       .contains("");
-  //   //   });
-  //   // });
+  //check contents of page
+  //checks for heading of the page
+  describe("Checking contents DJDeck page", () => {
+    it("Get the heading by class name and confirm has 'DJ Deck' as text", () => {
+      cy.wait(1500);
+      cy.get("h2")
+        .should(
+          "have.class",
+          "chakra-heading heading_container__2B5Og css-zey6tx"
+        )
+        .contains("DJ Deck");
+    });
+  });
 
   //   //checks for songs?
   //   describe("Checking for songs", () => {
