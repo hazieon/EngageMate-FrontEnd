@@ -1,5 +1,5 @@
 function speakerLiveQuizSession() {
-  describe("Speaker starting a a live quiz session", () => {
+  describe("Speaker starting a live quiz session", () => {
     it("Find select a question drop down, select custom question and input testing?", () => {
       cy.get("div")
         .should("have.class", "skPoll_container__22UU2")
