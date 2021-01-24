@@ -15,7 +15,7 @@ function logOut() {
         .should("have.class", "chakra-button logout_btn__1eIMF css-zgm9my")
         .contains("Log Out")
         .click();
-      // cy.wait(5000);
+      cy.wait(3000);
       cy.end();
     });
   });

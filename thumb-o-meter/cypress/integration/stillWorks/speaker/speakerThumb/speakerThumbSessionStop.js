@@ -1,7 +1,7 @@
 function speakerStopThumbSession() {
   describe("Check for stop timer button", () => {
     it("get stop timer button", () => {
-      // cy.wait(1500);
+      cy.wait(1000);
       cy.get("div").should("have.class", "skView_container__8oHCA");
       cy.get("div").should("have.class", "css-gmuwbf");
       cy.get("div").should("have.class", "skView_container__8oHCA");

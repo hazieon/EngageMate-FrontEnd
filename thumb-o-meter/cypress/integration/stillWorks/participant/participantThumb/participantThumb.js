@@ -2,7 +2,7 @@ function participantThumbSession() {
   //get pt slider
   describe("Checks for slider", () => {
     it("Checks for a slider", () => {
-      // cy.wait(1500);
+      cy.wait(1000);
       cy.get("div")
         .should("have.class", "css-gmuwbf")
         .get("div")
@@ -19,7 +19,7 @@ function participantThumbSession() {
   describe("Moves slider", () => {
     it("Moves slider", () => {
       //move slider
-      // cy.wait(1500);
+      cy.wait(1000);
       cy.get("div")
         .should("have.class", "css-gmuwbf")
         .get("div")

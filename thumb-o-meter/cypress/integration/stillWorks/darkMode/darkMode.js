@@ -7,7 +7,7 @@ function darkMode() {
         .should("have.class", "chakra-button css-j47tpi")
         .eq(0)
         .click();
-      // cy.wait(1000);
+      cy.wait(1000);
     });
   });
 }

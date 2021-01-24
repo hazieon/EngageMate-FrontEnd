@@ -7,7 +7,7 @@ function lightMode() {
         .should("have.class", "chakra-button css-14g9kwn")
         .eq(0)
         .click();
-      // cy.wait(1000);
+      cy.wait(1000);
     });
   });
 }

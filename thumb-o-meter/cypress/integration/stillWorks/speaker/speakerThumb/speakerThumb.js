@@ -4,7 +4,7 @@ function speakerThumbSession() {
   //get question dropdown
   describe("Check for question dropdown", () => {
     it("get question drop down", () => {
-      // cy.wait(1500);
+      cy.wait(1000);
       cy.get("div").should("have.class", "skView_container__8oHCA");
       cy.get("div")
         .should("have.class", "chakra-select__wrapper css-42b2qy")
@@ -27,14 +27,14 @@ function speakerThumbSession() {
         .should("have.class", "chakra-input css-1kzfnz9")
         .eq(0)
         .type("Testing?");
-      // cy.wait(1500);
+      cy.wait(1000);
     });
   });
 
   //get custom timer and type in 100
   describe("Check for timer dropdown", () => {
     it("get timer drop down", () => {
-      // cy.wait(1500);
+      cy.wait(1000);
       cy.get("div").should("have.class", "skView_container__8oHCA");
       cy.get("div")
         .should("have.class", "chakra-select__wrapper css-42b2qy")
@@ -57,14 +57,14 @@ function speakerThumbSession() {
         .should("have.class", "chakra-input css-1kzfnz9")
         .eq(1)
         .type(100);
-      // cy.wait(1500);
+      cy.wait(1000);
     });
   });
 
   //get start timer button
   describe("Check for start timer button", () => {
     it("get start timer button", () => {
-      // cy.wait(1500);
+      cy.wait(1000);
       cy.get("div").should("have.class", "skView_container__8oHCA");
       cy.get("div").should("have.class", "css-gmuwbf");
       cy.get("div").should("have.class", "skView_container__8oHCA");
