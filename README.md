@@ -7,7 +7,7 @@ Our School of Code final project, we worked in week-long agile sprints to ideate
 Once the MVP with React components, a postgreSQL Heroku database and socket.io websockets, we deployed the application to Heroku and Netlify with continuous deployment.
 We continued developing the application to MLP (minimum LOVEABLE product)!
 
-view the backend repository: https://github.com/hazieon/EngageMate-BackEnd
+view the back end repository: https://github.com/hazieon/EngageMate-BackEnd
 
 ## View the application
 https://engagemate.netlify.app/
